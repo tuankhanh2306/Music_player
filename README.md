@@ -1,6 +1,7 @@
 Tôi đang xây dựng một hệ thống AI Music Player. Hãy hiểu rõ toàn bộ kiến trúc, yêu cầu và viết code cho cả Python AI service và Java Spring Boot backend.
 
-e:\MP3\
+```text
+e:\\MP3\\
 │
 ├── ai-service/                        # 🐍 THƯ MỤC CHỨA PYTHON AI SERVICE
 │   ├── requirements.txt               # Các thư viện Python cần cài (librosa, flask, sklearn...)
@@ -43,6 +44,7 @@ e:\MP3\
 │
 ├── PLAN.md                            # File kế hoạch làm việc
 └── README.md                          # File yêu cầu bài toán
+```
 
 =====================
 1. MỤC TIÊU HỆ THỐNG
