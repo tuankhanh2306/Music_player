@@ -1,0 +1,30 @@
+# ==========================================
+# Cấu hình bỏ qua file cho AI Music Player
+# ==========================================
+
+# --- Python / AI Service ---
+__pycache__/
+*.py[cod]
+*$py.class
+ai-service/venv/
+ai-service/env/
+.env
+*.npy
+
+# --- Java / Spring Boot ---
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+*.class
+*.log
+
+# --- Uploads / Dữ liệu (Không push nhạc lên Git) ---
+backend/uploads/
+ai-service/data/
+
+# --- IDEs và Hệ điều hành (Không push cấu hình máy cá nhân) ---
+.idea/
+.vscode/
+*.swp
+.DS_Store
