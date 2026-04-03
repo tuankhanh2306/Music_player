@@ -1,191 +1,64 @@
-Tôi đang xây dựng một hệ thống AI Music Player. Hãy hiểu rõ toàn bộ kiến trúc, yêu cầu và viết code cho cả Python AI service và Java Spring Boot backend.
+# 🎵 AI Music Player System
+
+![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-F2F4F9?style=for-the-badge&logo=spring-boot)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Flask](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white)
+
+Hệ thống phát nhạc trực tuyến tích hợp trí tuệ nhân tạo (AI) để gợi ý bài hát dựa trên nội dung âm thanh (Content-based Recommendation). 
+
+Dự án được xây dựng theo kiến trúc Microservices cơ bản, tách biệt giữa core xử lý nghiệp vụ/streaming (Java Spring Boot) và service phân tích âm thanh bằng học máy (Python).
+
+## 📑 Mục lục
+- [Kiến trúc hệ thống](#-kiến-trúc-hệ-thống)
+- [Tính năng chính](#-tính-năng-chính)
+- [Cấu trúc thư mục](#-cấu-trúc-thư-mục)
+- [Luồng thuật toán AI](#-luồng-thuật-toán-ai)
+- [Cài đặt & Khởi chạy](#-cài-đặt--khởi-chạy)
+- [Tài liệu API](#-tài-liệu-api)
+
+---
+
+## 🏗 Kiến trúc hệ thống
+
+Hệ thống bao gồm 3 thành phần chính:
+1. **Frontend:** Xử lý giao diện người dùng, gửi HTTP request và phát nhạc thông qua luồng stream.
+2. **Backend (Java Spring Boot):** Quản lý metadata bài hát (MySQL/PostgreSQL), người dùng, playlist, xử lý upload file vật lý và streaming audio dạng byte-range. Chịu trách nhiệm giao tiếp với AI Service.
+3. **AI Service (Python Flask):** Đảm nhiệm việc trích xuất đặc trưng âm thanh và thực thi thuật toán gợi ý.
+
+---
+
+## ✨ Tính năng chính
+
+- **Quản lý âm nhạc:** Upload file MP3/WAV, lưu trữ vật lý và quản lý metadata.
+- **Streaming Audio:** Hỗ trợ phát nhạc mượt mà thông qua kỹ thuật truyền luồng.
+- **AI Recommendation:** - Gợi ý top K bài hát tương tự nhau hoàn toàn tự động khi người dùng đang nghe nhạc.
+  - Tối ưu hóa hiệu năng thông qua cơ chế Precompute đặc trưng (Feature Map) và K-Nearest Neighbors (KNN).
+
+---
+
+## 📂 Cấu trúc thư mục
 
 ```text
-e:\\MP3\\
-│
-├── ai-service/                        # 🐍 THƯ MỤC CHỨA PYTHON AI SERVICE
-│   ├── requirements.txt               # Các thư viện Python cần cài (librosa, flask, sklearn...)
-│   ├── app.py                         # Điểm bắt đầu của Flask API (Khởi tạo server)
-│   ├── audio_processing.py            # Logic đọc audio và trích xuất MFCC librosa
-│   ├── similarity.py                  # Logic tính Cosine Similarity
-│   ├── recommendation.py              # Logic tìm top K bài hát (KNN)
-│   ├── precompute.py                  # Script chạy tay để duyệt file và tính map features
-│   ├── test_recommendation.py         # Chứa đoạn code test đơn giản
-│   └── data/
-│       └── features.npy               # Nơi lưu trữ vector precompute (sinh ra tự động)
-│
-├── java-backend/                      # ☕ THƯ MỤC CHỨA JAVA SPRING BOOT
-│   ├── pom.xml / build.gradle         # File quản lý thư viện Maven/Gradle
-│   ├── uploads/                       # 📂 Nơi lưu trữ vật lý các file MP3/WAV do user tải lên
-│   └── src/
-│       └── main/
-│           ├── resources/
-│           │   └── application.yml    # File cấu hình kết nối Database, cổng (port 8080)
-│           └── java/
-│               └── com/musicplayer/
-│                   ├── MusicPlayerApplication.java  # File khởi chạy Spring Boot
-│                   ├── config/
-│                   │   └── RestTemplateConfig.java  # Cấu hình WebClient để gọi sang Python AI
-│                   ├── controller/
-│                   │   ├── SongController.java      # API: Upload file nhac, Stream MP3, Get All
-│                   │   └── RecommendController.java # API: Chuyển tiếp recommend tới Python
-│                   ├── service/
-│                   │   ├── StorageService.java      # Logic lưu/đọc file từ thư mục uploads/
-│                   │   ├── SongService.java         # Logic tương tác Database bài hát
-│                   │   └── AiServiceClient.java     # Hàm Call tới Python Flask API
-│                   ├── repository/
-│                   │   ├── SongRepository.java      # Spring Data JPA cho Song
-│                   │   ├── PlaylistRepository.java  ...
-│                   │   └── UserRepository.java      ...
-│                   └── entity/
-│                       ├── Song.java                # Schema Database (id, title, filepath...)
-│                       ├── Playlist.java            ...
-│                       └── User.java                ...
-│
-├── PLAN.md                            # File kế hoạch làm việc
-└── README.md                          # File yêu cầu bài toán
-```
-
-=====================
-1. MỤC TIÊU HỆ THỐNG
-=====================
-- Xây dựng ứng dụng nghe nhạc có AI recommendation
-- Người dùng có thể:
-  + Phát nhạc
-  + Tìm kiếm bài hát
-  + Tạo playlist
-  + Nhận gợi ý bài hát tương tự
-
-=====================
-2. KIẾN TRÚC HỆ THỐNG
-=====================
-Hệ thống gồm 3 phần:
-
-(1) Frontend:
-- Gửi request HTTP
-- Phát nhạc
-
-(2) Java Backend (Spring Boot):
-- REST API
-- Quản lý user, playlist, song metadata
-- Streaming audio
-- Gọi Python AI service
-
-(3) Python AI Service:
-- Xử lý audio
-- Recommendation system
-
-=====================
-3. LƯU TRỮ DỮ LIỆU
-=====================
-- Audio file: lưu trong thư mục /uploads
-- Metadata: MySQL/PostgreSQL
-- Feature AI: lưu file (.npy) hoặc memory
-
-=====================
-4. LUỒNG HOẠT ĐỘNG
-=====================
-- User phát nhạc → frontend gọi Java
-- Java stream file mp3 về client
-- Java lưu history
-- Khi cần recommend:
-  Java gọi Python → Python trả về danh sách bài
-
-=====================
-5. PYTHON AI SERVICE (BẮT BUỘC CODE)
-=====================
-
-Yêu cầu:
-- Dùng Python + librosa + numpy + scikit-learn
-
-Chức năng:
-1. Trích xuất feature:
-   - Sử dụng MFCC
-2. Tính similarity:
-   - Cosine Similarity
-3. Recommendation:
-   - KNN (top K bài giống nhất)
-4. Sorting:
-   - Sắp xếp theo độ tương đồng
-5. Searching:
-   - Tìm bài theo id
-
-Yêu cầu:
-- Tách module:
-  + audio_processing.py
-  + similarity.py
-  + recommendation.py
-- Có API Flask:
-
-POST /recommend
-Input:
-{
-  "song_id": 1
-}
-
-Output:
-{
-  "recommended": [2, 5, 8]
-}
-
-- Precompute feature (không tính lại mỗi request)
-
-=====================
-6. JAVA BACKEND (BẮT BUỘC CODE)
-=====================
-
-Sử dụng Spring Boot
-
-Yêu cầu:
-
-1. Entity:
-- Song (id, title, artist, file_path)
-- User
-- Playlist
-
-2. API:
-
-- Upload bài hát
-POST /songs/upload
-
-- Lấy danh sách bài hát
-GET /songs
-
-- Stream audio
-GET /songs/{id}
-
-- Recommendation
-GET /recommend/{songId}
-
-3. Logic:
-- Lưu file audio vào /uploads
-- Lưu metadata vào DB
-- Khi gọi /recommend:
-  → Java gọi Python API:
-     http://localhost:5000/recommend
-  → Nhận kết quả → trả về client
-
-4. Code structure:
-- Controller
-- Service
-- Repository (JPA)
-- Entity
-
-=====================
-7. YÊU CẦU TỐI ƯU
-=====================
-- Precompute MFCC
-- Dùng KNN để giảm số phép tính
-- Sorting top K
-- Không xử lý audio realtime
-- Code rõ ràng, dễ hiểu
-
-=====================
-8. OUTPUT YÊU CẦU
-=====================
-- Viết đầy đủ code:
-  + Python AI service
-  + Java Spring Boot backend
-- Code phải chạy được
-- Có ví dụ test
-- Giải thích ngắn gọn từng phần
+📦 ai-music-player
+ ┣ 📂 ai-service/                # 🐍 Python AI Service
+ ┃ ┣ 📜 app.py                   # Điểm bắt đầu của Flask API 
+ ┃ ┣ 📜 audio_processing.py      # Trích xuất MFCC với librosa
+ ┃ ┣ 📜 similarity.py            # Tính Cosine Similarity
+ ┃ ┣ 📜 recommendation.py        # Logic tìm top K bài hát (KNN)
+ ┃ ┣ 📜 precompute.py            # Script chạy batch tính map features
+ ┃ ┣ 📜 test_recommendation.py   # Script test AI độc lập
+ ┃ ┣ 📂 data/                    # Nơi lưu trữ vector precompute (.npy)
+ ┃ ┗ 📜 requirements.txt         
+ ┃
+ ┣ 📂 java-backend/              # ☕ Java Spring Boot Backend
+ ┃ ┣ 📂 uploads/                 # Nơi lưu trữ vật lý audio files
+ ┃ ┣ 📂 src/main/java/com/musicplayer/
+ ┃ ┃ ┣ 📂 config/                # Cấu hình WebClient/RestTemplate
+ ┃ ┃ ┣ 📂 controller/            # Định nghĩa các REST API
+ ┃ ┃ ┣ 📂 service/               # Logic nghiệp vụ & AI Client
+ ┃ ┃ ┣ 📂 repository/            # Spring Data JPA
+ ┃ ┃ ┗ 📂 entity/                # Database Schema (Song, User, Playlist)
+ ┃ ┣ 📜 pom.xml                  
+ ┃ ┗ 📜 application.yml          # Cấu hình DB, Port
