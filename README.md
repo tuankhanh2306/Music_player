@@ -1,64 +1,43 @@
-# 🎵 AI Music Player System
+# 🎵 AI Music Player (100% Python Project)
 
-![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)
-![Spring Boot](https://img.shields.io/badge/Spring_Boot-F2F4F9?style=for-the-badge&logo=spring-boot)
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![Flask](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white)
-![MySQL](https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white)
+> Một hệ thống nghe nhạc thông minh được xây dựng hoàn toàn bằng ngôn ngữ Python. Dự án tích hợp trí tuệ nhân tạo (AI) để tự động phân tích sóng âm thanh và gợi ý các bài hát có giai điệu, âm sắc tương đồng.
 
-Hệ thống phát nhạc trực tuyến tích hợp trí tuệ nhân tạo (AI) để gợi ý bài hát dựa trên nội dung âm thanh (Content-based Recommendation). 
+## 🌟 Giới thiệu dự án
+Dự án **AI Music Player** giải quyết bài toán khám phá âm nhạc thông qua **Content-Based Filtering** (Lọc dựa trên nội dung). 
 
-Dự án được xây dựng theo kiến trúc Microservices cơ bản, tách biệt giữa core xử lý nghiệp vụ/streaming (Java Spring Boot) và service phân tích âm thanh bằng học máy (Python).
+Thay vì phụ thuộc vào các thẻ metadata khô khan (thể loại, tên nghệ sĩ), hệ thống sử dụng sức mạnh xử lý dữ liệu của Python để trực tiếp "nghe" file audio. Thông qua việc trích xuất đặc trưng MFCC (Mel-frequency cepstral coefficients) và áp dụng thuật toán Machine Learning, hệ thống có khả năng tìm ra các bài hát có "màu sắc âm thanh" giống nhau nhất một cách tự động.
 
-## 📑 Mục lục
-- [Kiến trúc hệ thống](#-kiến-trúc-hệ-thống)
-- [Tính năng chính](#-tính-năng-chính)
-- [Cấu trúc thư mục](#-cấu-trúc-thư-mục)
-- [Luồng thuật toán AI](#-luồng-thuật-toán-ai)
-- [Cài đặt & Khởi chạy](#-cài-đặt--khởi-chạy)
-- [Tài liệu API](#-tài-liệu-api)
+## 🚀 Tính năng cốt lõi (Features)
+- **Hệ thống nghe nhạc:** Upload file mp3/wav, phát nhạc (stream audio qua API).
+- **Quản lý Playlist:** Tạo, quản lý và lưu trữ danh sách phát cá nhân.
+- **AI Recommendation:** Gợi ý tức thời top K bài hát có giai điệu tương tự bài đang phát.
+- **Tối ưu hóa hiệu năng (Precompute):** Đặc trưng âm thanh được trích xuất và cache ngay khi upload, giúp API AI phản hồi cực kỳ nhanh chóng.
 
----
-
-## 🏗 Kiến trúc hệ thống
-
-Hệ thống bao gồm 3 thành phần chính:
-1. **Frontend:** Xử lý giao diện người dùng, gửi HTTP request và phát nhạc thông qua luồng stream.
-2. **Backend (Java Spring Boot):** Quản lý metadata bài hát (MySQL/PostgreSQL), người dùng, playlist, xử lý upload file vật lý và streaming audio dạng byte-range. Chịu trách nhiệm giao tiếp với AI Service.
-3. **AI Service (Python Flask):** Đảm nhiệm việc trích xuất đặc trưng âm thanh và thực thi thuật toán gợi ý.
+## 🛠 Công nghệ sử dụng (Python Ecosystem)
+Dự án thuần Python, không sử dụng các framework ngôn ngữ khác (như Java/NodeJS) cho Backend:
+- **Ngôn ngữ lõi:** Python 3.10+
+- **Backend API:** `FastAPI` (hoặc `Flask`) & ASGI Server `Uvicorn`
+- **AI & Audio Processing:** `librosa` (xử lý âm thanh), `scikit-learn` (thuật toán KNN & Cosine Similarity), `numpy` (xử lý ma trận)
+- **Database:** SQLite / MySQL (tương tác qua ORM `SQLAlchemy`)
+- **Giao diện (Frontend):** - Tùy chọn 1 (Thuần Python): `Tkinter` hoặc `PyQt`
+  - Tùy chọn 2 (Web nhẹ): HTML/CSS/Vanilla JS gọi qua REST API.
 
 ---
 
-## ✨ Tính năng chính
-
-- **Quản lý âm nhạc:** Upload file MP3/WAV, lưu trữ vật lý và quản lý metadata.
-- **Streaming Audio:** Hỗ trợ phát nhạc mượt mà thông qua kỹ thuật truyền luồng.
-- **AI Recommendation:** - Gợi ý top K bài hát tương tự nhau hoàn toàn tự động khi người dùng đang nghe nhạc.
-  - Tối ưu hóa hiệu năng thông qua cơ chế Precompute đặc trưng (Feature Map) và K-Nearest Neighbors (KNN).
-
----
-
-## 📂 Cấu trúc thư mục
+## 📁 Cấu trúc mã nguồn (Architecture)
 
 ```text
-📦 ai-music-player
- ┣ 📂 ai-service/                # 🐍 Python AI Service
- ┃ ┣ 📜 app.py                   # Điểm bắt đầu của Flask API 
- ┃ ┣ 📜 audio_processing.py      # Trích xuất MFCC với librosa
- ┃ ┣ 📜 similarity.py            # Tính Cosine Similarity
- ┃ ┣ 📜 recommendation.py        # Logic tìm top K bài hát (KNN)
- ┃ ┣ 📜 precompute.py            # Script chạy batch tính map features
- ┃ ┣ 📜 test_recommendation.py   # Script test AI độc lập
- ┃ ┣ 📂 data/                    # Nơi lưu trữ vector precompute (.npy)
- ┃ ┗ 📜 requirements.txt         
- ┃
- ┣ 📂 java-backend/              # ☕ Java Spring Boot Backend
- ┃ ┣ 📂 uploads/                 # Nơi lưu trữ vật lý audio files
- ┃ ┣ 📂 src/main/java/com/musicplayer/
- ┃ ┃ ┣ 📂 config/                # Cấu hình WebClient/RestTemplate
- ┃ ┃ ┣ 📂 controller/            # Định nghĩa các REST API
- ┃ ┃ ┣ 📂 service/               # Logic nghiệp vụ & AI Client
- ┃ ┃ ┣ 📂 repository/            # Spring Data JPA
- ┃ ┃ ┗ 📂 entity/                # Database Schema (Song, User, Playlist)
- ┃ ┣ 📜 pom.xml                  
- ┃ ┗ 📜 application.yml          # Cấu hình DB, Port
+ai_music_player/
+ ├── .ai/                      # Quy chuẩn dự án và Kế hoạch phát triển
+ ├── docs/                     # Tài liệu thiết kế API và Database Schema
+ ├── src/                      # Source code chính của hệ thống
+ │   ├── api/                  # Routes & Controllers (RESTful API)
+ │   ├── audio_processing/     # Logic trích xuất đặc trưng âm thanh (Librosa)
+ │   ├── recommendation/       # Logic AI (KNN & Cosine Similarity)
+ │   ├── database/             # Kết nối DB & CRUD operations
+ │   └── models/               # Định nghĩa các bảng thực thể (SQLAlchemy)
+ ├── tests/                    # Unit tests kiểm thử module
+ ├── uploads/                  # Thư mục lưu trữ file audio gốc (.mp3, .wav)
+ ├── data/                     # Thư mục lưu cache AI vectors (.npy)
+ ├── main.py                   # File Entry-point khởi chạy Server
+ └── requirements.txt          # Danh sách thư viện Python

@@ -1,109 +1,112 @@
-# 📋 Kế Hoạch Triển Khai Hệ Thống AI Music Player
+# 📋 AI Agent Task Breakdown: AI Music Player
+**Status:** In Progress
+**Project Type:** 100% Python (FastAPI, Librosa, Scikit-learn, SQLAlchemy)
 
-Hệ thống bao gồm 3 phần chính: Frontend, Java Spring Boot Backend, và Python AI Service. Dưới đây là kế hoạch chi tiết để triển khai phần Backend và AI Service.
+---
+## 🤖 [INSTRUCTION FOR AI AGENTS]
+- When assigned a task from this file, read the "Dependencies" first.
+- Strictly follow the target file paths and function signatures.
+- Use Mock Data if the dependent track is not yet completed.
+- Update the `[ ]` to `[x]` when a task is fully tested and completed.
 
 ---
 
-## 🛠️ 1. Khởi tạo Project & Môi trường
+## 👤 TRACK 1: DATABASE & STORAGE (Data Engineer)
+**Goal:** Setup SQLite and SQLAlchemy ORM.
+**Dependencies:** None. Independent track.
 
-### 1.1 Python AI Service
-- [ ] Tạo thư mục `ai-service`
-- [ ] Tạo môi trường ảo (virtual environment)
-- [ ] Tạo file `requirements.txt` và cài đặt các thư viện:
-  - `librosa` (Xử lý audio)
-  - `numpy`, `scipy` / `scikit-learn` (Toán học, KNN, Cosine Similarity)
-  - `flask` (REST API)
-
-### 1.2 Java Spring Boot Backend
-- [ ] Khởi tạo project Spring Boot (ví dụ qua Spring Initializr)
-- [ ] Bổ sung các dependencies:
-  - `Spring Web` (REST API)
-  - `Spring Data JPA` (Tương tác Database)
-  - `MySQL Driver` hoặc `PostgreSQL Driver` (Database)
-  - `Lombok` (Giảm boilerplate code)
-- [ ] Tạo thư mục `uploads` để lưu trữ file audio chuẩn bị stream
-
----
-
-## 🐍 2. Xây dựng Python AI Service
-
-### 2.1 Xử lý Audio & Đặc trưng (`audio_processing.py`)
-- [ ] Viết hàm đọc file audio (hỗ trợ MP3/WAV)
-- [ ] Sử dụng `librosa` để trích xuất đặc trưng MFCC
-- [ ] Xử lý vector (vd: tính `mean` qua trục thời gian hoặc `flatten`) để có feature vector 1 chiều đại diện cho bài hát
-
-### 2.2 Tính độ tương đồng & Gợi ý (`similarity.py` & `recommendation.py`)
-- [ ] Cài đặt thuật toán độ đo **Cosine Similarity**
-- [ ] Áp dụng **K-Nearest Neighbors (KNN)** để tìm tập hợp bài hát gần nhất dựa trên Cosine distance
-- [ ] Implement luồng **Sorting**: sắp xếp các bài tương tự theo độ tương đồng giảm dần
-- [ ] Implement luồng **Searching**: tìm bài hát bằng `song_id` để lấy feature mẫu so sánh
-
-### 2.3 Cơ chế Precompute & Lưu trữ
-- [ ] Viết script dạng job/worker duyệt qua thư mục audio để trích xuất feature sẵn
-- [ ] Trích xuất feature của toàn bộ kho nhạc và lưu thành file `features.npy` hoặc pickle dictionary
-- [ ] Viết hàm nạp file `features.npy` vào bộ nhớ lúc khởi động app (tránh tính lại khi request)
-
-### 2.4 Xây dựng REST API (`app.py`)
-- [ ] Khởi tạo Flask Application
-- [ ] Định nghĩa API `POST /recommend`:
-  - **Input**: `{ "song_id": 1 }`
-  - **Logic**: Tìm feature của `song_id` $\rightarrow$ gọi hàm KNN $\rightarrow$ lọc top K
-  - **Output**: `{ "recommended": [2, 5, 8] }`
+- [ ] **Task 1.1: Database Configuration**
+  - **File:** `src/database/db.py`
+  - **Logic:** Initialize SQLAlchemy `engine`, `SessionLocal`, and `Base` class for MySQL (`mysql+pymysql://root:password@localhost:3306/music_db` - loaded from `.env`). Provide a `get_db()` generator for FastAPI dependency injection.
+- [ ] **Task 1.2: Define Models**
+  - **File:** `src/models/` (create `song.py`, `user.py`, `playlist.py`)
+  - **Logic:** - `Song`: id (int), title (str), artist (str), filepath (str), duration (float).
+    - `Playlist`: id (int), name (str).
+    - Create a Many-to-Many relationship table `playlist_song`.
+- [ ] **Task 1.3: CRUD Operations**
+  - **File:** `src/database/crud.py`
+  - **Signatures:**
+    - `def create_song(db: Session, title: str, artist: str, filepath: str) -> Song:`
+    - `def get_song(db: Session, song_id: int) -> Song:`
+    - `def get_all_songs(db: Session) -> List[Song]:`
+- [ ] **Task 1.4: Mock Data Seeder**
+  - **File:** `src/seed_data.py`
+  - **Logic:** Write a script that creates all tables (`Base.metadata.create_all`) and inserts 5 dummy songs into the database.
 
 ---
 
-## ☕ 3. Xây dựng Java Spring Boot Backend
+## 👤 TRACK 2: BACKEND API (Backend Engineer)
+**Goal:** Create RESTful APIs using FastAPI.
+**Dependencies:** Track 1 (Database) for models. Use mock responses if Track 3 & 4 are not ready.
 
-### 3.1 Cấu hình Database & Storage
-- [ ] Cấu hình file `application.yml`/`application.properties` để kết nối tới MySQL/PostgreSQL
-- [ ] Cấu hình tham số thư mục lưu file (ví dụ: `app.upload.dir=/uploads`)
-
-### 3.2 Entities & JPA Repositories
-- [ ] Tạo entity `User` (id, username, password...)
-- [ ] Tạo entity `Song` (id, title, artist, file_path, upload_time...)
-- [ ] Tạo entity `Playlist` (id, name, user_id, danh sách bài hát...)
-- [ ] Tạo các interface `SongRepository`, `UserRepository`, `PlaylistRepository` kế thừa `JpaRepository`
-
-### 3.3 Tầng Service Layer
-- [ ] `StorageService`: Chịu trách nhiệm Lưu file tải lên vào thư mục `/uploads` và Đọc file để streaming
-- [ ] `SongService`: Quản lý logic thêm mới bài hát, lưu metadata vào DB
-- [ ] `RecommendationService`:
-  - Gọi HTTP Client (e.g., `RestTemplate` / `WebClient`)
-  - Gửi request tới Python API `http://localhost:5000/recommend` kèm `songId`
-  - Nhận và parse kết quả trả về list `Song` tương ứng
-
-### 3.4 Tầng Controller (REST APIs)
-- [ ] `POST /songs/upload`: Nhận file Multipart, lưu audio file vật lý và tạo bản ghi vào DB
-- [ ] `GET /songs`: Trả về danh sách quản lý các bài hát (có phân trang)
-- [ ] `GET /songs/{id}`: Đầu cuối (endpoint) để **Streaming Audio** về frontend phát nhạc (trả về byte ranges)
-- [ ] `GET /recommend/{songId}`: Gọi sang Python API và trả về danh sách đối tượng bài hát gợi ý cho frontend
+- [ ] **Task 2.1: Server Initialization**
+  - **File:** `src/main.py`
+  - **Logic:** Initialize `FastAPI()`. Add CORS Middleware to allow all origins `["*"]`. Include routers from `api/`.
+- [ ] **Task 2.2: Song Upload Route**
+  - **File:** `src/api/song_routes.py`
+  - **Signature:** `async def upload_song(file: UploadFile = File(...), db: Session = Depends(get_db)):`
+  - **Logic:** Save `file` to `uploads/` folder. Call `crud.create_song()` to save to DB. Return `{"song_id": id, "status": "success"}`.
+- [ ] **Task 2.3: Audio Streaming Route**
+  - **File:** `src/api/song_routes.py`
+  - **Signature:** `def stream_audio(song_id: int, db: Session = Depends(get_db)):`
+  - **Logic:** Query DB for `filepath`. Return FastAPI `FileResponse(filepath, media_type="audio/mpeg")`.
+- [ ] **Task 2.4: Recommendation Route (Mock Phase)**
+  - **File:** `src/api/recommend_routes.py`
+  - **Signature:** `def get_recommendations(song_id: int):`
+  - **Logic:** Temporarily return hardcoded JSON: `{"target_song": song_id, "recommended_ids": [2, 3, 5]}`.
 
 ---
 
-## 🔗 4. Tích hợp và Kiểm thử (Integration & Testing)
+## 👤 TRACK 3: AUDIO PROCESSING (Data Scientist)
+**Goal:** Extract MFCC features from audio files using `librosa`.
+**Dependencies:** Local `.mp3` files in `uploads/` folder for testing.
 
-### 4.1 Unit Test / API Test
-- [ ] (Python) Viết script test nhỏ nạp 2 file audio và in độ đo tự tính ra màn hình
-- [ ] (Python) Test Flask API `/recommend` qua cURL hoặc Postman
-- [ ] (Java) Dùng Postman test up file `POST /songs/upload`
-- [ ] (Java) Kiểm tra stream trực tiếp `GET /songs/{id}` trên trình duyệt
-
-### 4.2 End-to-End Test (E2E Test)
-- [ ] Chạy Python service ở port 5000
-- [ ] Chạy Spring Boot backend ở port 8080
-- [ ] Gửi yêu cầu qua `GET /recommend/{songId}` trên Spring Boot, kiểm tra xem nó có gọi đúng Python service không và trả về mảng bài hát tương tự chuẩn xác hay không.
+- [ ] **Task 3.1: MFCC Extraction Function**
+  - **File:** `src/audio_processing/feature_extraction.py`
+  - **Signature:** `def extract_mfcc(file_path: str, n_mfcc: int = 20) -> np.ndarray:`
+  - **Logic:** - Use `librosa.load(file_path, sr=22050)`.
+    - Use `librosa.feature.mfcc(y=y, sr=sr, n_mfcc=n_mfcc)`.
+    - Apply `np.mean(mfcc, axis=1)` to flatten the 2D array into a 1D vector of shape `(20,)`.
+- [ ] **Task 3.2: Batch Processing & Caching**
+  - **File:** `src/audio_processing/feature_extraction.py`
+  - **Signature:** `def update_feature_cache(song_id: int, mfcc_vector: np.ndarray, cache_path: str = "data/features.npy"):`
+  - **Logic:** Load existing `.npy` dictionary, append the new `{song_id: vector}`, and save it back to disk.
 
 ---
 
-## ✅ Tổng kết Trạng Thái
+## 👤 TRACK 4: AI RECOMMENDATION (ML Engineer)
+**Goal:** Compute similarities and return nearest neighbors.
+**Dependencies:** `data/features.npy` from Track 3. (Use Mock Numpy array if not ready).
 
-| Thành phần | Trạng thái |
-|:---|:---:|
-| Khởi tạo Python Service | ⏳ Cần làm |
-| Python Audio Processing & KNN | ⏳ Cần làm |
-| Python Flask API & Precompute | ⏳ Cần làm |
-| Khởi tạo Spring Boot | ⏳ Cần làm |
-| Java Entities & Database | ⏳ Cần làm |
-| Java Storage & Streaming API | ⏳ Cần làm |
-| Java REST Integration API | ⏳ Cần làm |
-| Test Integration E2E | ⏳ Cần làm |
+- [ ] **Task 4.1: KNN Model Setup**
+  - **File:** `src/recommendation/knn_model.py`
+  - **Signature:** `def fit_knn(features_matrix: np.ndarray):`
+  - **Logic:** Initialize `NearestNeighbors(n_neighbors=5, metric='cosine', algorithm='brute')` from `sklearn`. Fit the model with `features_matrix`.
+- [ ] **Task 4.2: Recommendation Engine**
+  - **File:** `src/recommendation/engine.py`
+  - **Signature:** `def get_similar_songs(target_song_id: int, top_k: int = 5) -> List[int]:`
+  - **Logic:** 1. Load `data/features.npy`.
+    2. Extract vector for `target_song_id`.
+    3. Pass vector to KNN model.
+    4. Return a list of nearest `song_id`s (excluding the target song itself).
+
+---
+
+## 👤 TRACK 5: FRONTEND UI (Frontend Engineer)
+**Goal:** Simple UI to upload, play, and show recommendations.
+**Dependencies:** Track 2 API endpoints. (Use Postman mock server if APIs are down).
+
+- [ ] **Task 5.1: HTML Structure**
+  - **File:** `src/frontend/index.html` (or `templates/index.html`)
+  - **Logic:** Create a simple layout: Upload Form, `<audio id="player">` element, and a `<ul>` list for Recommendations. Use CDN Bootstrap/Tailwind.
+- [ ] **Task 5.2: JS Fetch Audio**
+  - **File:** `src/frontend/app.js`
+  - **Logic:** Fetch `GET /songs`, list them. When clicked, change the `<audio src="...">` to `http://localhost:8000/songs/{id}`.
+- [ ] **Task 5.3: JS Fetch AI Recommendation**
+  - **File:** `src/frontend/app.js`
+  - **Logic:** Listen to the `play` event of the audio player. Extract the current playing `song_id`, call `GET /recommend/{song_id}`. Parse JSON and render the result list on the UI.
+
+---
+## 🚀 INTEGRATION (Tech Lead)
+- [ ] **Task 6.1:** Connect `extract_mfcc` (Track 3) into the `upload_song` route (Track 2).
+- [ ] **Task 6.2:** Connect `get_similar_songs` (Track 4) into the `get_recommendations` route (Track 2).
