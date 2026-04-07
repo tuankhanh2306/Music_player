@@ -1,28 +1,7 @@
-# ==========================================
-# Cấu hình bỏ qua file cho AI Music Player
-# ==========================================
-
-# --- Môi trường ảo (Virtual Env) ---
-venv/
-env/
-.env
-
-# --- Python ---
 __pycache__/
-*.py[cod]
-*$py.class
-
-# --- Dữ liệu hệ thống ---
+*.pyc
+.env
 uploads/
 data/
 *.npy
-
-# --- Cơ sở dữ liệu SQLite (Nêú có) ---
-*.db
-*.sqlite3
-
-# --- IDEs và Hệ điều hành ---
-.idea/
-.vscode/
-*.swp
-.DS_Store
+venv/
