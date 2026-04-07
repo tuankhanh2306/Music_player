@@ -1,4 +1,5 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
+from pydantic import field_validator
 from typing import List
 
 class Settings(BaseSettings):
@@ -11,7 +12,14 @@ class Settings(BaseSettings):
     MAX_UPLOAD_SIZE_MB: int = 50
     ALLOWED_AUDIO_EXTENSIONS: List[str] = [".mp3", ".wav", ".flac"]
 
-    # Dùng pydantic-settings kết hợp với python-dotenv để load từ .env
+    # Validator tự động chặt chuỗi cách nhau bằng dấu phẩy thành List
+    @field_validator("ALLOWED_AUDIO_EXTENSIONS", mode="before")
+    @classmethod
+    def parse_audio_extensions(cls, v):
+        if isinstance(v, str):
+            return [ext.strip() for ext in v.split(",") if ext.strip()]
+        return v
+
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding='utf-8')
 
 settings = Settings()
