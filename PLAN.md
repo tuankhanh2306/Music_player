@@ -164,7 +164,7 @@ ai_music_player/
     settings = Settings()
     ```
 
-- [ ] **Task 0.5: Logger Setup**
+- [x] **Task 0.5: Logger Setup**
   - **File:** `src/core/logger.py`
   - **Logic:** Config `logging` module với format chuẩn (timestamp, level, module, message). Output ra console và file `logs/app.log`.
 
