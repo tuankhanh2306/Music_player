@@ -100,7 +100,7 @@ ai_music_player/
   - Tạo file `.gitignore` bao gồm: `__pycache__/`, `*.pyc`, `.env`, `uploads/`, `data/`, `*.npy`.
   - Khởi tạo git repository.
 
-- [ ] **Task 0.2: Quản lý Dependencies**
+- [x] **Task 0.2: Quản lý Dependencies**
   - **File:** `requirements.txt`
   - **Nội dung:**
     ```
@@ -121,7 +121,7 @@ ai_music_player/
     httpx==0.27.0
     ```
 
-- [ ] **Task 0.3: Environment Configuration**
+- [x] **Task 0.3: Environment Configuration**
   - **File:** `.env.example`
   - **Nội dung:**
     ```env
@@ -141,7 +141,7 @@ ai_music_player/
     ```
   - Sao chép `.env.example` → `.env` và điền giá trị thực.
 
-- [ ] **Task 0.4: Centralized Config**
+- [x] **Task 0.4: Centralized Config**
   - **File:** `src/config.py`
   - **Logic:** Dùng `pydantic-settings` hoặc `python-dotenv` để load biến từ `.env`. Expose một `settings` object dùng chung toàn app.
   - **Ví dụ:**
@@ -168,7 +168,7 @@ ai_music_player/
   - **File:** `src/core/logger.py`
   - **Logic:** Config `logging` module với format chuẩn (timestamp, level, module, message). Output ra console và file `logs/app.log`.
 
-- [ ] **Task 0.6: Custom Exceptions**
+- [x] **Task 0.6: Custom Exceptions**
   - **File:** `src/core/exceptions.py`
   - **Logic:** Định nghĩa các custom exception class và global exception handler cho FastAPI.
   - **Cần có:**
