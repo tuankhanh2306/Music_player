@@ -21,11 +21,6 @@ class ModelNotFittedException(Exception):
         self.message = message
         super().__init__(self.message)
 
-class AuthenticationException(Exception):
-    def __init__(self, message="Xác thực không hợp lệ hoặc đã hết hạn."):
-        self.message = message
-        super().__init__(self.message)
-
 def setup_exception_handlers(app: FastAPI):
     @app.exception_handler(SongNotFoundException)
     async def song_not_found_handler(request: Request, exc: SongNotFoundException):
@@ -53,11 +48,4 @@ def setup_exception_handlers(app: FastAPI):
         return JSONResponse(
             status_code=503,
             content={"error": "ModelNotFitted", "detail": exc.message}
-        )
-        
-    @app.exception_handler(AuthenticationException)
-    async def authentication_handler(request: Request, exc: AuthenticationException):
-        return JSONResponse(
-            status_code=401,
-            content={"error": "AuthenticationError", "detail": exc.message}
         )

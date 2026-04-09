@@ -9,13 +9,21 @@ os.makedirs(settings.UPLOAD_DIR, exist_ok=True)
 # Vì FEATURE_CACHE_PATH chứa cả tên file (VD: data/features.npy), ta cần lấy thư mục chứa nó
 os.makedirs(os.path.dirname(settings.FEATURE_CACHE_PATH), exist_ok=True)
 
-# Khởi tạo engine từ settings (không hardcode) với connection pool
-engine = create_engine(
-    settings.DATABASE_URL,
-    pool_size=10,
-    max_overflow=20,
-    pool_pre_ping=True
-)
+# Khởi tạo engine từ settings. 
+# Cho SQLite, ta cần connect_args={"check_same_thread": False} cho FastAPI.
+if settings.DATABASE_URL.startswith("sqlite"):
+    engine = create_engine(
+        settings.DATABASE_URL, 
+        connect_args={"check_same_thread": False}
+    )
+else:
+    # Dự phòng cho MySQL/PostgreSQL nếu sau này đổi lại
+    engine = create_engine(
+        settings.DATABASE_URL,
+        pool_size=10,
+        max_overflow=20,
+        pool_pre_ping=True
+    )
 
 # Cung cấp SessionLocal
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)

@@ -185,7 +185,7 @@ ai_music_player/
 **Goal:** Setup MySQL và SQLAlchemy ORM với migration support.
 **Dependencies:** Task 0.4 phải hoàn thành trước.
 
-- [ ] **Task 1.1 — Database Configuration**
+- [x] **Task 1.1 — Database Configuration**
 
   File: `src/database/db.py`
 
@@ -199,7 +199,7 @@ ai_music_player/
   - Cung cấp `SessionLocal` và `get_db()` generator cho FastAPI dependency injection.
   - Tạo thư mục `uploads/` và `data/` nếu chưa tồn tại.
 
-- [ ] **Task 1.2 — Alembic Migration Setup**
+- [x] **Task 1.2 — Alembic Migration Setup**
 
   Logic:
   - Chạy `alembic init alembic`.
@@ -209,7 +209,7 @@ ai_music_player/
 
   > Không dùng `Base.metadata.create_all()` trong production.
 
-- [ ] **Task 1.3 — Define Models**
+- [x] **Task 1.3 — Define Models**
 
   **`Song`** — file: `src/models/song.py`
   ```
@@ -238,7 +238,7 @@ ai_music_player/
 
   > So với v2.0: không có `User` model, không có `uploaded_by` trong `Song`, không có `owner_id` trong `Playlist`.
 
-- [ ] **Task 1.4 — Pydantic Schemas**
+- [x] **Task 1.4 — Pydantic Schemas**
 
   File: `src/schemas/song_schema.py`
 
@@ -265,7 +265,7 @@ ai_music_player/
 
   File: `src/schemas/playlist_schema.py` — tương tự, không có `owner_id`.
 
-- [ ] **Task 1.5 — CRUD Operations**
+- [x] **Task 1.5 — CRUD Operations**
 
   File: `src/database/crud.py`
 
@@ -281,7 +281,7 @@ ai_music_player/
 
   Lưu ý: Mỗi hàm phải commit và refresh object trước khi return. Không để exception trần.
 
-- [ ] **Task 1.6 — Mock Data Seeder**
+- [x] **Task 1.6 — Mock Data Seeder**
 
   File: `src/seed_data.py`
 
@@ -620,8 +620,8 @@ Track 6 (Frontend) ←─────── Track 3
 
 | Track | Mô tả | Số Task | Status |
 |-------|-------|---------|--------|
-| Track 0 | Project Setup | 6 | ⬜ |
-| Track 1 | Database & Storage | 6 | ⬜ |
+| Track 0 | Project Setup | 6 | ✅ |
+| Track 1 | Database & Storage | 6 | ✅ |
 | ~~Track 2~~ | ~~Authentication~~ | ~~4~~ | ❌ Đã xóa |
 | Track 3 | Backend API | 7 | ⬜ |
 | Track 4 | Audio Processing | 3 | ⬜ |

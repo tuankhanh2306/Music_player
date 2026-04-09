@@ -1,6 +1,7 @@
-from sqlalchemy import Column, Integer, String, Boolean, DateTime, Float, ForeignKey
+from sqlalchemy import Column, Integer, String, Boolean, DateTime, Float
 from sqlalchemy.sql import func
 from src.database.db import Base
+
 
 class Song(Base):
     __tablename__ = "songs"
@@ -10,6 +11,5 @@ class Song(Base):
     artist = Column(String(255), nullable=False)
     filepath = Column(String(500), nullable=False)
     duration = Column(Float, nullable=True)
-    uploaded_by = Column(Integer, ForeignKey("users.id"), nullable=False)
     has_features = Column(Boolean, default=False)
     created_at = Column(DateTime(timezone=True), server_default=func.now())

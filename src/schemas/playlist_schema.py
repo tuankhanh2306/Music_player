@@ -11,9 +11,8 @@ class PlaylistCreate(BaseModel):
 class PlaylistResponse(BaseModel):
     id: int
     name: str
-    owner_id: int
     created_at: datetime
-    songs: List[SongResponse] = [] # Lấy luôn list SongResponse từ file bên kia qua
+    songs: List[SongResponse] = []
 
     class Config:
         from_attributes = True

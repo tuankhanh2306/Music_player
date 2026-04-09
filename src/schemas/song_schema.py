@@ -18,3 +18,8 @@ class SongResponse(BaseModel):
 
     class Config:
         from_attributes = True
+
+# Schema khi cập nhật thông tin bài hát
+class SongUpdate(BaseModel):
+    title: Optional[str] = None
+    artist: Optional[str] = None

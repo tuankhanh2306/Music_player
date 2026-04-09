@@ -1,33 +1,16 @@
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import SQLAlchemyError
 from typing import List
-from src.models.user import User
 from src.models.song import Song
 from src.models.playlist import Playlist
 import logging
 
 logger = logging.getLogger(__name__)
 
-# ================= USER CRUD =================
-def create_user(db: Session, username: str, email: str, hashed_password: str) -> User:
-    try:
-        db_user = User(username=username, email=email, hashed_password=hashed_password)
-        db.add(db_user)
-        db.commit()
-        db.refresh(db_user)
-        return db_user
-    except SQLAlchemyError as e:
-        db.rollback()
-        logger.error(f"Database error while creating user: {e}")
-        raise
-
-def get_user_by_email(db: Session, email: str) -> User | None:
-    return db.query(User).filter(User.email == email).first()
-
 # ================= SONG CRUD =================
-def create_song(db: Session, title: str, artist: str, filepath: str, uploaded_by: int) -> Song:
+def create_song(db: Session, title: str, artist: str, filepath: str) -> Song:
     try:
-        db_song = Song(title=title, artist=artist, filepath=filepath, uploaded_by=uploaded_by)
+        db_song = Song(title=title, artist=artist, filepath=filepath)
         db.add(db_song)
         db.commit()
         db.refresh(db_song)
@@ -57,9 +40,9 @@ def update_song_feature_status(db: Session, song_id: int, has_features: bool) ->
     return song
 
 # ================= PLAYLIST CRUD =================
-def create_playlist(db: Session, name: str, owner_id: int) -> Playlist:
+def create_playlist(db: Session, name: str) -> Playlist:
     try:
-        db_playlist = Playlist(name=name, owner_id=owner_id)
+        db_playlist = Playlist(name=name)
         db.add(db_playlist)
         db.commit()
         db.refresh(db_playlist)
