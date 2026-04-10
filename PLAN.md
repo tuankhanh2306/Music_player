@@ -187,7 +187,7 @@ ai_music_player/
 **Goal:** Setup MySQL và SQLAlchemy ORM với migration support.
 **Dependencies:** Task 0.4 (Config) phải hoàn thành trước.
 
-- [ ] **Task 1.1: Database Configuration**
+- [x] **Task 1.1: Database Configuration**
   - **File:** `src/database/db.py`
   - **Logic:**
     - Khởi tạo `engine` từ `settings.DATABASE_URL` (không hardcode).
@@ -199,13 +199,13 @@ ai_music_player/
     def get_db() -> Generator[Session, None, None]:
     ```
 
-- [ ] **Task 1.2: Alembic Migration Setup**
+- [x] **Task 1.2: Alembic Migration Setup**
   - **Logic:** Chạy `alembic init alembic`. Cập nhật `alembic/env.py` để import `Base` từ models và dùng `settings.DATABASE_URL`.
   - Tạo migration đầu tiên: `alembic revision --autogenerate -m "initial_tables"`.
   - Áp dụng migration: `alembic upgrade head`.
   - **Lưu ý:** Không dùng `Base.metadata.create_all()` trong production. Dùng Alembic.
 
-- [ ] **Task 1.3: Define Models**
+- [x] **Task 1.3: Define Models**
   - **File:** `src/models/user.py`, `src/models/song.py`, `src/models/playlist.py`
   - **`User`:**
     ```
@@ -227,7 +227,7 @@ ai_music_player/
     playlist_id (FK → Playlist.id), song_id (FK → Song.id), added_at (datetime)
     ```
 
-- [ ] **Task 1.4: Pydantic Schemas**
+- [x] **Task 1.4: Pydantic Schemas**
   - **File:** `src/schemas/user_schema.py`, `src/schemas/song_schema.py`, `src/schemas/playlist_schema.py`
   - **Logic:** Mỗi entity cần có 3 schema: `Create` (input từ client), `Response` (output trả về client), `Update` (optional fields để patch).
   - **Ví dụ `song_schema.py`:**
@@ -248,7 +248,7 @@ ai_music_player/
             from_attributes = True
     ```
 
-- [ ] **Task 1.5: CRUD Operations**
+- [x] **Task 1.5: CRUD Operations**
   - **File:** `src/database/crud.py`
   - **Signatures:**
     ```python
@@ -264,54 +264,14 @@ ai_music_player/
     ```
   - **Lưu ý:** Mỗi hàm phải commit và refresh object trước khi return. Không để exception trần.
 
-- [ ] **Task 1.6: Mock Data Seeder**
+- [x] **Task 1.6: Mock Data Seeder**
   - **File:** `src/seed_data.py`
   - **Logic:** Chạy Alembic migration, tạo 1 user demo, insert 5 dummy songs, tạo 1 playlist mẫu. Chạy được bằng `python src/seed_data.py`.
 
 ---
 
-## 👤 TRACK 2: AUTHENTICATION (Backend Engineer / Security)
-**Goal:** Xây dựng hệ thống xác thực JWT an toàn.
-**Dependencies:** Task 1.3 (User Model), Task 1.5 (CRUD), Task 0.6 (Exceptions).
-
-- [ ] **Task 2.1: Security Utilities**
-  - **File:** `src/core/security.py`
-  - **Signatures:**
-    ```python
-    def hash_password(password: str) -> str:
-    def verify_password(plain_password: str, hashed_password: str) -> bool:
-    def create_access_token(data: dict, expires_delta: timedelta | None = None) -> str:
-    def decode_access_token(token: str) -> dict:  # raise AuthenticationException nếu invalid
-    ```
-  - **Logic:** Dùng `passlib[bcrypt]` để hash password. Dùng `python-jose` để tạo/verify JWT.
-
-- [ ] **Task 2.2: Auth Dependency**
-  - **File:** `src/core/security.py`
-  - **Signature:**
-    ```python
-    async def get_current_user(
-        token: str = Depends(oauth2_scheme),
-        db: Session = Depends(get_db)
-    ) -> User:
-    ```
-  - **Logic:** Extract token từ header, decode JWT, query User từ DB. Raise `HTTP 401` nếu token invalid hoặc user không tồn tại.
-
-- [ ] **Task 2.3: Auth Routes**
-  - **File:** `src/api/auth_routes.py`
-  - **Endpoints:**
-    - `POST /auth/register` — Nhận `username`, `email`, `password`. Hash password, tạo user. Trả về `UserResponse`.
-    - `POST /auth/login` — Nhận `email`, `password`. Verify password. Trả về `{"access_token": "...", "token_type": "bearer"}`.
-  - **Validation:** Email phải đúng format. Password tối thiểu 8 ký tự.
-
-- [ ] **Task 2.4: Auth Service**
-  - **File:** `src/services/auth_service.py`
-  - **Signatures:**
-    ```python
-    def register_user(db: Session, username: str, email: str, password: str) -> User:
-    def login_user(db: Session, email: str, password: str) -> str:  # return access_token
-    ```
-
 ---
+
 
 ## 👤 TRACK 3: BACKEND API (Backend Engineer)
 **Goal:** Tạo RESTful APIs bằng FastAPI với đầy đủ validation và authentication.
@@ -487,7 +447,7 @@ ai_music_player/
 **Goal:** Giao diện web đơn giản để upload, phát nhạc và xem gợi ý.
 **Dependencies:** Track 3 API endpoints. Dùng Postman mock server nếu API chưa sẵn sàng.
 
-- [ ] **Task 6.1: HTML Structure**
+- [x] **Task 6.1: HTML Structure**
   - **File:** `src/frontend/index.html`
   - **Logic:** Layout gồm:
     - Form đăng nhập / đăng ký.
@@ -497,21 +457,21 @@ ai_music_player/
     - Panel gợi ý (`<ul id="recommendation-list">`).
   - Dùng CDN Tailwind CSS cho styling.
 
-- [ ] **Task 6.2: JS - Auth & Token Management**
+- [x] **Task 6.2: JS - Auth & Token Management**
   - **File:** `src/frontend/app.js`
   - **Logic:**
     - Lưu JWT token vào `sessionStorage` (không dùng `localStorage` vì XSS risk).
     - Attach `Authorization: Bearer <token>` vào mọi API request.
     - Nếu API trả về `401`, tự động redirect về trang đăng nhập.
 
-- [ ] **Task 6.3: JS - Song List & Playback**
+- [x] **Task 6.3: JS - Song List & Playback**
   - **File:** `src/frontend/app.js`
   - **Logic:**
     - Gọi `GET /songs` để render danh sách.
     - Khi click vào bài hát → set `audio.src = /songs/{id}/stream` với header auth.
     - Lưu `currentSongId` vào state.
 
-- [ ] **Task 6.4: JS - AI Recommendation**
+- [x] **Task 6.4: JS - AI Recommendation**
   - **File:** `src/frontend/app.js`
   - **Logic:**
     - Lắng nghe event `play` của audio player.
@@ -571,9 +531,7 @@ Track 0 (Setup)
     ↓
 Track 1 (Database) ←── Track 0
     ↓
-Track 2 (Auth) ←──────── Track 1
-    ↓
-Track 3 (API) ←─────────── Track 1 + Track 2
+Track 3 (API) ←─────────── Track 1
     ↓
 Track 4 (Audio) ←─── Track 0  (song files từ uploads/)
 Track 5 (ML) ←────── Track 4  (features.npy)
@@ -589,13 +547,12 @@ Track 6 (Frontend) ←──── Track 3 (API endpoints)
 
 | Track | Mô tả | Số Task | Status |
 |-------|-------|---------|--------|
-| Track 0 | Project Setup | 6 | ⬜ |
-| Track 1 | Database & Storage | 6 | ⬜ |
-| Track 2 | Authentication | 4 | ⬜ |
+| Track 0 | Project Setup | 6 | ✅ |
+| Track 1 | Database & Storage | 6 | ✅ |
 | Track 3 | Backend API | 7 | ⬜ |
-| Track 4 | Audio Processing | 3 | ⬜ |
+| Track 4 | Audio Processing | 3 | ✅ |
 | Track 5 | AI Recommendation | 3 | ⬜ |
-| Track 6 | Frontend UI | 4 | ⬜ |
+| Track 6 | Frontend UI | 4 | ✅ |
 | Track 7 | Integration & Testing | 5 | ⬜ |
 | **Tổng** | | **38** | |
 
