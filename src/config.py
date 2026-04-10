@@ -6,6 +6,7 @@ Nhiệm vụ: Đọc các biến môi trường từ file .env (Database URL, th
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from pydantic import field_validator
 from typing import List
+import json
 
 class Settings(BaseSettings):
     DATABASE_URL: str
@@ -16,16 +17,14 @@ class Settings(BaseSettings):
 
     # Validator tự động chặt chuỗi cách nhau bằng dấu phẩy thành List
     @field_validator("ALLOWED_AUDIO_EXTENSIONS", mode="before")
-    @classmethod
     def parse_audio_extensions(cls, v):
         if isinstance(v, str):
-            import json
             try:
                 # Thử parse JSON nếu là dạng [".mp3", ...]
                 parsed = json.loads(v)
                 if isinstance(parsed, list):
                     return parsed
-            except:
+            except Exception:
                 pass
             return [ext.strip() for ext in v.split(",") if ext.strip()]
         return v
