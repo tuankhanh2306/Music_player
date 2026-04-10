@@ -7,7 +7,8 @@ from unittest.mock import patch
 from src.audio_processing.feature_extraction import (
     extract_mfcc,
     update_feature_cache,
-    load_feature_cache
+    load_feature_cache,
+    FeatureExtractionException
 )
 
 # ==============================================================

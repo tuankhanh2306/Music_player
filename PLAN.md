@@ -399,7 +399,7 @@ ai_music_player/
 **Goal:** Trích xuất đặc trưng MFCC từ file audio và cache an toàn.
 **Dependencies:** Task 0.3 (Config), Task 0.5 (Logger). File `.mp3` trong `uploads/` để test.
 
-- [ ] **Task 4.1: MFCC Extraction Function**
+- [x] **Task 4.1: MFCC Extraction Function**
   - **File:** `src/audio_processing/feature_extraction.py`
   - **Signature:**
     ```python
@@ -413,7 +413,7 @@ ai_music_player/
     - Wrap trong try/except, raise `FeatureExtractionException` nếu librosa lỗi.
     - Log thời gian xử lý.
 
-- [ ] **Task 4.2: Thread-Safe Feature Cache**
+- [x] **Task 4.2: Thread-Safe Feature Cache**
   - **File:** `src/audio_processing/feature_extraction.py`
   - **Signatures:**
     ```python
@@ -426,7 +426,7 @@ ai_music_player/
     - `update_feature_cache`: Load cache hiện tại → thêm `{song_id: vector}` → save lại. Toàn bộ trong lock block.
     - `cache_path` mặc định lấy từ `settings.FEATURE_CACHE_PATH`.
 
-- [ ] **Task 4.3: Unit Tests cho Audio Processing**
+- [x] **Task 4.3: Unit Tests cho Audio Processing**
   - **File:** `tests/unit/test_feature_extraction.py`
   - **Test cases:**
     - `test_extract_mfcc_output_shape`: Đảm bảo output shape là `(20,)`.
