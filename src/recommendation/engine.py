@@ -11,16 +11,16 @@ logger = logging.getLogger(__name__)
 
 
 def get_similar_songs(target_song_id: int, top_k: int = 5) -> List[int]:
-    """Return top_k song IDs most similar to target_song_id.
+    """Trả về top_k ID bài hát có độ tương đồng cao nhất với target_song_id.
 
     Raises:
-        ModelNotFittedException: If the model hasn't been trained yet.
-        SongNotFoundException: If target_song_id has no features in the cache.
+        ModelNotFittedException: Nếu mô hình chưa được huấn luyện.
+        SongNotFoundException: Nếu target_song_id không có trong cache đặc trưng.
     """
     try:
         model, song_ids = load_model()
     except ModelNotFittedException:
-        logger.warning("get_similar_songs called but model is not fitted.")
+        logger.warning("get_similar_songs được gọi nhưng mô hình chưa được huấn luyện.")
         raise
 
     cache = load_feature_cache()
@@ -49,12 +49,12 @@ def get_similar_songs(target_song_id: int, top_k: int = 5) -> List[int]:
 
 
 def retrain_model() -> None:
-    """Rebuild and persist the KNN model from the current feature cache."""
+    """Huấn luyện lại và lưu mô hình KNN từ cache đặc trưng hiện tại."""
     cache = load_feature_cache()
 
     if len(cache) < 2:
         logger.warning(
-            "retrain_model skipped: only %d song(s) in cache (minimum 2 required).", len(cache)
+            "retrain_model bị bỏ qua: chỉ có %d bài hát trong cache (tối thiểu cần 2).", len(cache)
         )
         return
 
@@ -63,4 +63,4 @@ def retrain_model() -> None:
 
     model = fit_knn(features_matrix, song_ids)
     save_model(model, song_ids)
-    logger.info("KNN model retrained with %d songs.", len(song_ids))
+    logger.info("Đã huấn luyện lại mô hình KNN với %d bài hát.", len(song_ids))

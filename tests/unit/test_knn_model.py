@@ -1,14 +1,13 @@
-"""Unit tests for KNN recommendation model (Track 5)."""
+"""Unit test cho mô hình gợi ý KNN (Track 5)."""
 import os
 
 import numpy as np
 import pytest
 
 
-
 @pytest.fixture()
 def sample_cache(tmp_path, monkeypatch):
-    """Populate a feature cache with 5 synthetic songs and patch settings."""
+    """Tạo cache đặc trưng gồm 5 bài hát giả lập và patch cấu hình."""
     from src.audio_processing.feature_extraction import update_feature_cache
     from src import config as cfg_module
 
@@ -24,6 +23,7 @@ def sample_cache(tmp_path, monkeypatch):
 
 @pytest.fixture()
 def fitted_model(sample_cache, tmp_path):
+    """Huấn luyện và lưu một mô hình KNN tạm thời để dùng cho test."""
     from src.audio_processing.feature_extraction import load_feature_cache
     from src.recommendation.knn_model import fit_knn, save_model
 
@@ -45,8 +45,9 @@ class TestFitKnn:
         song_ids = list(cache.keys())
         matrix = np.array([cache[sid] for sid in song_ids])
         model = fit_knn(matrix, song_ids)
-        # Model should expose kneighbors
+        # Mô hình phải có phương thức kneighbors
         assert hasattr(model, "kneighbors")
+
 
 class TestGetSimilarSongs:
     def test_get_similar_songs_excludes_target(self, fitted_model, monkeypatch, sample_cache):
@@ -56,13 +57,13 @@ class TestGetSimilarSongs:
         model_path, song_ids = fitted_model
         monkeypatch.setattr(cfg_module.settings, "FEATURE_CACHE_PATH", sample_cache)
 
-        # Patch load_model to use our temp path
+        # Patch load_model để dùng đường dẫn model tạm thời
         from src.recommendation import knn_model
         monkeypatch.setattr(knn_model, "DEFAULT_MODEL_PATH", model_path)
 
         target = song_ids[0]
         results = engine.get_similar_songs(target, top_k=3)
-        assert target not in results, "Target song must not appear in recommendations."
+        assert target not in results, "Bài hát gốc không được xuất hiện trong kết quả gợi ý."
         assert len(results) <= 3
 
     def test_get_similar_songs_song_not_in_cache(self, fitted_model, monkeypatch, sample_cache):
