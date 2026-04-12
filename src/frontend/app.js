@@ -40,7 +40,9 @@ async function fetchSongs() {
                 id: s.id,
                 title: s.title,
                 artist: s.artist,
-                genre: "Pop/Modern", // Server hiện tại chưa lưu genre
+                genre: s.genre || null,            // The loai CHINH - cho AI
+                sub_genres: s.sub_genres || null,  // Tags phu - hien thi UI
+                duration: s.duration || 0,
                 img: `https://picsum.photos/seed/${s.id}/200/200`,
                 url: `${API_URL}/songs/${s.id}/stream`,
                 artistId: existingArtist.id,
@@ -179,6 +181,14 @@ const artistsGrid = document.getElementById('artists-grid');
 const mainList = document.getElementById('library-songs-list');
 updateAuthUI();
 
+/** Chuyển đổi giây sang định dạng m:ss */
+function formatDuration(seconds) {
+    if (!seconds || seconds <= 0) return '--:--';
+    const m = Math.floor(seconds / 60);
+    const s = Math.floor(seconds % 60).toString().padStart(2, '0');
+    return `${m}:${s}`;
+}
+
 function renderArtists(filterText = "") {
     artistsGrid.innerHTML = '';
     const filtered = artists.filter(a => a.name.toLowerCase().includes(filterText.toLowerCase()));
@@ -225,8 +235,11 @@ function renderSongs(filterText = "") {
                 </div>
             </div>
             <div style="width: 150px; color: var(--text-subdued); font-size: 13px;">${songObj.artist}</div>
-            <div style="width: 150px; color: var(--text-subdued); font-size: 13px;">${songObj.genre}</div>
-            <div style="width: 80px; text-align: center; color: var(--text-subdued);">3:45</div>
+            <div style="width: 150px; font-size: 13px;">
+                ${songObj.genre ? `<span style="display:inline-block; background: rgba(29,185,84,0.15); color: var(--essential-positive); font-weight: 700; font-size: 11px; padding: 2px 8px; border-radius: 500px; margin-bottom: 2px;">${songObj.genre}</span>` : ''}
+                ${songObj.sub_genres ? `<br><span style="color: var(--text-subdued); font-size: 11px;">${songObj.sub_genres}</span>` : (!songObj.genre ? `<span style="color: var(--text-subdued);">Chưa phân loại</span>` : '')}
+            </div>
+            <div style="width: 80px; text-align: center; color: var(--text-subdued);">${formatDuration(songObj.duration)}</div>
             <div style="width: 140px; text-align: center; display: flex; justify-content: center; gap: 12px;">
                 <button title="Chi tiết" onclick="openSongDetail(${songObj.id}, event)" style="background: transparent; color: var(--text-subdued); border: none; font-size: 16px; cursor: pointer;"><i class="fa-solid fa-circle-info"></i></button>
                 <button title="Thêm Playlist" onclick="openAddToPlaylistModal(${songObj.id}, event)" style="background: transparent; color: var(--text-subdued); border: none; font-size: 16px; cursor: pointer;"><i class="fa-solid fa-plus"></i></button>
@@ -585,7 +598,11 @@ const uploadInput = document.getElementById('upload-input'); const uploadModal =
 uploadInput.addEventListener('change', (e) => {
     const file = e.target.files[0]; if (!file) return; tempFile = file;
     document.getElementById('upload-filename').textContent = file.name;
-    document.getElementById('meta-title').value = file.name.replace(/\.[^/.]+$/, ""); document.getElementById('meta-artist').value = ""; document.getElementById('meta-genre').value = "";
+    document.getElementById('meta-title').value = file.name.replace(/\.[^/.]+$/, ""); 
+    document.getElementById('meta-artist').value = ""; 
+    document.getElementById('meta-genre').value = "";
+    const subEl = document.getElementById('meta-sub-genres');
+    if (subEl) subEl.value = "";
     uploadModal.classList.add('active'); document.getElementById('meta-title').focus(); uploadInput.value = "";
 });
 
@@ -600,7 +617,8 @@ renderArtistOptions(); // Gọi lúc khởi tạo
 document.getElementById('btn-submit-meta').addEventListener('click', async () => {
     const title = document.getElementById('meta-title').value.trim();
     const artist = document.getElementById('meta-artist').value.trim() || "Unknown";
-    const genre = document.getElementById('meta-genre').value.trim() || "Pop";
+    const genre = document.getElementById('meta-genre').value.trim();            // The loai CHINH
+    const subGenres = document.getElementById('meta-sub-genres')?.value.trim(); // Tags phu
 
     // Xử lý auto-complete Artist
     let existingArtist = artists.find(a => a.name.toLowerCase() === artist.toLowerCase());
@@ -621,6 +639,8 @@ document.getElementById('btn-submit-meta').addEventListener('click', async () =>
     formData.append('file', tempFile);
     formData.append('title', title);
     formData.append('artist', artist);
+    if (genre) formData.append('genre', genre);
+    if (subGenres) formData.append('sub_genres', subGenres);
 
     try {
         const response = await fetch(`${API_URL}/songs/upload`, {

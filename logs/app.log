@@ -147,3 +147,165 @@
 2026-04-12 14:22:10 | INFO     | src.recommendation.engine | get_similar_songs: target=12 top_k=5 results=[7, 6, 9, 11, 8]
 2026-04-12 14:24:33 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (7 bài hát)
 2026-04-12 14:24:33 | INFO     | src.recommendation.engine | get_similar_songs: target=8 top_k=5 results=[11, 6, 12, 10, 7]
+2026-04-12 14:29:07 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (7 bài hát)
+2026-04-12 14:29:07 | INFO     | src.recommendation.engine | get_similar_songs: target=9 top_k=5 results=[7, 12, 8, 11, 6]
+2026-04-12 14:34:02 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (7 bài hát)
+2026-04-12 14:34:02 | INFO     | src.recommendation.engine | get_similar_songs: target=10 top_k=5 results=[6, 8, 11, 12, 7]
+2026-04-12 14:55:32 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (7 bài hát)
+2026-04-12 14:55:33 | INFO     | src.recommendation.engine | get_similar_songs: target=9 top_k=5 results=[7, 12, 8, 11, 6]
+2026-04-12 14:57:37 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (7 bài hát)
+2026-04-12 14:57:37 | INFO     | src.recommendation.engine | get_similar_songs: target=9 top_k=5 results=[7, 12, 8, 11, 6]
+2026-04-12 14:59:49 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (7 bài hát)
+2026-04-12 14:59:49 | INFO     | src.recommendation.engine | get_similar_songs: target=10 top_k=5 results=[6, 8, 11, 12, 7]
+2026-04-12 15:19:23 | INFO     | src.services.song_service | Đã xóa file audio: uploads\80ae250b-4ff9-4f45-8567-9dee359924bc.mp3
+2026-04-12 15:19:23 | INFO     | src.audio_processing.feature_extraction | Đã xoá vector đặc trưng của song_id=6 khỏi cache.
+2026-04-12 15:19:23 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 6 bài hát (n_neighbors=6)
+2026-04-12 15:19:23 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN vào 'data/knn_model.pkl'
+2026-04-12 15:19:23 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 6 bài hát.
+2026-04-12 15:19:23 | INFO     | src.recommendation.engine | Genre Classifier chưa huấn luyện: cần ít nhất 2 bài có nhãn genre (hiện có 0).
+2026-04-12 15:19:35 | WARNING  | src.services.song_service | Không đo được thời lượng file uploads\bd633145-d165-4f78-b9a7-8e3359c1eb1f.mp3: No module named 'mutagen'
+2026-04-12 15:19:35 | INFO     | src.services.song_service | Thời lượng file 'LẠC TRÔI  OFFICIAL MUSIC VIDEO  SƠN TÙNG M-TP.mp3': 0.0s
+2026-04-12 15:19:35 | INFO     | src.services.song_service | Bắt đầu trích xuất features cho song_id=13...
+2026-04-12 15:19:35 | WARNING  | src.services.recommend_service | Bài hát 13 chưa được trích xuất đặc trưng.
+2026-04-12 15:19:42 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất MFCC cho 'bd633145-d165-4f78-b9a7-8e3359c1eb1f.mp3' trong 7.23s
+2026-04-12 15:19:42 | INFO     | src.audio_processing.feature_extraction | Đã lưu vector đặc trưng của song_id=13 vào cache.
+2026-04-12 15:19:42 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 7 bài hát (n_neighbors=6)
+2026-04-12 15:19:42 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN vào 'data/knn_model.pkl'
+2026-04-12 15:19:42 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 7 bài hát.
+2026-04-12 15:19:42 | INFO     | src.recommendation.engine | Genre Classifier chưa huấn luyện: cần ít nhất 2 bài có nhãn genre (hiện có 1).
+2026-04-12 15:19:42 | INFO     | src.services.song_service | Hoàn tất xử lý AI cho song_id=13.
+2026-04-12 15:19:42 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (7 bài hát)
+2026-04-12 15:19:42 | INFO     | src.recommendation.engine | get_similar_songs: target=13 top_k=5 results=[11, 8, 12, 10, 7]
+2026-04-12 15:20:32 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (7 bài hát)
+2026-04-12 15:20:32 | INFO     | src.recommendation.engine | get_similar_songs: target=12 top_k=5 results=[7, 13, 9, 11, 8]
+2026-04-12 15:21:28 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (7 bài hát)
+2026-04-12 15:21:28 | INFO     | src.recommendation.engine | get_similar_songs: target=12 top_k=5 results=[7, 13, 9, 11, 8]
+2026-04-12 15:21:36 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (7 bài hát)
+2026-04-12 15:21:36 | INFO     | src.recommendation.engine | get_similar_songs: target=9 top_k=5 results=[7, 12, 8, 11, 13]
+2026-04-12 15:26:09 | INFO     | src.services.song_service | Đã xóa file audio: uploads\434adaa1-9737-4e8b-9ef7-42860fe6dc18.mp3
+2026-04-12 15:26:09 | INFO     | src.audio_processing.feature_extraction | Đã xoá vector đặc trưng của song_id=12 khỏi cache.
+2026-04-12 15:26:09 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 6 bài hát (n_neighbors=6)
+2026-04-12 15:26:09 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN vào 'data/knn_model.pkl'
+2026-04-12 15:26:09 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 6 bài hát.
+2026-04-12 15:26:09 | INFO     | src.recommendation.engine | Genre Classifier chưa huấn luyện: cần ít nhất 2 bài có nhãn genre (hiện có 1).
+2026-04-12 15:26:23 | WARNING  | src.services.song_service | Không đo được thời lượng file uploads\26c3476f-053e-4217-b392-d4eccdaa98df.mp3: No module named 'mutagen'
+2026-04-12 15:26:23 | INFO     | src.services.song_service | Thời lượng file 'THÁNG NĂM ( THE PLAYAH ) SOOBIN x SLIMV  NEW VERSION  MV LYRICS.mp3': 0.0s
+2026-04-12 15:26:23 | INFO     | src.services.song_service | Bắt đầu trích xuất features cho song_id=14...
+2026-04-12 15:26:23 | WARNING  | src.services.recommend_service | Bài hát 14 chưa được trích xuất đặc trưng.
+2026-04-12 15:26:24 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất MFCC cho '26c3476f-053e-4217-b392-d4eccdaa98df.mp3' trong 1.13s
+2026-04-12 15:26:24 | INFO     | src.audio_processing.feature_extraction | Đã lưu vector đặc trưng của song_id=14 vào cache.
+2026-04-12 15:26:24 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 7 bài hát (n_neighbors=6)
+2026-04-12 15:26:24 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN vào 'data/knn_model.pkl'
+2026-04-12 15:26:24 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 7 bài hát.
+2026-04-12 15:26:24 | WARNING  | src.recommendation.knn_model | Genre Classifier bị bỏ qua: cần ít nhất 2 thể loại khác nhau (hiện có 1).
+2026-04-12 15:26:24 | INFO     | src.services.song_service | Hoàn tất xử lý AI cho song_id=14.
+2026-04-12 15:27:53 | INFO     | src.services.song_service | Đã xóa file audio: uploads\26c3476f-053e-4217-b392-d4eccdaa98df.mp3
+2026-04-12 15:27:53 | INFO     | src.audio_processing.feature_extraction | Đã xoá vector đặc trưng của song_id=14 khỏi cache.
+2026-04-12 15:27:53 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 6 bài hát (n_neighbors=6)
+2026-04-12 15:27:53 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN vào 'data/knn_model.pkl'
+2026-04-12 15:27:53 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 6 bài hát.
+2026-04-12 15:27:53 | INFO     | src.recommendation.engine | Genre Classifier chưa huấn luyện: cần ít nhất 2 bài có nhãn genre (hiện có 1).
+2026-04-12 15:28:04 | WARNING  | src.services.song_service | Không đo được thời lượng file uploads\ea1d9cc4-4e0d-48fc-9c37-173bda4f4140.mp3: No module named 'mutagen'
+2026-04-12 15:28:04 | INFO     | src.services.song_service | Thời lượng file 'THÁNG NĂM ( THE PLAYAH ) SOOBIN x SLIMV  NEW VERSION  MV LYRICS.mp3': 0.0s
+2026-04-12 15:28:04 | INFO     | src.services.song_service | Bắt đầu trích xuất features cho song_id=14...
+2026-04-12 15:28:04 | WARNING  | src.services.recommend_service | Bài hát 14 chưa được trích xuất đặc trưng.
+2026-04-12 15:28:05 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất MFCC cho 'ea1d9cc4-4e0d-48fc-9c37-173bda4f4140.mp3' trong 1.12s
+2026-04-12 15:28:05 | INFO     | src.audio_processing.feature_extraction | Đã lưu vector đặc trưng của song_id=14 vào cache.
+2026-04-12 15:28:05 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 7 bài hát (n_neighbors=6)
+2026-04-12 15:28:05 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN vào 'data/knn_model.pkl'
+2026-04-12 15:28:05 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 7 bài hát.
+2026-04-12 15:28:05 | INFO     | src.recommendation.knn_model | Genre Classifier đã huấn luyện với 2 bài / 2 thể loại
+2026-04-12 15:28:05 | INFO     | src.recommendation.knn_model | Đã lưu Genre Classifier vào 'data/genre_classifier.pkl'
+2026-04-12 15:28:05 | INFO     | src.recommendation.engine | Đã huấn luyện Genre Classifier với 2 bài có nhãn.
+2026-04-12 15:28:05 | INFO     | src.services.song_service | Hoàn tất xử lý AI cho song_id=14.
+2026-04-12 15:37:16 | INFO     | src.services.song_service | Đã xóa file audio: uploads\defecf9e-6dfc-4a1f-8728-ee2b06378c81.mp3
+2026-04-12 15:37:16 | INFO     | src.audio_processing.feature_extraction | Đã xoá vector đặc trưng của song_id=7 khỏi cache.
+2026-04-12 15:37:16 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 6 bài hát (n_neighbors=6)
+2026-04-12 15:37:16 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN vào 'data/knn_model.pkl'
+2026-04-12 15:37:16 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 6 bài hát.
+2026-04-12 15:37:16 | INFO     | src.recommendation.knn_model | Genre Classifier đã huấn luyện với 2 bài / 2 thể loại
+2026-04-12 15:37:16 | INFO     | src.recommendation.knn_model | Đã lưu Genre Classifier vào 'data/genre_classifier.pkl'
+2026-04-12 15:37:16 | INFO     | src.recommendation.engine | Đã huấn luyện Genre Classifier với 2 bài có nhãn.
+2026-04-12 15:37:43 | WARNING  | src.services.song_service | Không đo được thời lượng file uploads\8ba0c6a7-bc99-43ed-ba60-2cf6587b972a.mp3: No module named 'mutagen'
+2026-04-12 15:37:43 | INFO     | src.services.song_service | Thời lượng file 'Maroon 5 - Memories (Lyrics).mp3': 0.0s
+2026-04-12 15:37:43 | INFO     | src.services.song_service | Bắt đầu trích xuất features cho song_id=15...
+2026-04-12 15:37:43 | WARNING  | src.services.recommend_service | Bài hát 15 chưa được trích xuất đặc trưng.
+2026-04-12 15:37:48 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất MFCC cho '8ba0c6a7-bc99-43ed-ba60-2cf6587b972a.mp3' trong 5.10s
+2026-04-12 15:37:48 | INFO     | src.audio_processing.feature_extraction | Đã lưu vector đặc trưng của song_id=15 vào cache.
+2026-04-12 15:37:48 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 7 bài hát (n_neighbors=6)
+2026-04-12 15:37:48 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN vào 'data/knn_model.pkl'
+2026-04-12 15:37:48 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 7 bài hát.
+2026-04-12 15:37:48 | INFO     | src.recommendation.knn_model | Genre Classifier đã huấn luyện với 3 bài / 3 thể loại
+2026-04-12 15:37:48 | INFO     | src.recommendation.knn_model | Đã lưu Genre Classifier vào 'data/genre_classifier.pkl'
+2026-04-12 15:37:48 | INFO     | src.recommendation.engine | Đã huấn luyện Genre Classifier với 3 bài có nhãn.
+2026-04-12 15:37:48 | INFO     | src.services.song_service | Hoàn tất xử lý AI cho song_id=15.
+2026-04-12 15:37:51 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (7 bài hát)
+2026-04-12 15:37:51 | INFO     | src.recommendation.engine | get_similar_songs: target=14 top_k=5 results=[15, 13, 9, 11, 8]
+2026-04-12 15:41:02 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (7 bài hát)
+2026-04-12 15:41:02 | INFO     | src.recommendation.engine | get_similar_songs: target=15 top_k=5 results=[9, 14, 8, 11, 13]
+2026-04-12 15:41:44 | WARNING  | src.services.song_service | Không đo được thời lượng file uploads\94502536-9228-4dd2-9c56-ad02e84b9eb2.mp3: No module named 'mutagen'
+2026-04-12 15:41:44 | INFO     | src.services.song_service | Thời lượng file 'LẠ LÙNG  Vũ. (Original).mp3': 0.0s
+2026-04-12 15:41:44 | INFO     | src.services.song_service | Bắt đầu trích xuất features cho song_id=16...
+2026-04-12 15:41:44 | WARNING  | src.services.recommend_service | Bài hát 16 chưa được trích xuất đặc trưng.
+2026-04-12 15:41:45 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất MFCC cho '94502536-9228-4dd2-9c56-ad02e84b9eb2.mp3' trong 1.65s
+2026-04-12 15:41:45 | INFO     | src.audio_processing.feature_extraction | Đã lưu vector đặc trưng của song_id=16 vào cache.
+2026-04-12 15:41:45 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 8 bài hát (n_neighbors=6)
+2026-04-12 15:41:45 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN vào 'data/knn_model.pkl'
+2026-04-12 15:41:45 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 8 bài hát.
+2026-04-12 15:41:45 | INFO     | src.recommendation.knn_model | Genre Classifier đã huấn luyện với 4 bài / 3 thể loại
+2026-04-12 15:41:45 | INFO     | src.recommendation.knn_model | Đã lưu Genre Classifier vào 'data/genre_classifier.pkl'
+2026-04-12 15:41:45 | INFO     | src.recommendation.engine | Đã huấn luyện Genre Classifier với 4 bài có nhãn.
+2026-04-12 15:41:45 | INFO     | src.services.song_service | Hoàn tất xử lý AI cho song_id=16.
+2026-04-12 15:41:49 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (8 bài hát)
+2026-04-12 15:41:49 | INFO     | src.recommendation.engine | get_similar_songs: target=16 top_k=5 results=[9, 15, 14, 8, 11]
+2026-04-12 15:42:50 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (8 bài hát)
+2026-04-12 15:42:50 | INFO     | src.recommendation.engine | get_similar_songs: target=16 top_k=5 results=[9, 15, 14, 8, 11]
+2026-04-12 15:42:52 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (8 bài hát)
+2026-04-12 15:42:52 | INFO     | src.recommendation.engine | get_similar_songs: target=15 top_k=5 results=[16, 9, 14, 8, 11]
+2026-04-12 15:42:55 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (8 bài hát)
+2026-04-12 15:42:55 | INFO     | src.recommendation.engine | get_similar_songs: target=14 top_k=5 results=[16, 15, 13, 9, 11]
+2026-04-12 15:42:56 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (8 bài hát)
+2026-04-12 15:42:56 | INFO     | src.recommendation.engine | get_similar_songs: target=13 top_k=5 results=[11, 8, 14, 10, 16]
+2026-04-12 15:46:08 | WARNING  | src.services.song_service | Không đo được thời lượng file uploads\b8104e1f-53a0-4d92-baf1-9ffe728fc403.mp3: No module named 'mutagen'
+2026-04-12 15:46:08 | INFO     | src.services.song_service | Thời lượng file 'Thịnh Suy - MỘT ĐÊM SAY (X)  Official Music Video.mp3': 0.0s
+2026-04-12 15:46:08 | INFO     | src.services.song_service | Bắt đầu trích xuất features cho song_id=17...
+2026-04-12 15:46:08 | WARNING  | src.services.recommend_service | Bài hát 17 chưa được trích xuất đặc trưng.
+2026-04-12 15:46:13 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất MFCC cho 'b8104e1f-53a0-4d92-baf1-9ffe728fc403.mp3' trong 5.51s
+2026-04-12 15:46:13 | INFO     | src.audio_processing.feature_extraction | Đã lưu vector đặc trưng của song_id=17 vào cache.
+2026-04-12 15:46:13 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 9 bài hát (n_neighbors=6)
+2026-04-12 15:46:13 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN vào 'data/knn_model.pkl'
+2026-04-12 15:46:13 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 9 bài hát.
+2026-04-12 15:46:13 | INFO     | src.recommendation.knn_model | Genre Classifier đã huấn luyện với 5 bài / 4 thể loại
+2026-04-12 15:46:13 | INFO     | src.recommendation.knn_model | Đã lưu Genre Classifier vào 'data/genre_classifier.pkl'
+2026-04-12 15:46:13 | INFO     | src.recommendation.engine | Đã huấn luyện Genre Classifier với 5 bài có nhãn.
+2026-04-12 15:46:13 | INFO     | src.services.song_service | Hoàn tất xử lý AI cho song_id=17.
+2026-04-12 15:46:22 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (9 bài hát)
+2026-04-12 15:46:22 | INFO     | src.recommendation.engine | get_similar_songs: target=16 top_k=5 results=[9, 15, 14, 17, 8]
+2026-04-12 15:48:05 | WARNING  | src.services.song_service | Không đo được thời lượng file uploads\1db7a6f4-50c4-42fd-990b-7ff354df804a.mp3: No module named 'mutagen'
+2026-04-12 15:48:05 | INFO     | src.services.song_service | Thời lượng file 'ĐÔNG KIẾM EM  Vũ. (Original).mp3': 0.0s
+2026-04-12 15:48:05 | INFO     | src.services.song_service | Bắt đầu trích xuất features cho song_id=18...
+2026-04-12 15:48:05 | WARNING  | src.services.recommend_service | Bài hát 18 chưa được trích xuất đặc trưng.
+2026-04-12 15:48:07 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất MFCC cho '1db7a6f4-50c4-42fd-990b-7ff354df804a.mp3' trong 1.55s
+2026-04-12 15:48:07 | INFO     | src.audio_processing.feature_extraction | Đã lưu vector đặc trưng của song_id=18 vào cache.
+2026-04-12 15:48:07 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 10 bài hát (n_neighbors=6)
+2026-04-12 15:48:07 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN vào 'data/knn_model.pkl'
+2026-04-12 15:48:07 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 10 bài hát.
+2026-04-12 15:48:07 | INFO     | src.recommendation.knn_model | Genre Classifier đã huấn luyện với 6 bài / 4 thể loại
+2026-04-12 15:48:07 | INFO     | src.recommendation.knn_model | Đã lưu Genre Classifier vào 'data/genre_classifier.pkl'
+2026-04-12 15:48:07 | INFO     | src.recommendation.engine | Đã huấn luyện Genre Classifier với 6 bài có nhãn.
+2026-04-12 15:48:07 | INFO     | src.services.song_service | Hoàn tất xử lý AI cho song_id=18.
+2026-04-12 15:48:26 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (10 bài hát)
+2026-04-12 15:48:26 | INFO     | src.recommendation.engine | get_similar_songs: target=17 top_k=5 results=[18, 16, 9, 14, 15]
+2026-04-12 15:48:27 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (10 bài hát)
+2026-04-12 15:48:27 | INFO     | src.recommendation.engine | get_similar_songs: target=18 top_k=5 results=[17, 16, 9, 15, 14]
+2026-04-12 15:48:32 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (10 bài hát)
+2026-04-12 15:48:32 | INFO     | src.recommendation.engine | get_similar_songs: target=18 top_k=5 results=[17, 16, 9, 15, 14]
+2026-04-12 15:49:00 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (10 bài hát)
+2026-04-12 15:49:00 | INFO     | src.recommendation.engine | get_similar_songs: target=14 top_k=5 results=[16, 15, 13, 9, 11]
+2026-04-12 15:49:44 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (10 bài hát)
+2026-04-12 15:49:44 | INFO     | src.recommendation.engine | get_similar_songs: target=8 top_k=5 results=[11, 13, 14, 10, 15]
+2026-04-12 15:49:54 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (10 bài hát)
+2026-04-12 15:49:54 | INFO     | src.recommendation.engine | get_similar_songs: target=8 top_k=5 results=[11, 13, 14, 10, 15]
+2026-04-12 15:54:28 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (10 bài hát)
+2026-04-12 15:54:28 | INFO     | src.recommendation.engine | get_similar_songs: target=9 top_k=5 results=[16, 15, 18, 17, 14]
+2026-04-12 15:54:42 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (10 bài hát)

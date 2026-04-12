@@ -1,11 +1,14 @@
 import logging
-from typing import List
+from typing import List, Optional
 
 import numpy as np
 
 from src.audio_processing.feature_extraction import load_feature_cache
 from src.core.exceptions import ModelNotFittedException, SongNotFoundException
-from src.recommendation.knn_model import fit_knn, load_model, save_model
+from src.recommendation.knn_model import (
+    fit_knn, load_model, save_model,
+    fit_genre_classifier, save_genre_classifier, load_genre_classifier
+)
 
 logger = logging.getLogger(__name__)
 
@@ -48,8 +51,34 @@ def get_similar_songs(target_song_id: int, top_k: int = 5) -> List[int]:
     return similar_ids
 
 
+def predict_genre(song_id: int) -> Optional[str]:
+    """
+    Dự đoán thể loại bài hát dựa trên vector MFCC và Genre Classifier.
+    Trả về None nếu classifier chưa được huấn luyện hoặc bài không có đặc trưng.
+    """
+    clf = load_genre_classifier()
+    if clf is None:
+        logger.info("predict_genre: Genre Classifier chưa tồn tại (cần nhiều bài có nhãn hơn).")
+        return None
+
+    cache = load_feature_cache()
+    if song_id not in cache:
+        logger.warning("predict_genre: song_id=%d chưa có vector MFCC.", song_id)
+        return None
+
+    vector = cache[song_id].reshape(1, -1)
+    try:
+        predicted = clf.predict(vector)
+        genre = predicted[0]
+        logger.info("predict_genre: song_id=%d -> '%s'", song_id, genre)
+        return genre
+    except Exception as e:
+        logger.error("predict_genre lỗi: %s", e)
+        return None
+
+
 def retrain_model() -> None:
-    """Huấn luyện lại và lưu mô hình KNN từ cache đặc trưng hiện tại."""
+    """Huấn luyện lại và lưu cả 2 mô hình: KNN Similarity và Genre Classifier."""
     cache = load_feature_cache()
 
     if len(cache) < 2:
@@ -61,6 +90,30 @@ def retrain_model() -> None:
     song_ids = list(cache.keys())
     features_matrix = np.array([cache[sid] for sid in song_ids])
 
+    # 1. Huấn luyện KNN Similarity (để gợi ý nhạc tương tự)
     model = fit_knn(features_matrix, song_ids)
     save_model(model, song_ids)
     logger.info("Đã huấn luyện lại mô hình KNN với %d bài hát.", len(song_ids))
+
+    # 2. Huấn luyện Genre Classifier (chỉ khi có bài hát có nhãn genre)
+    try:
+        from src.database.db import SessionLocal
+        from src.database.crud import get_all_songs
+        db = SessionLocal()
+        all_songs = get_all_songs(db)
+        db.close()
+
+        # Lọc ra những bài có genre và có vector trong cache
+        labeled_ids = [s.id for s in all_songs if s.genre and s.id in cache]
+        labeled_genres = [s.genre for s in all_songs if s.genre and s.id in cache]
+
+        if len(labeled_ids) >= 2:
+            labeled_matrix = np.array([cache[sid] for sid in labeled_ids])
+            clf = fit_genre_classifier(labeled_matrix, labeled_ids, labeled_genres)
+            if clf is not None:
+                save_genre_classifier(clf)
+                logger.info("Đã huấn luyện Genre Classifier với %d bài có nhãn.", len(labeled_ids))
+        else:
+            logger.info("Genre Classifier chưa huấn luyện: cần ít nhất 2 bài có nhãn genre (hiện có %d).", len(labeled_ids))
+    except Exception as e:
+        logger.warning("Không thể huấn luyện Genre Classifier: %s", e)

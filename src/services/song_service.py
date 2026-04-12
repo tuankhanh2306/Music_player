@@ -11,12 +11,37 @@ from src.core.exceptions import InvalidAudioFileException
 
 logger = logging.getLogger(__name__)
 
-async def process_upload(db: Session, file: UploadFile, title: str, artist: str, background_tasks: BackgroundTasks):
+def _get_audio_duration(file_path: str) -> float:
+    """Trích xuất thời lượng (giây) từ file audio bằng mutagen."""
+    try:
+        from mutagen.mp3 import MP3
+        from mutagen.mp4 import MP4
+        from mutagen.oggvorbis import OggVorbis
+        from mutagen import File as MutagenFile
+        
+        ext = os.path.splitext(file_path)[1].lower()
+        if ext == '.mp3':
+            audio = MP3(file_path)
+        elif ext in ('.m4a', '.mp4', '.aac'):
+            audio = MP4(file_path)
+        elif ext == '.ogg':
+            audio = OggVorbis(file_path)
+        else:
+            audio = MutagenFile(file_path)
+        
+        if audio and audio.info:
+            return round(audio.info.length, 2)
+    except Exception as e:
+        logger.warning(f"Không đo được thời lượng file {file_path}: {e}")
+    return 0.0
+
+async def process_upload(db: Session, file: UploadFile, title: str, artist: str, background_tasks: BackgroundTasks, genre: str | None = None, sub_genres: str | None = None):
     """
     Xử lý việc tải lên bài hát:
     1. Lưu file vào uploads/
-    2. Ghi database
-    3. Thêm background task để trích xuất feature và retrain AI
+    2. Đo thời lượng từ file MP3 bằng mutagen
+    3. Ghi database (kèm genre chính, sub_genres, và duration)
+    4. Thêm background task để trích xuất feature và retrain AI
     """
     # 1. Validate extension
     file_ext = os.path.splitext(file.filename)[1].lower()
@@ -36,18 +61,25 @@ async def process_upload(db: Session, file: UploadFile, title: str, artist: str,
         logger.error(f"Lỗi khi lưu file: {e}")
         raise InvalidAudioFileException("Không thể lưu file vào server.")
 
-    # 4. Lưu metadata vào DB
-    db_song = crud.create_song(db, title=title, artist=artist, filepath=file_path)
+    # 4. Đo thời lượng thực tế từ file
+    duration = _get_audio_duration(file_path)
+    logger.info(f"Thời lượng file '{file.filename}': {duration}s")
 
-    # 5. Thêm Background Task xử lý AI
-    background_tasks.add_task(extract_features_and_retrain, db_song.id, file_path)
+    # 5. Lưu metadata vào DB
+    db_song = crud.create_song(
+        db, title=title, artist=artist, filepath=file_path,
+        genre=genre or None, sub_genres=sub_genres or None, duration=duration
+    )
+
+    # 6. Thêm Background Task xử lý AI
+    background_tasks.add_task(extract_features_and_retrain, db_song.id, file_path, genre)
 
     return db_song
 
 from src.database.db import SessionLocal
 
-def extract_features_and_retrain(song_id: int, file_path: str):
-    """Nhiệm vụ chạy ngầm: Trích xuất MFCC -> Cập nhật Cache -> Huấn luyện lại mô hình."""
+def extract_features_and_retrain(song_id: int, file_path: str, genre: str | None = None):
+    """Nhiệm vụ chạy ngầm: Trích xuất MFCC -> Cập nhật Cache -> Huấn luyện lại mô hình -> Dự đoán genre nếu chưa có."""
     db = SessionLocal()
     try:
         logger.info(f"Bắt đầu trích xuất features cho song_id={song_id}...")
@@ -61,6 +93,17 @@ def extract_features_and_retrain(song_id: int, file_path: str):
         
         # Retrain mô hình KNN
         retrain_model()
+        
+        # Nếu người dùng để trống Genre, nhờ AI tự đoán
+        if not genre:
+            try:
+                from src.recommendation.engine import predict_genre
+                predicted = predict_genre(song_id)
+                if predicted:
+                    crud.update_song_metadata(db, song_id, genre=predicted)
+                    logger.info(f"AI đoán genre song_id={song_id}: '{predicted}'")
+            except Exception as e:
+                logger.warning(f"Không thể dự đoán genre cho song_id={song_id}: {e}")
         
         logger.info(f"Hoàn tất xử lý AI cho song_id={song_id}.")
     except Exception as e:

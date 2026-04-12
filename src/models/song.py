@@ -13,6 +13,8 @@ class Song(Base):
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String(255), nullable=False)
     artist = Column(String(255), nullable=False)
+    genre = Column(String(50), nullable=True, default=None)       # The loai CHINH - AI hoc va phan loai
+    sub_genres = Column(String(200), nullable=True, default=None) # Tags phu - chi hien thi UI
     filepath = Column(String(500), nullable=False)
     duration = Column(Float, default=0.0)
     has_features = Column(Boolean, default=False)

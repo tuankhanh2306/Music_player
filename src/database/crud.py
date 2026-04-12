@@ -13,9 +13,9 @@ import logging
 logger = logging.getLogger(__name__)
 
 # ================= SONG CRUD =================
-def create_song(db: Session, title: str, artist: str, filepath: str) -> Song:
+def create_song(db: Session, title: str, artist: str, filepath: str, genre: str | None = None, sub_genres: str | None = None, duration: float = 0.0) -> Song:
     try:
-        db_song = Song(title=title, artist=artist, filepath=filepath)
+        db_song = Song(title=title, artist=artist, filepath=filepath, genre=genre, sub_genres=sub_genres, duration=duration)
         db.add(db_song)
         db.commit()
         db.refresh(db_song)
@@ -44,7 +44,7 @@ def update_song_feature_status(db: Session, song_id: int, has_features: bool) ->
             raise
     return song
 
-def update_song_metadata(db: Session, song_id: int, title: str | None = None, artist: str | None = None) -> Song | None:
+def update_song_metadata(db: Session, song_id: int, title: str | None = None, artist: str | None = None, genre: str | None = None, sub_genres: str | None = None) -> Song | None:
     song = get_song(db, song_id)
     if song:
         try:
@@ -52,6 +52,10 @@ def update_song_metadata(db: Session, song_id: int, title: str | None = None, ar
                 song.title = title
             if artist is not None:
                 song.artist = artist
+            if genre is not None:
+                song.genre = genre
+            if sub_genres is not None:
+                song.sub_genres = sub_genres
             db.commit()
             db.refresh(song)
         except SQLAlchemyError as e:

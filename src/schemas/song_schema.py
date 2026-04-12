@@ -5,6 +5,7 @@ Nhiệm vụ: Kiểm tra tính hợp lệ của dữ liệu đầu vào (Create)
 """
 from pydantic import BaseModel, ConfigDict
 from datetime import datetime
+from typing import Optional
 
 class SongBase(BaseModel):
     title: str
@@ -12,13 +13,19 @@ class SongBase(BaseModel):
 
 class SongCreate(SongBase):
     filepath: str
+    genre: Optional[str] = None
+    sub_genres: Optional[str] = None
 
 class SongUpdate(BaseModel):
-    title: str | None = None
-    artist: str | None = None
+    title: Optional[str] = None
+    artist: Optional[str] = None
+    genre: Optional[str] = None
+    sub_genres: Optional[str] = None
 
 class SongResponse(SongBase):
     id: int
+    genre: Optional[str] = None
+    sub_genres: Optional[str] = None
     filepath: str
     duration: float
     has_features: bool

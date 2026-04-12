@@ -279,7 +279,18 @@
             <input type="text" id="meta-title" placeholder="Tên bài hát (Bắt buộc)">
             <input type="text" id="meta-artist" list="artist-options" placeholder="Ca sĩ (Nhập để tìm hoặc tạo mới)">
             <datalist id="artist-options"></datalist>
-            <input type="text" id="meta-genre" placeholder="Thể loại">
+            <div style="display: flex; flex-direction: column; gap: 4px;">
+                <input type="text" id="meta-genre" placeholder="Thể loại chính (VD: Pop, Rap, EDM...)">
+                <div style="font-size: 11px; color: var(--text-subdued); padding: 0 4px;">
+                    ⚡ AI sẽ tự đoán nếu để trống (sau khi có ≥ 2 thể loại).
+                </div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 4px;">
+                <input type="text" id="meta-sub-genres" placeholder="Tags phụ: Soft Pop, Chill, Lo-fi... (tùy chọn)">
+                <div style="font-size: 11px; color: var(--text-subdued); padding: 0 4px;">
+                    Ảnh hưởng hiển thị UI, không ảnh hưởng AI.
+                </div>
+            </div>
             <div class="modal-actions">
                 <button id="btn-cancel-meta" class="btn-cancel">Hủy</button>
                 <button id="btn-submit-meta" class="btn-create">Lưu & Phân tích AI</button>
