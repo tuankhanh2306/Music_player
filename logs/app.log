@@ -146,3 +146,4 @@
 2026-04-12 14:22:10 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (7 bài hát)
 2026-04-12 14:22:10 | INFO     | src.recommendation.engine | get_similar_songs: target=12 top_k=5 results=[7, 6, 9, 11, 8]
 2026-04-12 14:24:33 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (7 bài hát)
+2026-04-12 14:24:33 | INFO     | src.recommendation.engine | get_similar_songs: target=8 top_k=5 results=[11, 6, 12, 10, 7]
