@@ -43,3 +43,106 @@
 2026-04-12 12:00:07 | WARNING  | src.services.recommend_service | Bài hát 2 chưa được trích xuất đặc trưng.
 2026-04-12 12:00:09 | WARNING  | src.services.recommend_service | Bài hát 2 chưa được trích xuất đặc trưng.
 2026-04-12 12:00:10 | WARNING  | src.services.recommend_service | Bài hát 1 chưa được trích xuất đặc trưng.
+2026-04-12 12:01:52 | WARNING  | src.recommendation.engine | get_similar_songs được gọi nhưng mô hình chưa được huấn luyện.
+2026-04-12 12:01:52 | ERROR    | src.services.recommend_service | Mô hình KNN chưa được huấn luyện.
+2026-04-12 12:07:00 | INFO     | src.services.song_service | Bắt đầu trích xuất features cho song_id=7...
+2026-04-12 12:07:00 | WARNING  | src.services.recommend_service | Bài hát 7 chưa được trích xuất đặc trưng.
+2026-04-12 12:07:07 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất MFCC cho 'defecf9e-6dfc-4a1f-8728-ee2b06378c81.mp3' trong 6.46s
+2026-04-12 12:07:07 | INFO     | src.audio_processing.feature_extraction | Đã lưu vector đặc trưng của song_id=7 vào cache.
+2026-04-12 12:07:07 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 2 bài hát (n_neighbors=2)
+2026-04-12 12:07:07 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN vào 'data/knn_model.pkl'
+2026-04-12 12:07:07 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 2 bài hát.
+2026-04-12 12:07:07 | INFO     | src.services.song_service | Hoàn tất xử lý AI cho song_id=7.
+2026-04-12 12:07:47 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (2 bài hát)
+2026-04-12 12:07:47 | INFO     | src.recommendation.engine | get_similar_songs: target=6 top_k=5 results=[7]
+2026-04-12 12:36:20 | WARNING  | src.services.recommend_service | Bài hát 4 chưa được trích xuất đặc trưng.
+2026-04-12 12:39:32 | WARNING  | src.services.recommend_service | Bài hát 1 chưa được trích xuất đặc trưng.
+2026-04-12 12:41:25 | WARNING  | src.services.recommend_service | Bài hát 5 chưa được trích xuất đặc trưng.
+2026-04-12 12:41:32 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (2 bài hát)
+2026-04-12 12:41:32 | INFO     | src.recommendation.engine | get_similar_songs: target=6 top_k=5 results=[7]
+2026-04-12 12:48:05 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (2 bài hát)
+2026-04-12 12:48:05 | INFO     | src.recommendation.engine | get_similar_songs: target=6 top_k=5 results=[7]
+2026-04-12 12:48:11 | WARNING  | src.services.recommend_service | Bài hát 5 chưa được trích xuất đặc trưng.
+2026-04-12 12:48:17 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 2 bài hát (n_neighbors=2)
+2026-04-12 12:48:17 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN vào 'data/knn_model.pkl'
+2026-04-12 12:48:17 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 2 bài hát.
+2026-04-12 12:48:19 | WARNING  | src.services.recommend_service | Bài hát 4 chưa được trích xuất đặc trưng.
+2026-04-12 12:48:22 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 2 bài hát (n_neighbors=2)
+2026-04-12 12:48:22 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN vào 'data/knn_model.pkl'
+2026-04-12 12:48:22 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 2 bài hát.
+2026-04-12 12:48:24 | WARNING  | src.services.recommend_service | Bài hát 3 chưa được trích xuất đặc trưng.
+2026-04-12 12:48:27 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 2 bài hát (n_neighbors=2)
+2026-04-12 12:48:27 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN vào 'data/knn_model.pkl'
+2026-04-12 12:48:27 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 2 bài hát.
+2026-04-12 12:48:27 | WARNING  | src.services.recommend_service | Bài hát 1 chưa được trích xuất đặc trưng.
+2026-04-12 12:48:30 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 2 bài hát (n_neighbors=2)
+2026-04-12 12:48:30 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN vào 'data/knn_model.pkl'
+2026-04-12 12:48:30 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 2 bài hát.
+2026-04-12 12:48:32 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 2 bài hát (n_neighbors=2)
+2026-04-12 12:48:32 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN vào 'data/knn_model.pkl'
+2026-04-12 12:48:32 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 2 bài hát.
+2026-04-12 13:54:22 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (2 bài hát)
+2026-04-12 13:54:22 | INFO     | src.recommendation.engine | get_similar_songs: target=6 top_k=5 results=[7]
+2026-04-12 13:54:30 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (2 bài hát)
+2026-04-12 13:54:30 | INFO     | src.recommendation.engine | get_similar_songs: target=6 top_k=5 results=[7]
+2026-04-12 13:54:33 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (2 bài hát)
+2026-04-12 13:54:33 | INFO     | src.recommendation.engine | get_similar_songs: target=7 top_k=5 results=[6]
+2026-04-12 13:59:24 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (2 bài hát)
+2026-04-12 13:59:24 | INFO     | src.recommendation.engine | get_similar_songs: target=7 top_k=5 results=[6]
+2026-04-12 14:08:46 | INFO     | src.services.song_service | Bắt đầu trích xuất features cho song_id=8...
+2026-04-12 14:08:46 | WARNING  | src.services.recommend_service | Bài hát 8 chưa được trích xuất đặc trưng.
+2026-04-12 14:08:53 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất MFCC cho 'd260d7ee-bf69-48f0-aa0f-20d1795ca5cf.mp3' trong 7.55s
+2026-04-12 14:08:53 | INFO     | src.audio_processing.feature_extraction | Đã lưu vector đặc trưng của song_id=8 vào cache.
+2026-04-12 14:08:53 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 3 bài hát (n_neighbors=3)
+2026-04-12 14:08:53 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN vào 'data/knn_model.pkl'
+2026-04-12 14:08:53 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 3 bài hát.
+2026-04-12 14:08:53 | INFO     | src.services.song_service | Hoàn tất xử lý AI cho song_id=8.
+2026-04-12 14:10:24 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (3 bài hát)
+2026-04-12 14:10:24 | INFO     | src.recommendation.engine | get_similar_songs: target=8 top_k=5 results=[6, 7]
+2026-04-12 14:11:12 | INFO     | src.services.song_service | Bắt đầu trích xuất features cho song_id=9...
+2026-04-12 14:11:12 | WARNING  | src.services.recommend_service | Bài hát 9 chưa được trích xuất đặc trưng.
+2026-04-12 14:11:14 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất MFCC cho '3a892248-9419-4610-95f7-8415afb9f351.mp3' trong 1.86s
+2026-04-12 14:11:14 | INFO     | src.audio_processing.feature_extraction | Đã lưu vector đặc trưng của song_id=9 vào cache.
+2026-04-12 14:11:14 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 4 bài hát (n_neighbors=4)
+2026-04-12 14:11:14 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN vào 'data/knn_model.pkl'
+2026-04-12 14:11:14 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 4 bài hát.
+2026-04-12 14:11:14 | INFO     | src.services.song_service | Hoàn tất xử lý AI cho song_id=9.
+2026-04-12 14:11:23 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (4 bài hát)
+2026-04-12 14:11:23 | INFO     | src.recommendation.engine | get_similar_songs: target=9 top_k=5 results=[7, 8, 6]
+2026-04-12 14:14:26 | INFO     | src.services.song_service | Bắt đầu trích xuất features cho song_id=10...
+2026-04-12 14:14:26 | WARNING  | src.services.recommend_service | Bài hát 10 chưa được trích xuất đặc trưng.
+2026-04-12 14:14:28 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất MFCC cho '2c067c29-ddac-4e80-afdf-73cd3c61d95e.mp3' trong 1.78s
+2026-04-12 14:14:28 | INFO     | src.audio_processing.feature_extraction | Đã lưu vector đặc trưng của song_id=10 vào cache.
+2026-04-12 14:14:28 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 5 bài hát (n_neighbors=5)
+2026-04-12 14:14:28 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN vào 'data/knn_model.pkl'
+2026-04-12 14:14:28 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 5 bài hát.
+2026-04-12 14:14:28 | INFO     | src.services.song_service | Hoàn tất xử lý AI cho song_id=10.
+2026-04-12 14:14:37 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (5 bài hát)
+2026-04-12 14:14:37 | INFO     | src.recommendation.engine | get_similar_songs: target=9 top_k=5 results=[7, 8, 6, 10]
+2026-04-12 14:15:46 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (5 bài hát)
+2026-04-12 14:15:46 | INFO     | src.recommendation.engine | get_similar_songs: target=10 top_k=5 results=[6, 8, 7, 9]
+2026-04-12 14:17:29 | INFO     | src.services.song_service | Bắt đầu trích xuất features cho song_id=11...
+2026-04-12 14:17:29 | WARNING  | src.services.recommend_service | Bài hát 11 chưa được trích xuất đặc trưng.
+2026-04-12 14:17:30 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất MFCC cho '91da4d59-60b4-4d64-b697-5d69658bd55a.mp3' trong 1.48s
+2026-04-12 14:17:30 | INFO     | src.audio_processing.feature_extraction | Đã lưu vector đặc trưng của song_id=11 vào cache.
+2026-04-12 14:17:30 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 6 bài hát (n_neighbors=6)
+2026-04-12 14:17:30 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN vào 'data/knn_model.pkl'
+2026-04-12 14:17:30 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 6 bài hát.
+2026-04-12 14:17:30 | INFO     | src.services.song_service | Hoàn tất xử lý AI cho song_id=11.
+2026-04-12 14:21:03 | INFO     | src.services.song_service | Bắt đầu trích xuất features cho song_id=12...
+2026-04-12 14:21:03 | WARNING  | src.services.recommend_service | Bài hát 12 chưa được trích xuất đặc trưng.
+2026-04-12 14:21:04 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất MFCC cho '434adaa1-9737-4e8b-9ef7-42860fe6dc18.mp3' trong 1.18s
+2026-04-12 14:21:04 | INFO     | src.audio_processing.feature_extraction | Đã lưu vector đặc trưng của song_id=12 vào cache.
+2026-04-12 14:21:04 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 7 bài hát (n_neighbors=6)
+2026-04-12 14:21:04 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN vào 'data/knn_model.pkl'
+2026-04-12 14:21:04 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 7 bài hát.
+2026-04-12 14:21:04 | INFO     | src.services.song_service | Hoàn tất xử lý AI cho song_id=12.
+2026-04-12 14:21:50 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (7 bài hát)
+2026-04-12 14:21:50 | INFO     | src.recommendation.engine | get_similar_songs: target=10 top_k=5 results=[6, 8, 11, 12, 7]
+2026-04-12 14:21:55 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (7 bài hát)
+2026-04-12 14:21:55 | INFO     | src.recommendation.engine | get_similar_songs: target=12 top_k=5 results=[7, 6, 9, 11, 8]
+2026-04-12 14:22:06 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (7 bài hát)
+2026-04-12 14:22:06 | INFO     | src.recommendation.engine | get_similar_songs: target=10 top_k=5 results=[6, 8, 11, 12, 7]
+2026-04-12 14:22:10 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (7 bài hát)
+2026-04-12 14:22:10 | INFO     | src.recommendation.engine | get_similar_songs: target=12 top_k=5 results=[7, 6, 9, 11, 8]
+2026-04-12 14:24:33 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (7 bài hát)

@@ -44,6 +44,35 @@ def update_song_feature_status(db: Session, song_id: int, has_features: bool) ->
             raise
     return song
 
+def update_song_metadata(db: Session, song_id: int, title: str | None = None, artist: str | None = None) -> Song | None:
+    song = get_song(db, song_id)
+    if song:
+        try:
+            if title is not None:
+                song.title = title
+            if artist is not None:
+                song.artist = artist
+            db.commit()
+            db.refresh(song)
+        except SQLAlchemyError as e:
+            db.rollback()
+            logger.error(f"Database error while updating song metadata: {e}")
+            raise
+    return song
+
+def delete_song(db: Session, song_id: int) -> bool:
+    song = get_song(db, song_id)
+    if song:
+        try:
+            db.delete(song)
+            db.commit()
+            return True
+        except SQLAlchemyError as e:
+            db.rollback()
+            logger.error(f"Database error while deleting song: {e}")
+            raise
+    return False
+
 # ================= PLAYLIST CRUD =================
 def create_playlist(db: Session, name: str) -> Playlist:
     try:

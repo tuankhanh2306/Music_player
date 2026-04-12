@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 from typing import List
 
 from src.database.db import get_db
-from src.schemas.song_schema import SongResponse
+from src.schemas.song_schema import SongResponse, SongUpdate
 from src.services import song_service
 from src.core.exceptions import SongNotFoundException
 
@@ -35,6 +35,16 @@ def get_song_detail(song_id: int, db: Session = Depends(get_db)):
     if not song:
         raise SongNotFoundException()
     return song
+
+@router.patch("/{song_id}", response_model=SongResponse)
+def update_song(song_id: int, update_data: SongUpdate, db: Session = Depends(get_db)):
+    """Cập nhật thông tin tiêu đề/nghệ sĩ của bài hát."""
+    return song_service.update_song(db, song_id, update_data)
+
+@router.delete("/{song_id}")
+def delete_song(song_id: int, db: Session = Depends(get_db)):
+    """Xóa vĩnh viễn hệ thống một bài hát."""
+    return song_service.delete_song(db, song_id)
 
 @router.get("/{song_id}/stream")
 def stream_song(song_id: int, db: Session = Depends(get_db)):

@@ -15,21 +15,8 @@ let artists = [
     { id: 310, name: "Wxrdie", img: "https://ui-avatars.com/api/?name=Wxrdie&background=7c3aed&color=fff&size=300" }
 ];
 
-// --- 2. QUẢN LÝ DỮ LIỆU BÀI HÁT (Fallback + API) ---
-const mockSongs = [
-    { id: 11, title: "Chạy Ngay Đi", artist: "Sơn Tùng M-TP", genre: "Pop, R&B", img: "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/15/13/cb/1513cb0b-c5a9-ac85-32ec-907ecfc98c8e/23UM1IM10668.rgb.jpg/500x500bb.jpg", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3", artistId: 301 },
-    { id: 12, title: "Phía Sau Một Cô Gái", artist: "Soobin Hoàng Sơn", genre: "Pop", img: "https://ui-avatars.com/api/?name=Phia+Sau+Mot+Co+Gai&background=random&color=fff&size=300", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3", artistId: 302 },
-    { id: 13, title: "Bước Qua Nhau", artist: "Vũ.", genre: "Indie Pop", img: "https://ui-avatars.com/api/?name=Buoc+Qua+Nhau&background=random&color=fff&size=300", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3", artistId: 303 },
-    { id: 14, title: "Gái Độc Thân", artist: "tlinh", genre: "Rap, R&B", img: "https://ui-avatars.com/api/?name=Gai+Doc+Than&background=random&color=fff&size=300", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3", artistId: 304 },
-    { id: 15, title: "Bigcityboi", artist: "Binz", genre: "Rap", img: "https://ui-avatars.com/api/?name=Bigcityboi&background=random&color=fff&size=300", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3", artistId: 305 },
-    { id: 16, title: "Đi Về Nhà", artist: "Đen Vâu", genre: "Rap, Indie", img: "https://ui-avatars.com/api/?name=Di+Ve+Nha&background=random&color=fff&size=300", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3", artistId: 306 },
-    { id: 17, title: "See Tình", artist: "Hoàng Thùy Linh", genre: "Pop, Dance", img: "https://ui-avatars.com/api/?name=See+Tinh&background=random&color=fff&size=300", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3", artistId: 307 },
-    { id: 18, title: "Thích Thích", artist: "Phương Ly", genre: "Pop", img: "https://ui-avatars.com/api/?name=Thich+Thich&background=random&color=fff&size=300", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3", artistId: 308 },
-    { id: 19, title: "Chìm Sâu", artist: "MCK", genre: "R&B, Rap", img: "https://ui-avatars.com/api/?name=Chim+Sau&background=random&color=fff&size=300", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3", artistId: 309 },
-    { id: 20, title: "Harder", artist: "Wxrdie", genre: "Rap", img: "https://ui-avatars.com/api/?name=Harder&background=random&color=fff&size=300", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3", artistId: 310 }
-];
-
-let songs = [...mockSongs];
+// --- 2. QUẢN LÝ DỮ LIỆU BÀI HÁT (API) ---
+let songs = [];
 
 async function fetchSongs() {
     try {
@@ -37,20 +24,35 @@ async function fetchSongs() {
         const serverSongs = await response.json();
         
         // Chuẩn hóa dữ liệu từ Server sang định dạng Frontend expect
-        const mappedServerSongs = serverSongs.map(s => ({
-            id: s.id,
-            title: s.title,
-            artist: s.artist,
-            genre: "Pop/Modern", // Server hiện tại chưa lưu genre
-            img: `https://picsum.photos/seed/${s.id}/200/200`,
-            url: `${API_URL}/songs/${s.id}/stream`,
-            artistId: null,
-            isServer: true
-        }));
+        const mappedServerSongs = serverSongs.map(s => {
+            // Tìm kiếm hoặc khởi tạo Nghệ sĩ mới nếu chưa có trong mảng artists
+            let existingArtist = artists.find(a => a.name.toLowerCase() === s.artist.toLowerCase());
+            if (!existingArtist) {
+                existingArtist = { 
+                    id: Date.now() + Math.floor(Math.random() * 1000), 
+                    name: s.artist, 
+                    img: `https://ui-avatars.com/api/?name=${encodeURIComponent(s.artist)}&background=random&color=fff&size=300` 
+                };
+                artists.push(existingArtist);
+            }
+            
+            return {
+                id: s.id,
+                title: s.title,
+                artist: s.artist,
+                genre: "Pop/Modern", // Server hiện tại chưa lưu genre
+                img: `https://picsum.photos/seed/${s.id}/200/200`,
+                url: `${API_URL}/songs/${s.id}/stream`,
+                artistId: existingArtist.id,
+                isServer: true
+            };
+        });
         
-        songs = [...mappedServerSongs, ...mockSongs];
+        songs = [...mappedServerSongs];
         renderSongs();
         renderHabitAndTrendingSongs();
+        if (typeof renderArtistOptions === 'function') renderArtistOptions();
+        if (typeof renderArtists === 'function') renderArtists();
     } catch (error) {
         console.error("Không thể kết nối Backend:", error);
     }
@@ -225,10 +227,11 @@ function renderSongs(filterText = "") {
             <div style="width: 150px; color: var(--text-subdued); font-size: 13px;">${songObj.artist}</div>
             <div style="width: 150px; color: var(--text-subdued); font-size: 13px;">${songObj.genre}</div>
             <div style="width: 80px; text-align: center; color: var(--text-subdued);">3:45</div>
-            <div style="width: 120px; text-align: center; display: flex; justify-content: center; gap: 16px;">
+            <div style="width: 140px; text-align: center; display: flex; justify-content: center; gap: 12px;">
                 <button title="Chi tiết" onclick="openSongDetail(${songObj.id}, event)" style="background: transparent; color: var(--text-subdued); border: none; font-size: 16px; cursor: pointer;"><i class="fa-solid fa-circle-info"></i></button>
                 <button title="Thêm Playlist" onclick="openAddToPlaylistModal(${songObj.id}, event)" style="background: transparent; color: var(--text-subdued); border: none; font-size: 16px; cursor: pointer;"><i class="fa-solid fa-plus"></i></button>
                 <button title="Thêm Danh Sách Chờ" onclick="addToQueue(${songObj.id}, event)" style="background: transparent; color: var(--text-base); border: none; font-size: 16px; cursor: pointer;"><i class="fa-solid fa-square-plus"></i></button>
+                <button title="Xóa Vĩnh Viễn" onclick="removeUpload(${songObj.id}, event)" style="background: transparent; color: #e74c3c; border: none; font-size: 16px; cursor: pointer;"><i class="fa-solid fa-trash-can"></i></button>
             </div>
         `;
         mainList.appendChild(li);
@@ -693,7 +696,7 @@ let pendingAddSongId = null; const addToPlaylistModal = document.getElementById(
 window.openAddToPlaylistModal = function(songId, event) {
     if(event) event.stopPropagation(); pendingAddSongId = songId; const listEl = document.getElementById('modal-playlist-list'); listEl.innerHTML = ''; const source = getPlaylistSource();
     if (source.length === 0) { listEl.innerHTML = '<li style="color:var(--text-subdued); padding: 10px;">Bạn chưa có playlist nào. Hãy tạo một cái ở thanh trái!</li>'; } 
-    else { source.forEach(pl => { const li = document.createElement('li'); li.className = 'modal-playlist-item'; li.innerHTML = `<img src="https://picsum.photos/seed/playlist${pl.id}/200/200"><span>${pl.name}</span><span style="margin-left:auto; font-size: 13px; color: var(--text-subdued);">${pl.songs.length} bài</span>`; li.onclick = () => addSongToPlaylist(pendingAddSongId, pl.id); listEl.appendChild(li); }); }
+    else { source.forEach(pl => { const li = document.createElement('li'); li.className = 'modal-playlist-item'; li.style = "display: flex; align-items: center; gap: 12px; padding: 10px; border-radius: 8px; cursor: pointer; transition: background 0.2s; margin-bottom: 4px;"; li.onmouseenter = () => li.style.background = "var(--bg-hover)"; li.onmouseleave = () => li.style.background = "transparent"; li.innerHTML = `<img src="https://picsum.photos/seed/playlist${pl.id}/200/200" style="width: 48px; height: 48px; border-radius: 8px; object-fit: cover; flex-shrink: 0;"><span style="font-weight: 600; font-size: 15px; color: var(--text-base);">${pl.name}</span><span style="margin-left:auto; font-size: 13px; color: var(--text-subdued);">${pl.songs.length} bài</span>`; li.onclick = () => addSongToPlaylist(pendingAddSongId, pl.id); listEl.appendChild(li); }); }
     addToPlaylistModal.classList.add('active');
 };
 window.closeAddToPlaylistModal = function() { addToPlaylistModal.classList.remove('active'); pendingAddSongId = null; };
@@ -728,11 +731,109 @@ async function addSongToPlaylist(songId, playlistId) {
 window.openSongDetail = function(songId, event) {
     if(event) event.stopPropagation(); const song = findSongById(songId);
     if(song) { 
-        document.getElementById('detail-img').src = song.img; 
-        document.getElementById('detail-title').textContent = song.title; 
-        document.getElementById('detail-artist').textContent = song.artist; 
+        document.getElementById('detail-img').src = song.img || `https://picsum.photos/seed/${song.id}/200/200`; 
+        
+        const titleEl = document.getElementById('detail-title');
+        const artistEl = document.getElementById('detail-artist');
+        const inputTitle = document.getElementById('edit-detail-title');
+        const inputArtist = document.getElementById('edit-detail-artist');
+        const toggleBtn = document.getElementById('btn-toggle-edit-meta');
+        const saveBtn = document.getElementById('btn-save-song-meta');
+        
+        titleEl.textContent = song.title; 
+        artistEl.textContent = song.artist; 
         document.getElementById('detail-genre').textContent = song.genre; 
         document.getElementById('btn-edit-song-img').onclick = () => triggerImageUpload('song', song.id);
+        
+        // Reset Edit Modal states
+        titleEl.style.display = 'block';
+        artistEl.style.display = 'block';
+        inputTitle.style.display = 'none';
+        inputArtist.style.display = 'none';
+        saveBtn.style.display = 'none';
+        inputTitle.value = song.title;
+        inputArtist.value = song.artist;
+        toggleBtn.style.color = 'var(--text-subdued)';
+
+        // Toggle edit logic
+        toggleBtn.onclick = () => {
+            if (titleEl.style.display === 'block') {
+                titleEl.style.display = 'none';
+                artistEl.style.display = 'none';
+                inputTitle.style.display = 'block';
+                inputArtist.style.display = 'block';
+                saveBtn.style.display = 'block';
+                toggleBtn.style.color = 'var(--text-base)';
+            } else {
+                titleEl.style.display = 'block';
+                artistEl.style.display = 'block';
+                inputTitle.style.display = 'none';
+                inputArtist.style.display = 'none';
+                saveBtn.style.display = 'none';
+                toggleBtn.style.color = 'var(--text-subdued)';
+            }
+        };
+
+        // Save logic
+        saveBtn.onclick = async () => {
+            const newTitle = inputTitle.value.trim();
+            const newArtist = inputArtist.value.trim();
+            if(!newTitle) { showToast("Tên bài hát không được để trống!"); return; }
+            
+            try {
+                const response = await fetch(`${API_URL}/songs/${song.id}`, {
+                    method: 'PATCH',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ title: newTitle, artist: newArtist || "Unknown" })
+                });
+                
+                if (!response.ok) throw new Error("Update failed");
+                const updatedSong = await response.json();
+                
+                // Cập nhật lại array local
+                song.title = updatedSong.title;
+                song.artist = updatedSong.artist;
+
+                // Xử lý auto-complete Artist (Cập nhật mục Nghệ Sĩ ở màn hình chính)
+                let existingArtist = artists.find(a => a.name.toLowerCase() === updatedSong.artist.toLowerCase());
+                if (!existingArtist) {
+                    existingArtist = { id: Date.now(), name: updatedSong.artist, img: `https://ui-avatars.com/api/?name=${encodeURIComponent(updatedSong.artist)}&background=random&color=fff&size=300` };
+                    artists.unshift(existingArtist);
+                    if (typeof renderArtistOptions === 'function') renderArtistOptions();
+                    if (typeof renderArtists === 'function') renderArtists();
+                }
+
+                // Tắt edit mode
+                titleEl.textContent = song.title;
+                artistEl.textContent = song.artist;
+                toggleBtn.onclick(); 
+                
+                showToast("Đã lưu thay đổi thông tin bài hát!");
+                
+                // Re-render UI
+                const searchVal = document.getElementById('search-input')?.value.trim() || "";
+                renderSongs(searchVal);
+                renderHabitAndTrendingSongs();
+                renderPlaylistsSidebar();
+                
+                // Update player in-sync
+                if(currentSongId === song.id) {
+                    document.getElementById('player-title').textContent = song.title;
+                    document.getElementById('player-artist').textContent = song.artist;
+                }
+                
+                // Refresh playlist view if open
+                const currentPlId = document.getElementById('current-playlist-id').value;
+                if(currentPlId && currentPlId !== 'my_music' && document.getElementById('playlist-view').style.display === 'block') {
+                    viewPlaylist(parseInt(currentPlId));
+                }
+                
+            } catch (error) {
+                console.error("Lỗi cập nhật bài hát:", error);
+                showToast("Lỗi máy chủ khi cập nhật thông tin!");
+            }
+        };
+
         document.getElementById('song-detail-modal').classList.add('active'); 
     }
 }
@@ -762,14 +863,29 @@ function viewPlaylist(playlistId) {
     });
 }
 
-window.removeUpload = function(songId) {
-    if (confirm("Bạn có chắc muốn xóa vĩnh viễn bài hát này khỏi hệ thống?")) {
-        const idx = songs.findIndex(s => s.id === songId);
-        if (idx > -1) songs.splice(idx, 1);
-        showToast("Đã xóa bài hát tải lên");
-        renderSongs(document.getElementById('search-input')?.value.trim() || "");
-        renderHabitAndTrendingSongs();
-        renderPlaylistsSidebar();
+window.removeUpload = async function(songId, event) {
+    if(event) event.stopPropagation();
+    if (confirm("🚨 BẠN CHẮC CHẮN MUỐN XÓA VĨNH VIỄN BÀI HÁT NÀY KHỎI DỰ ÁN?\n\nFile .mp3, Dữ liệu sóng âm và mọi liên kết Playlist sẽ bay màu. Hành động này không thể hoàn tác!")) {
+        try {
+            const response = await fetch(`${API_URL}/songs/${songId}`, {
+                method: 'DELETE'
+            });
+            if (!response.ok) throw new Error("Delete failed");
+            
+            // Xóa state array local
+            const idx = songs.findIndex(s => s.id === songId);
+            if (idx > -1) songs.splice(idx, 1);
+            
+            showToast("Đã xóa bài hát vĩnh viễn khỏi toàn hệ thống!");
+            
+            // Cập nhật lại giao diện
+            renderSongs(document.getElementById('search-input')?.value.trim() || "");
+            renderHabitAndTrendingSongs();
+            renderPlaylistsSidebar();
+        } catch (error) {
+            console.error("Lỗi xóa bài hát:", error);
+            showToast("Không thể xóa bài hát! Có lỗi xảy ra từ máy chủ.");
+        }
     }
 }
 

@@ -290,7 +290,7 @@
     <div id="add-to-playlist-modal" class="modal">
         <div class="modal-content" style="width: 320px;">
             <h3>Thêm vào Playlist</h3>
-            <ul class="modal-playlist-list" id="modal-playlist-list">
+            <ul class="modal-playlist-list" id="modal-playlist-list" style="list-style: none; padding: 0; margin: 16px 0; max-height: 250px; overflow-y: auto;">
             </ul>
             <div class="modal-actions">
                 <button class="btn-cancel" onclick="closeAddToPlaylistModal()">Đóng</button>
@@ -307,8 +307,16 @@
                 <button class="edit-img-btn" id="btn-edit-song-img" title="Đổi ảnh bài hát"><i
                         class="fa-solid fa-camera"></i></button>
             </div>
-            <h3 id="detail-title" style="margin-top: 16px; font-size: 22px;">Title</h3>
+            <div style="display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 16px;">
+                <h3 id="detail-title" style="margin: 0; font-size: 22px;">Title</h3>
+                <input type="text" id="edit-detail-title" style="display: none; font-size: 18px; font-weight: bold; width: 80%; text-align: center; padding: 4px; border-radius: 4px; border: 1px solid var(--bg-hover);">
+                <button class="icon-circle" id="btn-toggle-edit-meta" style="background: transparent; flex-shrink: 0; cursor: pointer; color: var(--text-subdued);" title="Chỉnh sửa thông tin bài hát"><i class="fa-solid fa-pen"></i></button>
+            </div>
+            
             <p id="detail-artist" style="color: var(--text-subdued); margin-bottom: 16px; font-weight: 600;">Artist</p>
+            <input type="text" id="edit-detail-artist" style="display: none; font-size: 14px; margin-bottom: 16px; width: 80%; margin-left: auto; margin-right: auto; text-align: center; padding: 4px; border-radius: 4px; border: 1px solid var(--bg-hover);">
+            <button id="btn-save-song-meta" class="btn-create" style="display: none; width: 100%; margin-bottom: 16px; margin-top: -8px;">Lưu Thay Đổi</button>
+
             <div
                 style="background-color: var(--bg-hover); padding: 12px; border-radius: 8px; text-align: left; margin-bottom: 8px;">
                 <div style="font-size: 13px; color: var(--text-base);"><strong>Thể loại nhạc:</strong> <span

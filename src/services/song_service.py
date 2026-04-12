@@ -5,7 +5,7 @@ from fastapi import UploadFile, BackgroundTasks
 from sqlalchemy.orm import Session
 from src.config import settings
 from src.database import crud
-from src.audio_processing.feature_extraction import extract_mfcc, update_feature_cache
+from src.audio_processing.feature_extraction import extract_mfcc, update_feature_cache, remove_song_from_cache
 from src.recommendation.engine import retrain_model
 from src.core.exceptions import InvalidAudioFileException
 
@@ -67,3 +67,53 @@ def extract_features_and_retrain(song_id: int, file_path: str):
         logger.error(f"Lỗi xử lý ngầm cho song_id={song_id}: {e}")
     finally:
         db.close()
+
+from src.schemas.song_schema import SongUpdate
+
+def update_song(db: Session, song_id: int, update_data: SongUpdate):
+    song = crud.get_song(db, song_id)
+    if not song:
+        raise SongNotFoundException()
+    
+    updated_song = crud.update_song_metadata(
+        db, 
+        song_id, 
+        title=update_data.title, 
+        artist=update_data.artist
+    )
+    return updated_song
+
+def delete_song(db: Session, song_id: int):
+    """
+    Xóa toàn bộ dữ liệu của bài hát: File ổ cứng, Record Database, MFCC Cache, và Retrain.
+    """
+    song = crud.get_song(db, song_id)
+    if not song:
+        raise SongNotFoundException()
+    
+    filepath = song.filepath
+    
+    # 1. Xóa file khỏi ổ cứng
+    if os.path.exists(filepath):
+        try:
+            os.remove(filepath)
+            logger.info(f"Đã xóa file audio: {filepath}")
+        except Exception as e:
+            logger.error(f"Không thể xóa file {filepath}: {e}")
+            
+    # 2. Xóa khỏi DB (Tự động trigger CASCADE tới Playlist_Song)
+    success = crud.delete_song(db, song_id)
+    
+    if success:
+        # 3. Yêu cầu AI Engine loại bỏ vector ra khỏi cache
+        remove_song_from_cache(song_id)
+        
+        # 4. Huấn luyện lại model
+        try:
+            retrain_model()
+        except Exception as e:
+            logger.warning(f"Lỗi khi retrain sau khi xoá: {e}")
+            
+        return {"message": "Đã xóa bài hát vĩnh viễn khỏi toàn hệ thống."}
+    else:
+        raise Exception("Lỗi khi xóa bài hát khỏi cơ sở dữ liệu.")

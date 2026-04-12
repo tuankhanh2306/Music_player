@@ -94,3 +94,24 @@ def update_feature_cache(song_id: int, mfcc_vector: np.ndarray, cache_path: str 
         # 3. Ghi đè xuống file
         np.save(path, cache)
         logger.info(f"Đã lưu vector đặc trưng của song_id={song_id} vào cache.")    
+
+def remove_song_from_cache(song_id: int, cache_path: str = None) -> None:
+    """
+    Xoá vector đặc trưng của song_id khỏi file cache (.npy) nếu có.
+    """
+    path = cache_path or settings.FEATURE_CACHE_PATH
+    lock_path = path + ".lock"
+
+    if not os.path.exists(path):
+        return
+
+    with FileLock(lock_path):
+        try:
+            cache = np.load(path, allow_pickle=True).item()
+        except Exception:
+            cache = {}
+        
+        if song_id in cache:
+            del cache[song_id]
+            np.save(path, cache)
+            logger.info(f"Đã xoá vector đặc trưng của song_id={song_id} khỏi cache.")    
