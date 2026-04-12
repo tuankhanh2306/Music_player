@@ -1,4 +1,7 @@
-// --- 1. DỮ LIỆU HARDCODE (Mock Data) ĐÃ FIX ẢNH ---
+// --- 0. CẤU HÌNH API ---
+const API_URL = "http://localhost:8000";
+
+// --- 1. DỮ LIỆU CỐ ĐỊNH (Artists) ---
 let artists = [
     { id: 301, name: "Sơn Tùng M-TP", img: "https://ui-avatars.com/api/?name=Son+Tung+M+TP&background=db2777&color=fff&size=300" },
     { id: 302, name: "Soobin Hoàng Sơn", img: "https://ui-avatars.com/api/?name=Soobin+Hoang+Son&background=2563eb&color=fff&size=300" },
@@ -12,29 +15,61 @@ let artists = [
     { id: 310, name: "Wxrdie", img: "https://ui-avatars.com/api/?name=Wxrdie&background=7c3aed&color=fff&size=300" }
 ];
 
-let songs = [
-    { id: 11, title: "Chạy Ngay Đi", artist: "Sơn Tùng M-TP", genre: "Pop, R&B", img: "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/15/13/cb/1513cb0b-c5a9-ac85-32ec-907ecfc98c8e/23UM1IM10668.rgb.jpg/500x500bb.jpg", url: "https://www.bensound.com/bensound-music/bensound-energy.mp3", artistId: 301 },
-    { id: 12, title: "Phía Sau Một Cô Gái", artist: "Soobin Hoàng Sơn", genre: "Pop", img: "https://ui-avatars.com/api/?name=Phia+Sau+Mot+Co+Gai&background=random&color=fff&size=300", url: "https://www.bensound.com/bensound-music/bensound-creativeminds.mp3", artistId: 302 },
-    { id: 13, title: "Bước Qua Nhau", artist: "Vũ.", genre: "Indie Pop", img: "https://ui-avatars.com/api/?name=Buoc+Qua+Nhau&background=random&color=fff&size=300", url: "https://www.bensound.com/bensound-music/bensound-acousticbreeze.mp3", artistId: 303 },
-    { id: 14, title: "Gái Độc Thân", artist: "tlinh", genre: "Rap, R&B", img: "https://ui-avatars.com/api/?name=Gai+Doc+Than&background=random&color=fff&size=300", url: "https://www.bensound.com/bensound-music/bensound-sunny.mp3", artistId: 304 },
-    { id: 15, title: "Bigcityboi", artist: "Binz", genre: "Rap", img: "https://ui-avatars.com/api/?name=Bigcityboi&background=random&color=fff&size=300", url: "https://www.bensound.com/bensound-music/bensound-epic.mp3", artistId: 305 },
-    { id: 16, title: "Đi Về Nhà", artist: "Đen Vâu", genre: "Rap, Indie", img: "https://ui-avatars.com/api/?name=Di+Ve+Nha&background=random&color=fff&size=300", url: "https://www.bensound.com/bensound-music/bensound-energy.mp3", artistId: 306 },
-    { id: 17, title: "See Tình", artist: "Hoàng Thùy Linh", genre: "Pop, Dance", img: "https://ui-avatars.com/api/?name=See+Tinh&background=random&color=fff&size=300", url: "https://www.bensound.com/bensound-music/bensound-creativeminds.mp3", artistId: 307 },
-    { id: 18, title: "Thích Thích", artist: "Phương Ly", genre: "Pop", img: "https://ui-avatars.com/api/?name=Thich+Thich&background=random&color=fff&size=300", url: "https://www.bensound.com/bensound-music/bensound-sunny.mp3", artistId: 308 },
-    { id: 19, title: "Chìm Sâu", artist: "MCK", genre: "R&B, Rap", img: "https://ui-avatars.com/api/?name=Chim+Sau&background=random&color=fff&size=300", url: "https://www.bensound.com/bensound-music/bensound-epic.mp3", artistId: 309 },
-    { id: 20, title: "Harder", artist: "Wxrdie", genre: "Rap", img: "https://ui-avatars.com/api/?name=Harder&background=random&color=fff&size=300", url: "https://www.bensound.com/bensound-music/bensound-epic.mp3", artistId: 310 },
-    
-    // Nhạc nền mặc định
-    { id: 1, title: "Energy Rock", artist: "Bensound", genre: "Rock", img: "https://ui-avatars.com/api/?name=Energy+Rock&background=random&color=fff&size=300", url: "https://www.bensound.com/bensound-music/bensound-energy.mp3", artistId: null },
-    { id: 3, title: "Acoustic Breeze", artist: "Bensound", genre: "Acoustic", img: "https://ui-avatars.com/api/?name=Acoustic+Breeze&background=random&color=fff&size=300", url: "https://www.bensound.com/bensound-music/bensound-acousticbreeze.mp3", artistId: null }
+// --- 2. QUẢN LÝ DỮ LIỆU BÀI HÁT (Fallback + API) ---
+const mockSongs = [
+    { id: 11, title: "Chạy Ngay Đi", artist: "Sơn Tùng M-TP", genre: "Pop, R&B", img: "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/15/13/cb/1513cb0b-c5a9-ac85-32ec-907ecfc98c8e/23UM1IM10668.rgb.jpg/500x500bb.jpg", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3", artistId: 301 },
+    { id: 12, title: "Phía Sau Một Cô Gái", artist: "Soobin Hoàng Sơn", genre: "Pop", img: "https://ui-avatars.com/api/?name=Phia+Sau+Mot+Co+Gai&background=random&color=fff&size=300", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3", artistId: 302 },
+    { id: 13, title: "Bước Qua Nhau", artist: "Vũ.", genre: "Indie Pop", img: "https://ui-avatars.com/api/?name=Buoc+Qua+Nhau&background=random&color=fff&size=300", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3", artistId: 303 },
+    { id: 14, title: "Gái Độc Thân", artist: "tlinh", genre: "Rap, R&B", img: "https://ui-avatars.com/api/?name=Gai+Doc+Than&background=random&color=fff&size=300", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3", artistId: 304 },
+    { id: 15, title: "Bigcityboi", artist: "Binz", genre: "Rap", img: "https://ui-avatars.com/api/?name=Bigcityboi&background=random&color=fff&size=300", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3", artistId: 305 },
+    { id: 16, title: "Đi Về Nhà", artist: "Đen Vâu", genre: "Rap, Indie", img: "https://ui-avatars.com/api/?name=Di+Ve+Nha&background=random&color=fff&size=300", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3", artistId: 306 },
+    { id: 17, title: "See Tình", artist: "Hoàng Thùy Linh", genre: "Pop, Dance", img: "https://ui-avatars.com/api/?name=See+Tinh&background=random&color=fff&size=300", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3", artistId: 307 },
+    { id: 18, title: "Thích Thích", artist: "Phương Ly", genre: "Pop", img: "https://ui-avatars.com/api/?name=Thich+Thich&background=random&color=fff&size=300", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3", artistId: 308 },
+    { id: 19, title: "Chìm Sâu", artist: "MCK", genre: "R&B, Rap", img: "https://ui-avatars.com/api/?name=Chim+Sau&background=random&color=fff&size=300", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3", artistId: 309 },
+    { id: 20, title: "Harder", artist: "Wxrdie", genre: "Rap", img: "https://ui-avatars.com/api/?name=Harder&background=random&color=fff&size=300", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3", artistId: 310 }
 ];
 
-let playlists = JSON.parse(localStorage.getItem('ai_music_default_playlists')) || [
-    { id: 101, name: "Lofi Chill", songs: [1, 13] }
-];
+let songs = [...mockSongs];
+
+async function fetchSongs() {
+    try {
+        const response = await fetch(`${API_URL}/songs/`);
+        const serverSongs = await response.json();
+        
+        // Chuẩn hóa dữ liệu từ Server sang định dạng Frontend expect
+        const mappedServerSongs = serverSongs.map(s => ({
+            id: s.id,
+            title: s.title,
+            artist: s.artist,
+            genre: "Pop/Modern", // Server hiện tại chưa lưu genre
+            img: `https://picsum.photos/seed/${s.id}/200/200`,
+            url: `${API_URL}/songs/${s.id}/stream`,
+            artistId: null,
+            isServer: true
+        }));
+        
+        songs = [...mappedServerSongs, ...mockSongs];
+        renderSongs();
+        renderHabitAndTrendingSongs();
+    } catch (error) {
+        console.error("Không thể kết nối Backend:", error);
+    }
+}
+
+let playlists = [];
+
+async function fetchPlaylists() {
+    try {
+        const response = await fetch(`${API_URL}/playlists/`);
+        playlists = await response.json();
+        renderPlaylistsSidebar();
+    } catch (error) {
+        console.error("Lỗi lấy danh sách playlist:", error);
+    }
+}
 
 function saveDefaultPlaylists() {
-    localStorage.setItem('ai_music_default_playlists', JSON.stringify(playlists));
+    // Không còn dùng localStorage cho playlist, Backend sẽ quản lý
 }
 
 let customImages = JSON.parse(localStorage.getItem('ai_player_custom_images') || "{}");
@@ -368,17 +403,8 @@ function loadAndPlaySong(song, isManual = false) {
             isPlaying = true; playPauseIcon.className = 'fa-solid fa-pause';
         }).catch(err => {
             console.error("Audio playback error:", err);
-            if (song.url.startsWith('blob:')) {
-                showToast("File nhạc tải lên đã hết hạn phiên Local. Phục hồi phát bằng nhạc hệ thống.");
-                song.url = "https://www.bensound.com/bensound-music/bensound-acousticbreeze.mp3";
-                if (currentUser) saveAccounts(); // Keep fallback URL so they don't see error continuously
-                audioEl.src = song.url;
-                audioEl.play().then(() => {
-                    isPlaying = true; playPauseIcon.className = 'fa-solid fa-pause';
-                }).catch(e => console.log("Fallback failed:", e));
-            } else {
-                isPlaying = false; playPauseIcon.className = 'fa-solid fa-play';
-            }
+            isPlaying = false; playPauseIcon.className = 'fa-solid fa-play';
+            showToast("Lỗi khi phát bài hát này.");
         });
     } else {
         isPlaying = true; playPauseIcon.className = 'fa-solid fa-pause';
@@ -476,39 +502,73 @@ window.toggleMute = function() {
     updateVolume();
 }
 
-function triggerAIFake(currentId) {
+async function triggerAIFake(currentId) {
     const aiGrid = document.getElementById('ai-songs-grid'); if(!aiGrid) return;
-    aiGrid.innerHTML = '<div class="text-success fw-bold" style="padding:10px;"><i class="fa-solid fa-bolt"></i> Phân tích AI tức thời dựa trên Thể loại và Hồ sơ Nghệ sĩ tương đồng...</div>';
-    setTimeout(() => {
-        aiGrid.innerHTML = ''; const cur = findSongById(currentId); const visibleSongs = getVisibleSongs();
-        let matchArtist = visibleSongs.filter(s => s.id !== currentId && s.artistId !== null && s.artistId === cur?.artistId);
-        let matchGenre = visibleSongs.filter(s => s.id !== currentId && s.genre.includes(cur?.genre.split(',')[0]) && s.artistId !== cur?.artistId);
-        let recommendations = [...matchArtist, ...matchGenre];
-        const others = visibleSongs.filter(s => s.id !== currentId && !recommendations.includes(s));
-        recommendations = recommendations.concat(others).slice(0, 8);
+    const currentSong = findSongById(currentId);
+
+    // Nếu là nhạc không thuộc server (Mock fallback), dùng logic gợi ý Meta
+    if (!currentSong || !currentSong.isServer) {
+        aiGrid.innerHTML = '<div class="text-success fw-bold" style="padding:10px;"><i class="fa-solid fa-wand-magic-sparkles"></i> Gợi ý thông minh dựa trên Thể loại & Nghệ sĩ...</div>';
+        setTimeout(() => {
+            aiGrid.innerHTML = ''; 
+            const visibleSongs = getVisibleSongs();
+            let recommendations = visibleSongs.filter(s => s.id !== currentId && (s.artistId === currentSong?.artistId || (currentSong?.genre && s.genre.includes(currentSong.genre.split(',')[0])))).slice(0, 5);
+            
+            if (recommendations.length === 0) recommendations = visibleSongs.filter(s => s.id !== currentId).sort(() => 0.5 - Math.random()).slice(0, 5);
+            
+            renderRecommendationList(recommendations);
+        }, 300);
+        return;
+    }
+
+    aiGrid.innerHTML = '<div class="text-success fw-bold" style="padding:10px;"><i class="fa-solid fa-bolt"></i> AI đang phân tích sóng âm tương đồng...</div>';
+    
+    try {
+        const response = await fetch(`${API_URL}/recommend/${currentId}`);
+        if (!response.ok) {
+            if (response.status === 503) throw new Error("503");
+            throw new Error(`API Error: ${response.status}`);
+        }
+        const data = await response.json();
+        const recommendIds = data.recommended_ids;
+
+        aiGrid.innerHTML = '';
+        if (!recommendIds || recommendIds.length === 0) {
+            aiGrid.innerHTML = '<div style="font-style: italic; color: var(--text-subdued); font-size: 13px;">Chưa tìm thấy bài hát tương đồng nào trên hệ thống.</div>';
+            return;
+        }
+
+        const recommendations = recommendIds.map(rid => findSongById(rid)).filter(s => s);
+        renderRecommendationList(recommendations);
         
-        recommendations.forEach(song => {
-            const item = document.createElement('div'); item.className = 'ai-suggest-item';
-            item.style = "display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; border-radius: 6px; cursor: pointer; transition: background-color 0.2s;";
-            item.onmouseenter = () => item.style.backgroundColor = "var(--bg-hover)"; item.onmouseleave = () => item.style.backgroundColor = "transparent";
-            item.onclick = (e) => playSelectedSong(song.id, e);
-            item.innerHTML = `
-                <div style="display: flex; align-items: center; gap: 12px; overflow: hidden;">
-                    <button style="background: transparent; border: none; color: var(--text-base); cursor: pointer;"><i class="fa-solid fa-play" style="font-size: 14px;"></i></button>
-                    <div style="display: flex; flex-direction: column; overflow: hidden;">
-                        <span style="font-weight: 600; font-size: 14px; color: var(--text-base); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${song.title}</span>
-                        <span class="ai-match-text" style="font-size: 12px; color: var(--essential-positive);"><i class="fa-solid fa-wand-magic-sparkles"></i> Phù hợp ${Math.floor(Math.random() * 10 + 90)}%</span>
-                        <span class="ai-hover-info" style="font-size: 11px; color: var(--text-subdued); display: none;">3:45 • ${song.genre}</span>
-                    </div>
+    } catch (error) {
+        if (error.message === "503") {
+            aiGrid.innerHTML = '<div style="color: var(--text-subdued); font-size: 13px;"><i class="fa-solid fa-hourglass-half"></i> AI đang phân tích bài hát này... Bạn thử lại sau ít phút nhé.</div>';
+        } else {
+            console.error("Lỗi Engine AI:", error);
+            aiGrid.innerHTML = '<div style="color: #e74c3c; font-size: 13px;"><i class="fa-solid fa-triangle-exclamation"></i> Lỗi kết nối AI.</div>';
+        }
+    }
+}
+
+function renderRecommendationList(recommendations) {
+    const aiGrid = document.getElementById('ai-songs-grid');
+    recommendations.forEach(song => {
+        const item = document.createElement('div'); item.className = 'ai-suggest-item';
+        item.style = "display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; border-radius: 6px; cursor: pointer; transition: background-color 0.2s;";
+        item.onmouseenter = () => item.style.backgroundColor = "var(--bg-hover)"; item.onmouseleave = () => item.style.backgroundColor = "transparent";
+        item.onclick = (e) => playSelectedSong(song.id, e);
+        item.innerHTML = `
+            <div style="display: flex; align-items: center; gap: 12px; overflow: hidden;">
+                <button style="background: transparent; border: none; color: var(--text-base); cursor: pointer;"><i class="fa-solid fa-play" style="font-size: 14px;"></i></button>
+                <div style="display: flex; flex-direction: column; overflow: hidden;">
+                    <span style="font-weight: 600; font-size: 14px; color: var(--text-base); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${song.title}</span>
+                    <span class="ai-match-text" style="font-size: 11px; color: var(--essential-positive);"><i class="fa-solid fa-wand-magic-sparkles"></i> Phù hợp ${Math.floor(Math.random() * 5 + 93)}%</span>
                 </div>
-                <div>
-                    <button title="Thêm Danh Sách Chờ" onclick="addToQueue(${song.id}, event)" style="background: transparent; border: none; color: var(--text-base); font-size: 14px; cursor: pointer; margin-right: 12px;"><i class="fa-solid fa-square-plus"></i></button>
-                    <button title="Thêm Playist" onclick="openAddToPlaylistModal(${song.id}, event)" style="background: transparent; border: none; color: var(--text-subdued); font-size: 14px; cursor: pointer;"><i class="fa-solid fa-plus"></i></button>
-                </div>
-            `;
-            aiGrid.appendChild(item);
-        });
-    }, 200);
+            </div>
+        `;
+        aiGrid.appendChild(item);
+    });
 }
 
 let tempFile = null;
@@ -528,14 +588,60 @@ uploadInput.addEventListener('change', (e) => {
 
 document.getElementById('btn-cancel-meta').addEventListener('click', () => { uploadModal.classList.remove('active'); tempFile = null; });
 
+function renderArtistOptions() {
+    const list = document.getElementById('artist-options');
+    if (list) list.innerHTML = artists.map(a => `<option value="${a.name}">`).join('');
+}
+renderArtistOptions(); // Gọi lúc khởi tạo
+
 document.getElementById('btn-submit-meta').addEventListener('click', async () => {
-    const finalTitle = document.getElementById('meta-title').value.trim() || (tempFile ? tempFile.name.replace(/\.[^/.]+$/, "") : "My Audio");
-    uploadModal.classList.remove('active'); showToast(`Đang tải lên: ${finalTitle}...`);
-    await new Promise(resolve => setTimeout(resolve, 1500)); showToast("Precompute hoàn tất. Hệ thống sẵn sàng phân tích AI!");
-    
-    const newSong = { id: Date.now(), title: finalTitle, artist: document.getElementById('meta-artist').value.trim() || 'Custom Uploads', genre: document.getElementById('meta-genre').value.trim() || 'Unknown Genre', img: "https://picsum.photos/seed/newupload/200/200", url: URL.createObjectURL(tempFile), artistId: null };
-    songs.unshift(newSong); 
-    goBackToHome(); const t = document.getElementById('search-input')?.value.trim() || ""; renderArtists(t); renderSongs(t); loadAndPlaySong(newSong); tempFile = null;
+    const title = document.getElementById('meta-title').value.trim();
+    const artist = document.getElementById('meta-artist').value.trim() || "Unknown";
+    const genre = document.getElementById('meta-genre').value.trim() || "Pop";
+
+    // Xử lý auto-complete Artist
+    let existingArtist = artists.find(a => a.name.toLowerCase() === artist.toLowerCase());
+    if (!existingArtist) {
+        existingArtist = { id: Date.now(), name: artist, img: `https://ui-avatars.com/api/?name=${encodeURIComponent(artist)}&background=random&color=fff&size=300` };
+        artists.unshift(existingArtist);
+        renderArtistOptions();
+        if (typeof renderArtists === 'function') renderArtists();
+    }
+
+
+    if (!title) { showToast("Vui lòng nhập tiêu đề bài hát!"); return; }
+
+    uploadModal.classList.remove('active');
+    showToast(`Đang tải lên và phân tích AI cho: ${title}...`);
+
+    const formData = new FormData();
+    formData.append('file', tempFile);
+    formData.append('title', title);
+    formData.append('artist', artist);
+
+    try {
+        const response = await fetch(`${API_URL}/songs/upload`, {
+            method: 'POST',
+            body: formData
+        });
+
+        if (!response.ok) throw new Error("Upload thất bại");
+
+        const result = await response.json();
+        showToast("Tải lên thành công! AI đang phân tích dữ liệu ngầm...");
+        
+        // Refresh danh sách bài hát
+        await fetchSongs();
+        
+        // Tự động phát bài hát vừa tải lên
+        const newSong = songs.find(s => s.id === result.id);
+        if (newSong) loadAndPlaySong(newSong);
+        
+        tempFile = null;
+    } catch (error) {
+        console.error("Lỗi Upload:", error);
+        showToast("Lỗi hệ thống: Không thể tải nhạc lên.");
+    }
 });
 
 function renderPlaylistsSidebar() {
@@ -559,17 +665,27 @@ const createPlaylistBtn = document.querySelector('.library-actions button[title=
 const playlistModal = document.getElementById('playlist-modal');
 if(createPlaylistBtn) createPlaylistBtn.addEventListener('click', () => { playlistModal.classList.add('active'); document.getElementById('playlist-name-input').focus(); });
 document.getElementById('btn-cancel-playlist').addEventListener('click', () => { playlistModal.classList.remove('active'); document.getElementById('playlist-name-input').value = ''; });
-document.getElementById('btn-create-playlist').addEventListener('click', () => {
+document.getElementById('btn-create-playlist').addEventListener('click', async () => {
     const name = document.getElementById('playlist-name-input').value.trim();
     if (name) {
-        const newId = Date.now(); 
-        playlists.unshift({ id: newId, name: name, songs: [] });
-        saveDefaultPlaylists(); 
-        renderPlaylistsSidebar(); 
-        showToast(`Đã tạo: ${name}`);
-        playlistModal.classList.remove('active'); 
-        document.getElementById('playlist-name-input').value = ''; 
-        viewPlaylist(newId);
+        try {
+            const response = await fetch(`${API_URL}/playlists/`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name: name })
+            });
+            const newPl = await response.json();
+            
+            playlists.unshift(newPl);
+            renderPlaylistsSidebar(); 
+            showToast(`Đã tạo: ${name}`);
+            playlistModal.classList.remove('active'); 
+            document.getElementById('playlist-name-input').value = ''; 
+            viewPlaylist(newPl.id);
+        } catch (error) {
+            console.error("Lỗi tạo playlist:", error);
+            showToast("Không thể tạo playlist trên server.");
+        }
     }
 });
 
@@ -581,15 +697,28 @@ window.openAddToPlaylistModal = function(songId, event) {
     addToPlaylistModal.classList.add('active');
 };
 window.closeAddToPlaylistModal = function() { addToPlaylistModal.classList.remove('active'); pendingAddSongId = null; };
-function addSongToPlaylist(songId, playlistId) {
-    const pl = getPlaylistSource().find(p => p.id === playlistId);
+async function addSongToPlaylist(songId, playlistId) {
+    const pl = playlists.find(p => p.id === playlistId);
     if (pl) {
-        if (!pl.songs.includes(songId)) { 
-            pl.songs.push(songId); 
-            saveDefaultPlaylists();
-            renderPlaylistsSidebar(); 
-            if(document.getElementById('playlist-view').style.display === 'block') viewPlaylist(playlistId); 
-            showToast(`Đã thêm vào ${pl.name}`); 
+        // Kiểm tra xem song có trong pl.songs (array of objects) chưa
+        if (!pl.songs.some(s => s.id === songId)) { 
+            try {
+                const response = await fetch(`${API_URL}/playlists/${playlistId}/songs/${songId}`, {
+                    method: 'POST'
+                });
+                if (!response.ok) throw new Error("Lỗi add song");
+                
+                // Cập nhật local state để UI mượt mà
+                const songObj = findSongById(songId);
+                if (songObj) pl.songs.push(songObj);
+                
+                renderPlaylistsSidebar(); 
+                if(document.getElementById('playlist-view').style.display === 'block') viewPlaylist(playlistId); 
+                showToast(`Đã thêm vào ${pl.name}`); 
+            } catch (error) {
+                console.error("Lỗi thêm bài hát:", error);
+                showToast("Lỗi server khi thêm nhạc.");
+            }
         } 
         else showToast(`Bài hát đã tồn tại`);
     }
@@ -612,22 +741,23 @@ const dashboardView = document.getElementById('dashboard-view'); const playlistV
 function goBackToHome() { playlistView.style.display = 'none'; artistView.style.display = 'none'; dashboardView.style.display = 'block'; }
 
 function viewPlaylist(playlistId) {
-    const pl = getPlaylistSource().find(p => p.id === playlistId); if(!pl) return;
+    const pl = playlists.find(p => p.id === playlistId); if(!pl) return;
     dashboardView.style.display = 'none'; artistView.style.display = 'none'; playlistView.style.display = 'block';
     
     document.getElementById('current-playlist-id').value = pl.id; 
     document.getElementById('playlist-view-title').textContent = pl.name;
     document.getElementById('btn-edit-playlist-title').style.display = 'block';
     const deleteBtn = document.getElementById('btn-delete-playlist');
-    if (deleteBtn) deleteBtn.style.display = 'block';
+    if (deleteBtn) deleteBtn.style.display = 'block'; // Sẽ cập nhật logic DELETE sau nếu cần
     
     plViewList.innerHTML = '';
-    if(pl.songs.length === 0) { plViewList.innerHTML = '<li style="color:var(--text-subdued); padding:20px 0;">Playlist rỗng.</li>'; return; }
-    pl.songs.forEach((songId) => {
-        const songObj = findSongById(songId); if(!songObj) return;
+    if(!pl.songs || pl.songs.length === 0) { plViewList.innerHTML = '<li style="color:var(--text-subdued); padding:20px 0;">Playlist rỗng.</li>'; return; }
+    
+    // pl.songs hiện là mảng các object hoặc IDs. Với API Response mới, nó là mảng Objects.
+    pl.songs.forEach((songObj) => {
         const li = document.createElement('li'); li.style = "display: flex; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--bg-hover); transition: background-color 0.2s;";
         li.onmouseenter = () => li.style.backgroundColor = "var(--bg-highlight)"; li.onmouseleave = () => li.style.backgroundColor = "transparent";
-        li.innerHTML = `<div style="width: 40px; text-align: center;"><button onclick="playSelectedSong(${songObj.id}, event)" style="background: transparent; border: none; color: var(--text-base); font-size: 14px; cursor: pointer;"><i class="fa-solid fa-play"></i></button></div><div style="flex: 1; display: flex; align-items: center; gap: 12px;"><img src="${songObj.img}" alt="img" style="width: 40px; height: 40px; border-radius: 4px; object-fit: cover;"><div style="display:flex; flex-direction: column;"><span style="font-weight: 600; color: var(--text-base); cursor: pointer;" onclick="playSelectedSong(${songObj.id})">${songObj.title}</span><span style="font-size: 13px; color: var(--text-subdued);">${songObj.artist}</span></div></div><div style="width: 150px; color: var(--text-subdued); font-size: 13px;">${songObj.genre}</div><div style="width: 80px; text-align: center;">...</div><div style="width: 120px; text-align: center; display: flex; justify-content: center; gap: 16px;"><button onclick="openSongDetail(${songObj.id}, event)" style="background: transparent; color: var(--text-subdued); border: none; font-size: 16px; cursor: pointer;"><i class="fa-solid fa-circle-info"></i></button><button title="Thêm Danh Sách Chờ" onclick="addToQueue(${songObj.id}, event)" style="background: transparent; color: var(--text-base); border: none; font-size: 16px; cursor: pointer;"><i class="fa-solid fa-square-plus"></i></button><button onclick="removeSongFromPlaylist(${pl.id}, ${songObj.id})" style="background: transparent; color: #e74c3c; border: none; font-size: 16px; cursor: pointer;"><i class="fa-solid fa-trash-can"></i></button></div>`;
+        li.innerHTML = `<div style="width: 40px; text-align: center;"><button onclick="playSelectedSong(${songObj.id}, event)" style="background: transparent; border: none; color: var(--text-base); font-size: 14px; cursor: pointer;"><i class="fa-solid fa-play"></i></button></div><div style="flex: 1; display: flex; align-items: center; gap: 12px;"><img src="${songObj.img || `https://picsum.photos/seed/${songObj.id}/200/200`}" alt="img" style="width: 40px; height: 40px; border-radius: 4px; object-fit: cover;"><div style="display:flex; flex-direction: column;"><span style="font-weight: 600; color: var(--text-base); cursor: pointer;" onclick="playSelectedSong(${songObj.id})">${songObj.title}</span><span style="font-size: 13px; color: var(--text-subdued);">${songObj.artist}</span></div></div><div style="width: 150px; color: var(--text-subdued); font-size: 13px;">${songObj.genre || "Pop"}</div><div style="width: 80px; text-align: center;">...</div><div style="width: 120px; text-align: center; display: flex; justify-content: center; gap: 16px;"><button onclick="openSongDetail(${songObj.id}, event)" style="background: transparent; color: var(--text-subdued); border: none; font-size: 16px; cursor: pointer;"><i class="fa-solid fa-circle-info"></i></button><button title="Thêm Danh Sách Chờ" onclick="addToQueue(${songObj.id}, event)" style="background: transparent; color: var(--text-base); border: none; font-size: 16px; cursor: pointer;"><i class="fa-solid fa-square-plus"></i></button><button onclick="removeSongFromPlaylist(${pl.id}, ${songObj.id})" style="background: transparent; color: #e74c3c; border: none; font-size: 16px; cursor: pointer;"><i class="fa-solid fa-trash-can"></i></button></div>`;
         plViewList.appendChild(li);
     });
 }
@@ -643,29 +773,49 @@ window.removeUpload = function(songId) {
     }
 }
 
-function removeSongFromPlaylist(playlistId, songId) {
+async function removeSongFromPlaylist(playlistId, songId) {
     const pl = playlists.find(p => p.id === playlistId);
     if(pl) { 
-        pl.songs = pl.songs.filter(id => id !== songId); 
-        saveDefaultPlaylists();
-        showToast("Đã gỡ bài hát"); 
-        renderPlaylistsSidebar(); 
-        viewPlaylist(playlistId); 
+        try {
+            const response = await fetch(`${API_URL}/playlists/${playlistId}/songs/${songId}`, {
+                method: 'DELETE'
+            });
+            if (!response.ok) throw new Error("Delete failed");
+            
+            pl.songs = pl.songs.filter(s => {
+                const sId = typeof s === 'object' ? s.id : s;
+                return sId !== songId;
+            });
+            showToast("Đã gỡ bài hát"); 
+            renderPlaylistsSidebar(); 
+            viewPlaylist(playlistId); 
+        } catch (error) {
+            console.error("Lỗi xoá bài hát:", error);
+            showToast("Lỗi khi xoá bài hát khỏi server.");
+        }
     }
 }
 
-window.deleteCurrentPlaylist = function() {
+window.deleteCurrentPlaylist = async function() {
     const plId = parseInt(document.getElementById('current-playlist-id').value);
     if (!plId) return;
     if (confirm("Bạn có chắc chắn muốn xóa playlist này?")) {
-        const idx = playlists.findIndex(p => p.id === plId);
-        if (idx > -1) {
-            playlists.splice(idx, 1);
-            saveDefaultPlaylists();
+        try {
+            const response = await fetch(`${API_URL}/playlists/${plId}`, {
+                method: 'DELETE'
+            });
+            if (!response.ok) throw new Error("Delete failed");
+            
+            const idx = playlists.findIndex(p => p.id === plId);
+            if (idx > -1) playlists.splice(idx, 1);
+            
+            renderPlaylistsSidebar();
+            goBackToHome();
+            showToast("Đã xóa playlist");
+        } catch (error) {
+            console.error("Lỗi xoá playlist:", error);
+            showToast("Lỗi khi xoá playlist trên server.");
         }
-        renderPlaylistsSidebar();
-        goBackToHome();
-        showToast("Đã xóa playlist");
     }
 };
 
@@ -821,3 +971,7 @@ function renderQueue() {
         queueList.appendChild(li);
     });
 }
+
+fetchSongs();
+fetchPlaylists();
+

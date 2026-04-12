@@ -1,2 +1,45 @@
 2026-04-07 23:27:19 | INFO     | __main__ | Logger test: khoi dong thanh cong
 2026-04-07 23:27:19 | WARNING  | __main__ | Day la warning test
+2026-04-12 11:10:07 | WARNING  | src.services.recommend_service | Bài hát 1 chưa được trích xuất đặc trưng.
+2026-04-12 11:10:12 | WARNING  | src.services.recommend_service | Bài hát 2 chưa được trích xuất đặc trưng.
+2026-04-12 11:10:20 | WARNING  | src.services.recommend_service | Bài hát 3 chưa được trích xuất đặc trưng.
+2026-04-12 11:10:21 | WARNING  | src.services.recommend_service | Bài hát 3 chưa được trích xuất đặc trưng.
+2026-04-12 11:10:34 | WARNING  | src.services.recommend_service | Bài hát 1 chưa được trích xuất đặc trưng.
+2026-04-12 11:11:53 | WARNING  | src.services.recommend_service | Bài hát 1 chưa được trích xuất đặc trưng.
+2026-04-12 11:13:00 | WARNING  | src.services.recommend_service | Bài hát 5 chưa được trích xuất đặc trưng.
+2026-04-12 11:13:11 | WARNING  | src.services.recommend_service | Bài hát 3 chưa được trích xuất đặc trưng.
+2026-04-12 11:13:27 | WARNING  | src.services.recommend_service | Bài hát 4 chưa được trích xuất đặc trưng.
+2026-04-12 11:13:31 | WARNING  | src.services.recommend_service | Bài hát 3 chưa được trích xuất đặc trưng.
+2026-04-12 11:13:32 | WARNING  | src.services.recommend_service | Bài hát 5 chưa được trích xuất đặc trưng.
+2026-04-12 11:16:20 | WARNING  | src.services.recommend_service | Bài hát 3 chưa được trích xuất đặc trưng.
+2026-04-12 11:17:15 | WARNING  | src.services.recommend_service | Bài hát 5 chưa được trích xuất đặc trưng.
+2026-04-12 11:39:27 | WARNING  | src.services.recommend_service | Bài hát 2 chưa được trích xuất đặc trưng.
+2026-04-12 11:40:10 | INFO     | src.services.song_service | Bắt đầu trích xuất features cho song_id=6...
+2026-04-12 11:40:10 | WARNING  | src.services.recommend_service | Bài hát 6 chưa được trích xuất đặc trưng.
+2026-04-12 11:40:40 | WARNING  | src.services.recommend_service | Bài hát 1 chưa được trích xuất đặc trưng.
+2026-04-12 11:40:43 | WARNING  | src.services.recommend_service | Bài hát 2 chưa được trích xuất đặc trưng.
+2026-04-12 11:40:48 | WARNING  | src.services.recommend_service | Bài hát 6 chưa được trích xuất đặc trưng.
+2026-04-12 11:40:52 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất MFCC cho '80ae250b-4ff9-4f45-8567-9dee359924bc.mp3' trong 42.48s
+2026-04-12 11:40:52 | INFO     | src.audio_processing.feature_extraction | Đã lưu vector đặc trưng của song_id=6 vào cache.
+2026-04-12 11:40:52 | WARNING  | src.recommendation.engine | retrain_model bị bỏ qua: chỉ có 1 bài hát trong cache (tối thiểu cần 2).
+2026-04-12 11:40:52 | INFO     | src.services.song_service | Hoàn tất xử lý AI cho song_id=6.
+2026-04-12 11:41:01 | WARNING  | src.recommendation.engine | get_similar_songs được gọi nhưng mô hình chưa được huấn luyện.
+2026-04-12 11:41:01 | ERROR    | src.services.recommend_service | Mô hình KNN chưa được huấn luyện.
+2026-04-12 11:42:19 | WARNING  | src.recommendation.engine | get_similar_songs được gọi nhưng mô hình chưa được huấn luyện.
+2026-04-12 11:42:19 | ERROR    | src.services.recommend_service | Mô hình KNN chưa được huấn luyện.
+2026-04-12 11:42:46 | WARNING  | src.recommendation.engine | get_similar_songs được gọi nhưng mô hình chưa được huấn luyện.
+2026-04-12 11:42:46 | ERROR    | src.services.recommend_service | Mô hình KNN chưa được huấn luyện.
+2026-04-12 11:46:31 | WARNING  | src.services.recommend_service | Bài hát 1 chưa được trích xuất đặc trưng.
+2026-04-12 11:47:38 | WARNING  | src.services.recommend_service | Bài hát 5 chưa được trích xuất đặc trưng.
+2026-04-12 11:47:41 | WARNING  | src.services.recommend_service | Bài hát 3 chưa được trích xuất đặc trưng.
+2026-04-12 11:57:27 | WARNING  | src.recommendation.engine | get_similar_songs được gọi nhưng mô hình chưa được huấn luyện.
+2026-04-12 11:57:27 | ERROR    | src.services.recommend_service | Mô hình KNN chưa được huấn luyện.
+2026-04-12 11:57:43 | WARNING  | src.recommendation.engine | get_similar_songs được gọi nhưng mô hình chưa được huấn luyện.
+2026-04-12 11:57:43 | ERROR    | src.services.recommend_service | Mô hình KNN chưa được huấn luyện.
+2026-04-12 11:59:50 | WARNING  | src.recommendation.engine | get_similar_songs được gọi nhưng mô hình chưa được huấn luyện.
+2026-04-12 11:59:50 | ERROR    | src.services.recommend_service | Mô hình KNN chưa được huấn luyện.
+2026-04-12 12:00:04 | WARNING  | src.recommendation.engine | get_similar_songs được gọi nhưng mô hình chưa được huấn luyện.
+2026-04-12 12:00:04 | ERROR    | src.services.recommend_service | Mô hình KNN chưa được huấn luyện.
+2026-04-12 12:00:07 | WARNING  | src.services.recommend_service | Bài hát 2 chưa được trích xuất đặc trưng.
+2026-04-12 12:00:09 | WARNING  | src.services.recommend_service | Bài hát 2 chưa được trích xuất đặc trưng.
+2026-04-12 12:00:10 | WARNING  | src.services.recommend_service | Bài hát 1 chưa được trích xuất đặc trưng.

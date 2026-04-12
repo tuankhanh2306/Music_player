@@ -1,5 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+import os
+
 from src.api.song_routes import router as song_router
 from src.api.playlist_routes import router as playlist_router
 from src.api.recommend_routes import router as recommend_router
@@ -26,6 +29,11 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Nhúng Frontend Static Files
+frontend_path = os.path.join(os.path.dirname(__file__), "src", "frontend")
+if os.path.exists(frontend_path):
+    app.mount("/app", StaticFiles(directory=frontend_path), name="app")
 
 # Đăng ký Routers
 app.include_router(song_router)

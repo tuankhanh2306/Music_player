@@ -277,7 +277,8 @@
             <div style="font-size: 13px; color: var(--text-subdued); margin-bottom: -4px;">File: <span
                     id="upload-filename"></span></div>
             <input type="text" id="meta-title" placeholder="Tên bài hát (Bắt buộc)">
-            <input type="text" id="meta-artist" placeholder="Ca sĩ">
+            <input type="text" id="meta-artist" list="artist-options" placeholder="Ca sĩ (Nhập để tìm hoặc tạo mới)">
+            <datalist id="artist-options"></datalist>
             <input type="text" id="meta-genre" placeholder="Thể loại">
             <div class="modal-actions">
                 <button id="btn-cancel-meta" class="btn-cancel">Hủy</button>

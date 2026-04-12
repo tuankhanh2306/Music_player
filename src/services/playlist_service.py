@@ -17,3 +17,18 @@ def add_song(db: Session, playlist_id: int, song_id: int):
 
 def get_songs(db: Session, playlist_id: int):
     return crud.get_playlist_songs(db, playlist_id)
+
+def get_all_playlists(db: Session):
+    return crud.get_all_playlists(db)
+
+def remove_song(db: Session, playlist_id: int, song_id: int):
+    success = crud.remove_song_from_playlist(db, playlist_id, song_id)
+    if not success:
+        return {"message": "Playlist hoặc bài hát không tồn tại."}
+    return {"message": "Đã xóa bài hát khỏi playlist thành công."}
+
+def delete_playlist(db: Session, playlist_id: int):
+    success = crud.delete_playlist(db, playlist_id)
+    if not success:
+        return {"message": "Playlist không tồn tại."}
+    return {"message": "Đã xóa playlist thành công."}

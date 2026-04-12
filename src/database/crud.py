@@ -73,3 +73,35 @@ def add_song_to_playlist(db: Session, playlist_id: int, song_id: int) -> None:
 def get_playlist_songs(db: Session, playlist_id: int) -> List[Song]:
     playlist = db.query(Playlist).filter(Playlist.id == playlist_id).first()
     return playlist.songs if playlist else []
+
+def get_all_playlists(db: Session) -> List[Playlist]:
+    return db.query(Playlist).all()
+
+def remove_song_from_playlist(db: Session, playlist_id: int, song_id: int) -> bool:
+    try:
+        playlist = db.query(Playlist).filter(Playlist.id == playlist_id).first()
+        song = get_song(db, song_id)
+        
+        if playlist and song and song in playlist.songs:
+            playlist.songs.remove(song)
+            db.commit()
+            return True
+        return False
+    except SQLAlchemyError as e:
+        db.rollback()
+        logger.error(f"Database error while removing song from playlist: {e}")
+        raise
+
+def delete_playlist(db: Session, playlist_id: int) -> bool:
+    try:
+        playlist = db.query(Playlist).filter(Playlist.id == playlist_id).first()
+        if playlist:
+            db.delete(playlist)
+            db.commit()
+            return True
+        return False
+    except SQLAlchemyError as e:
+        db.rollback()
+        logger.error(f"Database error while deleting playlist: {e}")
+        raise
+
