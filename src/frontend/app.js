@@ -241,6 +241,7 @@ function renderSongs(filterText = "") {
             </div>
             <div style="width: 80px; text-align: center; color: var(--text-subdued);">${formatDuration(songObj.duration)}</div>
             <div style="width: 140px; text-align: center; display: flex; justify-content: center; gap: 12px;">
+                <button title="Tạo AI Radio" onclick="generateSmartPlaylist(${songObj.id}, event)" style="background: transparent; color: var(--essential-positive); border: none; font-size: 16px; cursor: pointer;"><i class="fa-solid fa-wand-magic-sparkles"></i></button>
                 <button title="Chi tiết" onclick="openSongDetail(${songObj.id}, event)" style="background: transparent; color: var(--text-subdued); border: none; font-size: 16px; cursor: pointer;"><i class="fa-solid fa-circle-info"></i></button>
                 <button title="Thêm Playlist" onclick="openAddToPlaylistModal(${songObj.id}, event)" style="background: transparent; color: var(--text-subdued); border: none; font-size: 16px; cursor: pointer;"><i class="fa-solid fa-plus"></i></button>
                 <button title="Thêm Danh Sách Chờ" onclick="addToQueue(${songObj.id}, event)" style="background: transparent; color: var(--text-base); border: none; font-size: 16px; cursor: pointer;"><i class="fa-solid fa-square-plus"></i></button>
@@ -399,7 +400,22 @@ function playSelectedSong(id, event) {
     if (event) event.stopPropagation(); 
     const song = findSongById(id); 
     if (song) {
-        currentPlaylistContext = getVisibleSongs().map(s => s.id); // Default root context
+        const plView = document.getElementById('playlist-view');
+        const artistView = document.getElementById('artist-view');
+        
+        if (plView && plView.style.display === 'block') {
+            const plId = parseInt(document.getElementById('current-playlist-id').value);
+            const pl = playlists.find(p => p.id === plId);
+            if (pl && pl.songs) {
+                currentPlaylistContext = pl.songs.map(s => s.id || s);
+            }
+        } else if (artistView && artistView.style.display === 'block') {
+            const artistTitle = document.getElementById('artist-view-title').textContent;
+            currentPlaylistContext = getVisibleSongs().filter(s => s.artist === artistTitle).map(s => s.id);
+        } else {
+            currentPlaylistContext = getVisibleSongs().map(s => s.id);
+        }
+        
         loadAndPlaySong(song, true);
     }
 }
@@ -794,6 +810,14 @@ window.openSongDetail = function(songId, event) {
             }
         };
 
+        const generateBtn = document.getElementById('btn-create-smart-playlist');
+        if (generateBtn) {
+            generateBtn.onclick = () => {
+                document.getElementById('song-detail-modal').classList.remove('active');
+                generateSmartPlaylist(song.id);
+            };
+        }
+
         // Save logic
         saveBtn.onclick = async () => {
             const newTitle = inputTitle.value.trim();
@@ -1106,6 +1130,43 @@ function renderQueue() {
 
         queueList.appendChild(li);
     });
+}
+
+window.generateSmartPlaylist = async function(songId, event) {
+    if (event) event.stopPropagation();
+    
+    const song = findSongById(songId);
+    if (!song) return;
+
+    showToast(`AI đang phân tích & tổng hợp Radio cho: ${song.title}...`);
+
+    try {
+        const response = await fetch(`${API_URL}/playlists/smart`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                song_id: songId,
+                limit: 15,
+                name: `Radio: ${song.title}`
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error(`API Error: ${response.status}`);
+        }
+
+        const newPlaylist = await response.json();
+        
+        playlists.unshift(newPlaylist);
+        renderPlaylistsSidebar();
+        
+        showToast(`Đã tạo thành công AI Radio cho bài hát này!`);
+        viewPlaylist(newPlaylist.id);
+
+    } catch (error) {
+        console.error("Lỗi khi tạo Smart Playlist:", error);
+        showToast("Không thể tạo mạng lưới bài hát. Vui lòng thử lại sau!");
+    }
 }
 
 fetchSongs();

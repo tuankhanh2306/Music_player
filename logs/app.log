@@ -310,3 +310,59 @@
 2026-04-12 15:54:28 | INFO     | src.recommendation.engine | get_similar_songs: target=9 top_k=5 results=[16, 15, 18, 17, 14]
 2026-04-12 15:54:42 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (10 bài hát)
 2026-04-12 15:54:42 | INFO     | src.recommendation.engine | get_similar_songs: target=17 top_k=5 results=[18, 16, 9, 14, 15]
+2026-04-12 15:59:03 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (10 bài hát)
+2026-04-12 15:59:03 | INFO     | src.recommendation.engine | get_similar_songs: target=18 top_k=5 results=[17, 16, 9, 15, 14]
+2026-04-12 17:40:21 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (10 bài hát)
+2026-04-12 17:40:21 | INFO     | src.recommendation.engine | get_similar_songs: target=17 top_k=5 results=[18, 16, 9, 14, 15]
+2026-04-12 17:40:26 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (10 bài hát)
+2026-04-12 17:40:26 | INFO     | src.recommendation.engine | get_similar_songs: target=15 top_k=5 results=[16, 9, 14, 8, 18]
+2026-04-12 17:46:21 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (10 bài hát)
+2026-04-12 17:46:21 | INFO     | src.recommendation.engine | get_similar_songs: target=8 top_k=5 results=[11, 13, 14, 10, 15]
+2026-04-12 17:46:56 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (10 bài hát)
+2026-04-12 17:46:56 | INFO     | src.recommendation.engine | get_similar_songs: target=8 top_k=5 results=[11, 13, 14, 10, 15]
+2026-04-12 17:46:58 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (10 bài hát)
+2026-04-12 17:46:58 | INFO     | src.recommendation.engine | get_similar_songs: target=9 top_k=5 results=[16, 15, 18, 17, 14]
+2026-04-12 17:46:58 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (10 bài hát)
+2026-04-12 17:46:58 | INFO     | src.recommendation.engine | get_similar_songs: target=8 top_k=5 results=[11, 13, 14, 10, 15]
+2026-04-12 17:47:09 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (10 bài hát)
+2026-04-12 17:47:09 | INFO     | src.recommendation.engine | get_similar_songs: target=9 top_k=5 results=[16, 15, 18, 17, 14]
+2026-04-12 17:47:17 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (10 bài hát)
+2026-04-12 17:47:17 | INFO     | src.recommendation.engine | get_similar_songs: target=10 top_k=5 results=[13, 8, 11, 14, 15]
+2026-04-12 17:47:29 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (10 bài hát)
+2026-04-12 17:47:29 | INFO     | src.recommendation.engine | get_similar_songs: target=11 top_k=5 results=[8, 13, 14, 10, 16]
+2026-04-12 17:47:52 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (10 bài hát)
+2026-04-12 17:47:52 | INFO     | src.recommendation.engine | get_similar_songs: target=13 top_k=5 results=[11, 8, 14, 10, 16]
+2026-04-12 17:50:20 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (10 bài hát)
+2026-04-12 17:50:20 | INFO     | src.recommendation.engine | get_similar_songs: target=14 top_k=5 results=[16, 15, 13, 9, 11]
+2026-04-12 17:50:36 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (10 bài hát)
+2026-04-12 17:50:36 | INFO     | src.recommendation.engine | get_similar_songs: target=15 top_k=5 results=[16, 9, 14, 8, 18]
+2026-04-12 17:50:41 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (10 bài hát)
+2026-04-12 17:50:41 | INFO     | src.recommendation.engine | get_similar_songs: target=16 top_k=5 results=[9, 15, 14, 18, 17]
+2026-04-12 17:53:14 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (10 bài hát)
+2026-04-12 17:53:14 | INFO     | src.recommendation.engine | get_similar_songs: target=8 top_k=5 results=[11, 13, 14, 10, 15]
+2026-04-12 17:53:18 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (10 bài hát)
+2026-04-12 17:53:18 | INFO     | src.recommendation.engine | get_similar_songs: target=18 top_k=5 results=[17, 16, 9, 15, 14]
+2026-04-12 17:53:30 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (10 bài hát)
+2026-04-12 17:53:30 | INFO     | src.recommendation.engine | get_similar_songs: target=17 top_k=5 results=[18, 16, 9, 14, 15]
+2026-04-12 17:53:37 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (10 bài hát)
+2026-04-12 17:53:37 | INFO     | src.recommendation.engine | get_similar_songs: target=18 top_k=5 results=[17, 16, 9, 15, 14]
+2026-04-12 17:53:41 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (10 bài hát)
+2026-04-12 17:53:41 | INFO     | src.recommendation.engine | get_similar_songs: target=15 top_k=5 results=[16, 9, 14, 8, 18]
+2026-04-12 17:53:45 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (10 bài hát)
+2026-04-12 17:53:45 | INFO     | src.recommendation.engine | get_similar_songs: target=9 top_k=5 results=[16, 15, 18, 17, 14]
+2026-04-12 17:53:56 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (10 bài hát)
+2026-04-12 17:53:56 | INFO     | src.recommendation.engine | get_similar_songs: target=10 top_k=5 results=[13, 8, 11, 14, 15]
+2026-04-12 17:54:18 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (10 bài hát)
+2026-04-12 17:54:18 | INFO     | src.recommendation.engine | get_similar_songs: target=8 top_k=5 results=[11, 13, 14, 10, 15]
+2026-04-12 17:54:29 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (10 bài hát)
+2026-04-12 17:54:29 | INFO     | src.recommendation.engine | get_similar_songs: target=9 top_k=5 results=[16, 15, 18, 17, 14]
+2026-04-12 17:54:35 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (10 bài hát)
+2026-04-12 17:54:35 | INFO     | src.recommendation.engine | get_similar_songs: target=16 top_k=5 results=[9, 15, 14, 18, 17]
+2026-04-12 17:54:39 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (10 bài hát)
+2026-04-12 17:54:39 | INFO     | src.recommendation.engine | get_similar_songs: target=17 top_k=5 results=[18, 16, 9, 14, 15]
+2026-04-12 17:54:56 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (10 bài hát)
+2026-04-12 17:54:56 | INFO     | src.recommendation.engine | get_similar_songs: target=8 top_k=5 results=[11, 13, 14, 10, 15]
+2026-04-12 17:55:08 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (10 bài hát)
+2026-04-12 17:55:08 | INFO     | src.recommendation.engine | get_similar_songs: target=18 top_k=5 results=[17, 16, 9, 15, 14]
+2026-04-12 17:55:21 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (10 bài hát)
+2026-04-12 17:55:21 | INFO     | src.recommendation.engine | get_similar_songs: target=13 top_k=5 results=[11, 8, 14, 10, 16]

@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from typing import List
 
 from src.database.db import get_db
-from src.schemas.playlist_schema import PlaylistResponse, PlaylistCreate
+from src.schemas.playlist_schema import PlaylistResponse, PlaylistCreate, SmartPlaylistCreate
 from src.schemas.song_schema import SongResponse
 from src.services import playlist_service
 
@@ -13,6 +13,16 @@ router = APIRouter(prefix="/playlists", tags=["Playlists"])
 def create_playlist(playlist_in: PlaylistCreate, db: Session = Depends(get_db)):
     """Tạo mới một playlist."""
     return playlist_service.create_new_playlist(db, playlist_in.name)
+
+@router.post("/smart", response_model=PlaylistResponse)
+def create_smart_playlist(playlist_in: SmartPlaylistCreate, db: Session = Depends(get_db)):
+    """Tạo Smart Playlist tự động bằng cách dùng AI gợi ý nhạc tương đồng."""
+    return playlist_service.create_smart_playlist(
+        db, 
+        song_id=playlist_in.song_id, 
+        limit=playlist_in.limit, 
+        name=playlist_in.name
+    )
 
 @router.post("/{playlist_id}/songs/{song_id}")
 def add_song_to_playlist(playlist_id: int, song_id: int, db: Session = Depends(get_db)):

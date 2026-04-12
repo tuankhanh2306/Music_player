@@ -14,6 +14,11 @@ class PlaylistBase(BaseModel):
 class PlaylistCreate(PlaylistBase):
     pass
 
+class SmartPlaylistCreate(BaseModel):
+    song_id: int
+    limit: int = 10
+    name: str | None = None
+
 class PlaylistResponse(PlaylistBase):
     id: int
     created_at: datetime
