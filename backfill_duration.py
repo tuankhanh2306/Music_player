@@ -23,6 +23,12 @@ def get_duration(filepath):
             audio = MutagenFile(filepath)
         if audio and audio.info:
             return round(audio.info.length, 2)
+    except ModuleNotFoundError:
+        try:
+            import librosa
+            return round(librosa.get_duration(path=filepath), 2)
+        except Exception as e:
+            print(f"  [WARN] librosa failed for {filepath}: {e}")
     except Exception as e:
         print(f"  [WARN] Cannot read {filepath}: {e}")
     return 0.0

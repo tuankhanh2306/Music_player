@@ -12,7 +12,7 @@ from src.core.exceptions import InvalidAudioFileException
 logger = logging.getLogger(__name__)
 
 def _get_audio_duration(file_path: str) -> float:
-    """Trích xuất thời lượng (giây) từ file audio bằng mutagen."""
+    """Trích xuất thời lượng (giây) từ file audio bằng mutagen, fallback sang librosa nếu thiếu mutagen."""
     try:
         from mutagen.mp3 import MP3
         from mutagen.mp4 import MP4
@@ -31,6 +31,13 @@ def _get_audio_duration(file_path: str) -> float:
         
         if audio and audio.info:
             return round(audio.info.length, 2)
+    except ModuleNotFoundError:
+        logger.warning(f"Không tìm thấy mutagen, dùng librosa đo thời lượng file {file_path}")
+        try:
+            import librosa
+            return round(librosa.get_duration(path=file_path), 2)
+        except Exception as e:
+            logger.warning(f"Không đo được thời lượng file bằng librosa {file_path}: {e}")
     except Exception as e:
         logger.warning(f"Không đo được thời lượng file {file_path}: {e}")
     return 0.0
