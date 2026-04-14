@@ -1,7 +1,7 @@
 import logging
 import os
 import pickle
-from typing import List, Tuple, Optional, Dict
+from typing import List, Tuple, Optional, Dict, Any
 
 import numpy as np
 from sklearn.neighbors import NearestNeighbors, KNeighborsClassifier
@@ -14,34 +14,47 @@ DEFAULT_MODEL_PATH = "data/knn_model.pkl"
 DEFAULT_CLASSIFIER_PATH = "data/genre_classifier.pkl"
 
 
-def fit_knn(features_matrix: np.ndarray, song_ids: List[int]) -> NearestNeighbors:
-    """Huấn luyện mô hình KNN Similarity Search (để gợi ý bài hát tương tự)."""
+from sklearn.preprocessing import StandardScaler
+
+def fit_knn(features_matrix: np.ndarray, song_ids: List[int]) -> Tuple[NearestNeighbors, StandardScaler]:
+    """Huấn luyện mô hình KNN và khởi tạo StandardScaler."""
     try:
+        scaler = StandardScaler()
+        # Scale toàn bộ ma trận (vì các feature như Tempo, MFCC, ZCR có thang đo rất khác nhau)
+        scaled_features = scaler.fit_transform(features_matrix)
+        
         n_neighbors = min(6, len(song_ids))
         model = NearestNeighbors(n_neighbors=n_neighbors, metric="cosine", algorithm="brute")
-        model.fit(features_matrix)
+        model.fit(scaled_features)
+        
         logger.info("KNN đã được huấn luyện với %d bài hát (n_neighbors=%d)", len(song_ids), n_neighbors)
-        return model
+        return model, scaler
     except Exception as exc:
         logger.error("fit_knn bị lỗi: %s", exc)
         raise
 
 
+from sklearn.pipeline import make_pipeline
+
 def fit_genre_classifier(
     features_matrix: np.ndarray, 
     song_ids: List[int], 
     genre_labels: List[str]
-) -> Optional[KNeighborsClassifier]:
+) -> Optional[Any]:
     """
     Huấn luyện mô hình KNN Classifier (để phân loại thể loại mới).
     Chỉ huấn luyện nếu có ít nhất 2 thể loại khác nhau trong dữ liệu.
+    Sử dụng Pipeline với StandardScaler để xử lý vector đặc trưng đa kích thước.
     """
     if len(set(genre_labels)) < 2:
         logger.warning("Genre Classifier bị bỏ qua: cần ít nhất 2 thể loại khác nhau (hiện có %d).", len(set(genre_labels)))
         return None
     try:
         n_neighbors = min(5, len(song_ids))
-        clf = KNeighborsClassifier(n_neighbors=n_neighbors, metric="cosine", algorithm="brute")
+        clf = make_pipeline(
+            StandardScaler(),
+            KNeighborsClassifier(n_neighbors=n_neighbors, metric="cosine", algorithm="brute")
+        )
         clf.fit(features_matrix, genre_labels)
         logger.info("Genre Classifier đã huấn luyện với %d bài / %d thể loại", 
                     len(song_ids), len(set(genre_labels)))
@@ -53,15 +66,16 @@ def fit_genre_classifier(
 
 def save_model(
     model: NearestNeighbors,
+    scaler: StandardScaler,
     song_ids: List[int],
     model_path: str = DEFAULT_MODEL_PATH,
 ) -> None:
-    """Lưu mô hình đã huấn luyện và danh sách song_id xuống file."""
+    """Lưu mô hình đã huấn luyện, scaler và danh sách song_id xuống file."""
     try:
         os.makedirs(os.path.dirname(model_path) if os.path.dirname(model_path) else ".", exist_ok=True)
         with open(model_path, "wb") as f:
-            pickle.dump((model, song_ids), f)
-        logger.info("Đã lưu mô hình KNN vào '%s'", model_path)
+            pickle.dump((model, scaler, song_ids), f)
+        logger.info("Đã lưu mô hình KNN và Scaler vào '%s'", model_path)
     except Exception as exc:
         logger.error("save_model bị lỗi: %s", exc)
         raise
@@ -81,11 +95,11 @@ def save_genre_classifier(
         logger.error("save_genre_classifier bị lỗi: %s", exc)
 
 
-def load_model(model_path: str = DEFAULT_MODEL_PATH) -> Tuple[NearestNeighbors, List[int]]:
-    """Tải mô hình KNN từ file.
+def load_model(model_path: str = DEFAULT_MODEL_PATH) -> Tuple[NearestNeighbors, StandardScaler, List[int]]:
+    """Tải mô hình KNN và Scaler từ file.
 
     Returns:
-        Tuple gồm (mô hình NearestNeighbors đã huấn luyện, danh sách song_ids theo thứ tự).
+        Tuple gồm (mô hình NearestNeighbors, StandardScaler, danh sách song_ids).
 
     Raises:
         ModelNotFittedException: Nếu file mô hình không tồn tại.
@@ -94,9 +108,16 @@ def load_model(model_path: str = DEFAULT_MODEL_PATH) -> Tuple[NearestNeighbors, 
         raise ModelNotFittedException()
     try:
         with open(model_path, "rb") as f:
-            model, song_ids = pickle.load(f)
+            data = pickle.load(f)
+            if len(data) == 3:
+                model, scaler, song_ids = data
+            else:
+                model, song_ids = data
+                scaler = StandardScaler()
+                scaler.fit(np.zeros((1, 23))) # Dummy scaler cho tương thích ngược tạm thời
+
         logger.info("Đã tải mô hình KNN từ '%s' (%d bài hát)", model_path, len(song_ids))
-        return model, song_ids
+        return model, scaler, song_ids
     except ModelNotFittedException:
         raise
     except Exception as exc:

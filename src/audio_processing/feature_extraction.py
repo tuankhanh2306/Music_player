@@ -15,32 +15,48 @@ class FeatureExtractionException(Exception):
 
 def extract_mfcc(file_path: str, n_mfcc: int = 20) -> np.ndarray:
     """
-    Trích xuất đặc trưng MFCC từ file audio.
+    Trích xuất đặc trưng âm thanh kết hợp:
+    - MFCC (20 chiều): Độ rung/âm sắc.
+    - Tempo (1 chiều): Vận tốc BPM (cực kỳ quan trọng để tách EDM và Ballad).
+    - Spectral Centroid (1 chiều): Độ "sáng" của âm thanh (tiếng tress, synth chói).
+    - Zero Crossing Rate (1 chiều): Độ "nhiễu/gắt" của âm thanh (Snare, Hi-hat).
+    Tổng cộng: 23 chiều.
     """
-    # 1. Validate file_path
     if not os.path.exists(file_path):
         raise FileNotFoundError(f"File không tồn tại: {file_path}")
 
     start_time = time.time()
     
     try:
-        # 2. Dùng librosa load file với sample rate 22050
         y, sr = librosa.load(file_path, sr=22050)
         
-        # 3. Trích xuất MFCC
+        # 1. Trích xuất MFCC (20 chiều)
         mfcc = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=n_mfcc)
+        mfcc_vector = np.mean(mfcc, axis=1) # Shape: (20,)
         
-        # 4. Apply np.mean để lấy vector 1 chiều
-        mfcc_vector = np.mean(mfcc, axis=1)
+        # 2. Trích xuất Tempo (BPM) (1 chiều)
+        tempo, _ = librosa.beat.beat_track(y=y, sr=sr)
+        tempo_val = float(tempo[0]) if isinstance(tempo, np.ndarray) else float(tempo)
         
-        # 6. Log thời gian xử lý
+        # 3. Trích xuất Spectral Centroid (1 chiều)
+        centroid = librosa.feature.spectral_centroid(y=y, sr=sr)
+        centroid_val = float(np.mean(centroid))
+        
+        # 4. Trích xuất Zero Crossing Rate (1 chiều)
+        zcr = librosa.feature.zero_crossing_rate(y=y)
+        zcr_val = float(np.mean(zcr))
+        
+        # 5. Gộp tất cả lại thành 1 vector duy nhất (23 chiều)
+        # Các giá trị này có thang đo rất khác nhau (Beat: 120, Centroid: 2000, ZCR: 0.1)
+        # Sẽ cần StandardScaler ở bước huấn luyện mô hình (engine.py)
+        combined_vector = np.hstack((mfcc_vector, [tempo_val, centroid_val, zcr_val]))
+        
         process_time = time.time() - start_time
-        logger.info(f"Đã trích xuất MFCC cho '{os.path.basename(file_path)}' trong {process_time:.2f}s")
+        logger.info(f"Đã trích xuất 23-dim features cho '{os.path.basename(file_path)}' trong {process_time:.2f}s")
         
-        return mfcc_vector
+        return combined_vector
         
     except Exception as e:
-        # 5. Wrap trong try/except và raise custom exception
         logger.error(f"Lỗi librosa khi xử lý {file_path}: {str(e)}")
         raise FeatureExtractionException(f"Lỗi trích xuất đặc trưng: {str(e)}")
 

@@ -21,7 +21,7 @@ def get_similar_songs(target_song_id: int, top_k: int = 5) -> List[int]:
         SongNotFoundException: Nếu target_song_id không có trong cache đặc trưng.
     """
     try:
-        model, song_ids = load_model()
+        model, scaler, song_ids = load_model()
     except ModelNotFittedException:
         logger.warning("get_similar_songs được gọi nhưng mô hình chưa được huấn luyện.")
         raise
@@ -32,6 +32,8 @@ def get_similar_songs(target_song_id: int, top_k: int = 5) -> List[int]:
         raise SongNotFoundException(target_song_id)
 
     target_vector = cache[target_song_id].reshape(1, -1)
+    # Scale feature_vector bằng scaler đã huấn luyện
+    target_vector = scaler.transform(target_vector)
 
     n_neighbors = min(top_k + 1, len(song_ids))
     distances, indices = model.kneighbors(target_vector, n_neighbors=n_neighbors)
@@ -91,8 +93,8 @@ def retrain_model() -> None:
     features_matrix = np.array([cache[sid] for sid in song_ids])
 
     # 1. Huấn luyện KNN Similarity (để gợi ý nhạc tương tự)
-    model = fit_knn(features_matrix, song_ids)
-    save_model(model, song_ids)
+    model, scaler = fit_knn(features_matrix, song_ids)
+    save_model(model, scaler, song_ids)
     logger.info("Đã huấn luyện lại mô hình KNN với %d bài hát.", len(song_ids))
 
     # 2. Huấn luyện Genre Classifier (chỉ khi có bài hát có nhãn genre)

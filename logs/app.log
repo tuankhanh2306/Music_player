@@ -502,3 +502,141 @@
 2026-04-13 21:12:53 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (24 bài hát)
 2026-04-13 21:12:53 | INFO     | src.recommendation.engine | get_similar_songs: target=9 top_k=5 results=[5, 6, 10, 24, 17]
 2026-04-13 21:12:55 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (24 bài hát)
+2026-04-13 21:12:55 | INFO     | src.recommendation.engine | get_similar_songs: target=9 top_k=15 results=[5, 6, 10, 24, 17, 3, 2, 16, 14, 20, 13, 12, 18, 4, 11]
+2026-04-13 21:14:42 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (24 bài hát)
+2026-04-13 21:14:42 | INFO     | src.recommendation.engine | get_similar_songs: target=15 top_k=5 results=[22, 11, 8, 24, 23]
+2026-04-13 21:14:42 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (24 bài hát)
+2026-04-13 21:14:42 | INFO     | src.recommendation.engine | get_similar_songs: target=15 top_k=15 results=[22, 11, 8, 24, 23, 1, 19, 12, 21, 13, 14, 5, 16, 2, 17]
+2026-04-13 21:19:36 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (24 bài hát)
+2026-04-13 21:19:36 | INFO     | src.recommendation.engine | get_similar_songs: target=16 top_k=5 results=[14, 13, 2, 12, 17]
+2026-04-13 21:20:51 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (24 bài hát)
+2026-04-13 21:20:51 | INFO     | src.recommendation.engine | get_similar_songs: target=24 top_k=5 results=[22, 15, 12, 11, 8]
+2026-04-13 21:20:52 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (24 bài hát)
+2026-04-13 21:20:52 | INFO     | src.recommendation.engine | get_similar_songs: target=24 top_k=15 results=[22, 15, 12, 11, 8, 5, 13, 16, 1, 14, 23, 2, 9, 17, 19]
+2026-04-13 21:34:41 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (24 bài hát)
+2026-04-13 21:34:41 | INFO     | src.recommendation.engine | get_similar_songs: target=9 top_k=5 results=[5, 6, 10, 24, 17]
+2026-04-13 21:38:18 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (24 bài hát)
+2026-04-13 21:38:18 | INFO     | src.recommendation.engine | get_similar_songs: target=10 top_k=5 results=[9, 6, 3, 7, 20]
+2026-04-13 21:40:28 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (24 bài hát)
+2026-04-13 21:40:28 | INFO     | src.recommendation.engine | get_similar_songs: target=6 top_k=5 results=[3, 17, 9, 2, 4]
+2026-04-13 21:40:41 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (24 bài hát)
+2026-04-13 21:40:41 | INFO     | src.recommendation.engine | get_similar_songs: target=18 top_k=5 results=[20, 17, 2, 14, 13]
+2026-04-13 21:43:54 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (24 bài hát)
+2026-04-13 21:43:54 | INFO     | src.recommendation.engine | get_similar_songs: target=20 top_k=5 results=[18, 17, 3, 2, 6]
+2026-04-13 21:44:05 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (24 bài hát)
+2026-04-13 21:44:05 | INFO     | src.recommendation.engine | get_similar_songs: target=14 top_k=5 results=[13, 16, 2, 12, 17]
+2026-04-13 21:47:41 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (24 bài hát)
+2026-04-13 21:47:41 | INFO     | src.recommendation.engine | get_similar_songs: target=16 top_k=5 results=[14, 13, 2, 12, 17]
+2026-04-13 21:52:13 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (24 bài hát)
+2026-04-13 21:52:13 | INFO     | src.recommendation.engine | get_similar_songs: target=17 top_k=5 results=[3, 2, 18, 16, 13]
+2026-04-13 21:56:52 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (24 bài hát)
+2026-04-13 21:56:52 | INFO     | src.recommendation.engine | get_similar_songs: target=18 top_k=5 results=[20, 17, 2, 14, 13]
+2026-04-13 22:00:04 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (70 bài hát)
+2026-04-13 22:00:04 | INFO     | src.recommendation.engine | get_similar_songs: target=20 top_k=5 results=[56, 53, 18, 41, 52]
+2026-04-13 22:05:32 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (70 bài hát)
+2026-04-13 22:05:32 | INFO     | src.recommendation.engine | get_similar_songs: target=24 top_k=5 results=[65, 42, 32, 44, 63]
+2026-04-13 22:05:54 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (70 bài hát)
+2026-04-13 22:05:54 | INFO     | src.recommendation.engine | get_similar_songs: target=60 top_k=5 results=[16, 51, 47, 33, 14]
+2026-04-13 22:06:52 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (70 bài hát)
+2026-04-13 22:06:52 | INFO     | src.recommendation.engine | get_similar_songs: target=9 top_k=15 results=[39, 31, 5, 34, 6, 10, 60, 24, 65, 17, 52, 27, 3, 2, 26]
+2026-04-13 22:09:05 | INFO     | src.services.song_service | Đã xóa file audio: uploads/tlinh - tlinh - Gái Độc Thân (ft. 2pillz & LastFire Crew) (Directed by A Flying Andrew)  Official MV.mp3
+2026-04-13 22:09:05 | INFO     | src.audio_processing.feature_extraction | Đã xoá vector đặc trưng của song_id=62 khỏi cache.
+2026-04-13 22:09:05 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 69 bài hát (n_neighbors=6)
+2026-04-13 22:09:05 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN vào 'data/knn_model.pkl'
+2026-04-13 22:09:05 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 69 bài hát.
+2026-04-13 22:09:05 | INFO     | src.recommendation.knn_model | Genre Classifier đã huấn luyện với 40 bài / 5 thể loại
+2026-04-13 22:09:05 | INFO     | src.recommendation.knn_model | Đã lưu Genre Classifier vào 'data/genre_classifier.pkl'
+2026-04-13 22:09:05 | INFO     | src.recommendation.engine | Đã huấn luyện Genre Classifier với 40 bài có nhãn.
+2026-04-13 22:09:55 | WARNING  | src.services.song_service | Không tìm thấy mutagen, dùng librosa đo thời lượng file uploads\5c31ed98-7406-4bcc-8ef3-e552bb47fb5d.mp3
+2026-04-13 22:09:58 | INFO     | src.services.song_service | Thời lượng file 'tlinh - Gái Độc Thân (ft. 2pillz & LastFire Crew) (Directed by A Flying Andrew)  Official MV.mp3': 247.39s
+2026-04-13 22:09:58 | INFO     | src.services.song_service | Bắt đầu trích xuất features cho song_id=71...
+2026-04-13 22:09:58 | WARNING  | src.services.recommend_service | Bài hát 71 chưa được trích xuất đặc trưng.
+2026-04-13 22:10:01 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất MFCC cho '5c31ed98-7406-4bcc-8ef3-e552bb47fb5d.mp3' trong 3.11s
+2026-04-13 22:10:01 | INFO     | src.audio_processing.feature_extraction | Đã lưu vector đặc trưng của song_id=71 vào cache.
+2026-04-13 22:10:02 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 70 bài hát (n_neighbors=6)
+2026-04-13 22:10:02 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN vào 'data/knn_model.pkl'
+2026-04-13 22:10:02 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 70 bài hát.
+2026-04-13 22:10:02 | INFO     | src.recommendation.knn_model | Genre Classifier đã huấn luyện với 41 bài / 6 thể loại
+2026-04-13 22:10:02 | INFO     | src.recommendation.knn_model | Đã lưu Genre Classifier vào 'data/genre_classifier.pkl'
+2026-04-13 22:10:02 | INFO     | src.recommendation.engine | Đã huấn luyện Genre Classifier với 41 bài có nhãn.
+2026-04-13 22:10:02 | INFO     | src.services.song_service | Hoàn tất xử lý AI cho song_id=71.
+2026-04-13 22:10:11 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (70 bài hát)
+2026-04-13 22:10:11 | INFO     | src.recommendation.engine | get_similar_songs: target=71 top_k=5 results=[50, 69, 33, 54, 32]
+2026-04-13 22:10:34 | INFO     | src.services.song_service | Đã xóa file audio: uploads/Sơn Tùng M-TP - Chắc Ai Đó Sẽ Về.mp3
+2026-04-13 22:10:34 | INFO     | src.audio_processing.feature_extraction | Đã xoá vector đặc trưng của song_id=47 khỏi cache.
+2026-04-13 22:10:34 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 69 bài hát (n_neighbors=6)
+2026-04-13 22:10:34 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN vào 'data/knn_model.pkl'
+2026-04-13 22:10:34 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 69 bài hát.
+2026-04-13 22:10:34 | INFO     | src.recommendation.knn_model | Genre Classifier đã huấn luyện với 41 bài / 6 thể loại
+2026-04-13 22:10:34 | INFO     | src.recommendation.knn_model | Đã lưu Genre Classifier vào 'data/genre_classifier.pkl'
+2026-04-13 22:10:34 | INFO     | src.recommendation.engine | Đã huấn luyện Genre Classifier với 41 bài có nhãn.
+2026-04-13 22:11:02 | WARNING  | src.services.song_service | Không tìm thấy mutagen, dùng librosa đo thời lượng file uploads\fac3992a-729f-47c8-ad1a-3aacd0a43fc8.mp3
+2026-04-13 22:11:02 | INFO     | src.services.song_service | Thời lượng file 'Chắc Ai Đó Sẽ Về.mp3': 262.16s
+2026-04-13 22:11:02 | INFO     | src.services.song_service | Bắt đầu trích xuất features cho song_id=72...
+2026-04-13 22:11:02 | WARNING  | src.services.recommend_service | Bài hát 72 chưa được trích xuất đặc trưng.
+2026-04-13 22:11:04 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất MFCC cho 'fac3992a-729f-47c8-ad1a-3aacd0a43fc8.mp3' trong 1.63s
+2026-04-13 22:11:04 | INFO     | src.audio_processing.feature_extraction | Đã lưu vector đặc trưng của song_id=72 vào cache.
+2026-04-13 22:11:04 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 70 bài hát (n_neighbors=6)
+2026-04-13 22:11:04 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN vào 'data/knn_model.pkl'
+2026-04-13 22:11:04 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 70 bài hát.
+2026-04-13 22:11:04 | INFO     | src.recommendation.knn_model | Genre Classifier đã huấn luyện với 42 bài / 6 thể loại
+2026-04-13 22:11:04 | INFO     | src.recommendation.knn_model | Đã lưu Genre Classifier vào 'data/genre_classifier.pkl'
+2026-04-13 22:11:04 | INFO     | src.recommendation.engine | Đã huấn luyện Genre Classifier với 42 bài có nhãn.
+2026-04-13 22:11:04 | INFO     | src.services.song_service | Hoàn tất xử lý AI cho song_id=72.
+2026-04-13 22:11:06 | INFO     | src.services.song_service | Đã xóa file audio: uploads/Hoàng Thùy Linh - Hoàng Thuỳ Linh - Để Mị Nói Cho Mà Nghe (Let Mi tell)  Official Music Video.mp3
+2026-04-13 22:11:07 | INFO     | src.audio_processing.feature_extraction | Đã xoá vector đặc trưng của song_id=33 khỏi cache.
+2026-04-13 22:11:07 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 69 bài hát (n_neighbors=6)
+2026-04-13 22:11:07 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN vào 'data/knn_model.pkl'
+2026-04-13 22:11:07 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 69 bài hát.
+2026-04-13 22:11:07 | INFO     | src.recommendation.knn_model | Genre Classifier đã huấn luyện với 42 bài / 6 thể loại
+2026-04-13 22:11:07 | INFO     | src.recommendation.knn_model | Đã lưu Genre Classifier vào 'data/genre_classifier.pkl'
+2026-04-13 22:11:07 | INFO     | src.recommendation.engine | Đã huấn luyện Genre Classifier với 42 bài có nhãn.
+2026-04-13 22:11:38 | WARNING  | src.services.song_service | Không tìm thấy mutagen, dùng librosa đo thời lượng file uploads\65b61a09-ba23-47b2-a5a5-e7ff1d9d4280.mp3
+2026-04-13 22:11:38 | INFO     | src.services.song_service | Thời lượng file 'Hoàng Thuỳ Linh - Để Mị Nói Cho Mà Nghe (Let Mi tell)  Official Music Video.mp3': 281.87s
+2026-04-13 22:11:38 | INFO     | src.services.song_service | Bắt đầu trích xuất features cho song_id=73...
+2026-04-13 22:11:38 | WARNING  | src.services.recommend_service | Bài hát 73 chưa được trích xuất đặc trưng.
+2026-04-13 22:11:40 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất MFCC cho '65b61a09-ba23-47b2-a5a5-e7ff1d9d4280.mp3' trong 1.62s
+2026-04-13 22:11:40 | INFO     | src.audio_processing.feature_extraction | Đã lưu vector đặc trưng của song_id=73 vào cache.
+2026-04-13 22:11:40 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 70 bài hát (n_neighbors=6)
+2026-04-13 22:11:40 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN vào 'data/knn_model.pkl'
+2026-04-13 22:11:40 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 70 bài hát.
+2026-04-13 22:11:40 | INFO     | src.recommendation.knn_model | Genre Classifier đã huấn luyện với 43 bài / 6 thể loại
+2026-04-13 22:11:40 | INFO     | src.recommendation.knn_model | Đã lưu Genre Classifier vào 'data/genre_classifier.pkl'
+2026-04-13 22:11:40 | INFO     | src.recommendation.engine | Đã huấn luyện Genre Classifier với 43 bài có nhãn.
+2026-04-13 22:11:40 | INFO     | src.services.song_service | Hoàn tất xử lý AI cho song_id=73.
+2026-04-13 22:11:52 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (70 bài hát)
+2026-04-13 22:11:52 | INFO     | src.recommendation.engine | get_similar_songs: target=15 top_k=5 results=[49, 63, 70, 58, 22]
+2026-04-13 22:11:57 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (70 bài hát)
+2026-04-13 22:11:57 | INFO     | src.recommendation.engine | get_similar_songs: target=15 top_k=15 results=[49, 63, 70, 58, 22, 64, 36, 67, 42, 32, 43, 11, 44, 38, 50]
+2026-04-13 22:16:33 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (70 bài hát)
+2026-04-13 22:16:33 | INFO     | src.recommendation.engine | get_similar_songs: target=67 top_k=5 results=[36, 15, 49, 58, 22]
+2026-04-13 22:16:52 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (70 bài hát)
+2026-04-13 22:16:52 | INFO     | src.recommendation.engine | get_similar_songs: target=67 top_k=15 results=[36, 15, 49, 58, 22, 38, 63, 70, 11, 43, 42, 64, 40, 68, 59]
+2026-04-13 22:20:25 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (70 bài hát)
+2026-04-13 22:20:25 | INFO     | src.recommendation.engine | get_similar_songs: target=70 top_k=5 results=[63, 49, 15, 64, 32]
+2026-04-13 22:33:28 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (43 bài hát)
+2026-04-13 22:33:28 | INFO     | src.recommendation.engine | get_similar_songs: target=67 top_k=15 results=[8, 38, 15, 66, 42, 23, 3, 1, 21, 22, 19, 70, 20, 40, 12]
+2026-04-13 22:42:05 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (43 bài hát)
+2026-04-13 22:42:05 | INFO     | src.recommendation.engine | get_similar_songs: target=1 top_k=5 results=[66, 23, 12, 22, 54]
+2026-04-13 22:42:08 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (43 bài hát)
+2026-04-13 22:42:08 | INFO     | src.recommendation.engine | get_similar_songs: target=3 top_k=5 results=[10, 38, 20, 17, 41]
+2026-04-13 22:42:11 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (43 bài hát)
+2026-04-13 22:42:11 | INFO     | src.recommendation.engine | get_similar_songs: target=8 top_k=5 results=[66, 42, 23, 67, 22]
+2026-04-13 22:44:53 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (43 bài hát)
+2026-04-13 22:44:53 | INFO     | src.recommendation.engine | get_similar_songs: target=19 top_k=5 results=[21, 11, 22, 15, 64]
+2026-04-13 22:44:56 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (43 bài hát)
+2026-04-13 22:44:56 | INFO     | src.recommendation.engine | get_similar_songs: target=19 top_k=15 results=[21, 11, 22, 15, 64, 28, 70, 23, 42, 72, 67, 1, 54, 12, 29]
+2026-04-13 22:45:11 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (43 bài hát)
+2026-04-13 22:45:11 | INFO     | src.recommendation.engine | get_similar_songs: target=20 top_k=5 results=[7, 18, 41, 9, 14]
+2026-04-13 22:45:19 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (43 bài hát)
+2026-04-13 22:45:19 | INFO     | src.recommendation.engine | get_similar_songs: target=1 top_k=5 results=[66, 23, 12, 22, 54]
+2026-04-13 22:45:26 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (43 bài hát)
+2026-04-13 22:45:26 | INFO     | src.recommendation.engine | get_similar_songs: target=11 top_k=5 results=[19, 50, 73, 44, 29]
+2026-04-13 22:50:06 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (43 bài hát)
+2026-04-13 22:50:06 | INFO     | src.recommendation.engine | get_similar_songs: target=12 top_k=5 results=[72, 1, 61, 23, 60]
+2026-04-13 22:53:17 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (43 bài hát)
+2026-04-13 22:53:17 | INFO     | src.recommendation.engine | get_similar_songs: target=15 top_k=5 results=[70, 21, 28, 19, 67]
+2026-04-13 22:58:11 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (43 bài hát)
+2026-04-13 22:58:11 | INFO     | src.recommendation.engine | get_similar_songs: target=19 top_k=5 results=[21, 11, 22, 15, 64]
+2026-04-13 23:02:31 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (43 bài hát)
+2026-04-13 23:02:31 | INFO     | src.recommendation.engine | get_similar_songs: target=21 top_k=5 results=[23, 22, 15, 42, 70]
