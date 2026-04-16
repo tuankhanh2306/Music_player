@@ -271,29 +271,45 @@
         </div>
     </div>
 
+    <div id="ai-analyze-modal" class="modal">
+        <div class="modal-content" style="text-align: center; max-width: 400px;">
+            <div id="ai-analyze-loading" style="padding: 24px 0;">
+                <i class="fa-solid fa-wand-magic-sparkles fa-spin text-success" style="font-size: 48px; margin-bottom: 24px;"></i>
+                <h3 style="margin: 0 0 8px 0;">AI đang phân tích sóng âm...</h3>
+                <p style="color: var(--text-subdued); font-size: 14px; margin: 0;">Vui lòng đợi 2-3 giây để nhận diện thể loại nhạc</p>
+            </div>
+            
+            <div id="ai-analyze-result" style="display: none; padding: 12px 0;">
+                <div style="font-size: 48px; margin-bottom: 16px;">🎧</div>
+                <h3 style="margin: 0 0 16px 0; font-size: 18px; line-height: 1.5;">
+                    AI nhận diện đây là nhạc <br>
+                    <span id="ai-predicted-genre" style="color: var(--essential-positive); font-weight: 800; font-size: 28px;">EDM</span> 
+                    <span id="ai-confidence" style="color: var(--text-subdued); font-size: 16px;">(92%)</span>
+                </h3>
+                <p style="color: var(--text-base); font-size: 15px; margin-bottom: 24px;">Bạn có muốn lưu thể loại này không?</p>
+                <div style="display: flex; gap: 12px; justify-content: center;">
+                    <button id="btn-ai-reject" class="btn-cancel" style="flex: 1; padding: 12px;">Tôi muốn chỉnh lại</button>
+                    <button id="btn-ai-accept" class="btn-create" style="flex: 1; padding: 12px;">Đúng rồi</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div id="upload-meta-modal" class="modal">
         <div class="modal-content">
-            <h3>Nhập thông tin Âm nhạc</h3>
+            <h3>Xác nhận thông tin Âm nhạc</h3>
             <div style="font-size: 13px; color: var(--text-subdued); margin-bottom: -4px;">File: <span
                     id="upload-filename"></span></div>
+            <input type="hidden" id="upload-temp-path">
             <input type="text" id="meta-title" placeholder="Tên bài hát (Bắt buộc)">
             <input type="text" id="meta-artist" list="artist-options" placeholder="Ca sĩ (Nhập để tìm hoặc tạo mới)">
             <datalist id="artist-options"></datalist>
             <div style="display: flex; flex-direction: column; gap: 4px;">
                 <input type="text" id="meta-genre" placeholder="Thể loại chính (VD: Pop, Rap, EDM...)">
-                <div style="font-size: 11px; color: var(--text-subdued); padding: 0 4px;">
-                    ⚡ AI sẽ tự đoán nếu để trống (sau khi có ≥ 2 thể loại).
-                </div>
             </div>
-            <div style="display: flex; flex-direction: column; gap: 4px;">
-                <input type="text" id="meta-sub-genres" placeholder="Tags phụ: Soft Pop, Chill, Lo-fi... (tùy chọn)">
-                <div style="font-size: 11px; color: var(--text-subdued); padding: 0 4px;">
-                    Ảnh hưởng hiển thị UI, không ảnh hưởng AI.
-                </div>
-            </div>
-            <div class="modal-actions">
-                <button id="btn-cancel-meta" class="btn-cancel">Hủy</button>
-                <button id="btn-submit-meta" class="btn-create">Lưu & Phân tích AI</button>
+            <div class="modal-actions" style="margin-top: 16px;">
+                <button id="btn-cancel-meta" class="btn-cancel">Hủy bỏ</button>
+                <button id="btn-submit-meta" class="btn-create">Xác nhận Lưu</button>
             </div>
         </div>
     </div>

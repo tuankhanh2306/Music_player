@@ -640,3 +640,253 @@
 2026-04-13 22:58:11 | INFO     | src.recommendation.engine | get_similar_songs: target=19 top_k=5 results=[21, 11, 22, 15, 64]
 2026-04-13 23:02:31 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (43 bài hát)
 2026-04-13 23:02:31 | INFO     | src.recommendation.engine | get_similar_songs: target=21 top_k=5 results=[23, 22, 15, 42, 70]
+2026-04-15 16:24:54 | WARNING  | src.services.song_service | Không tìm thấy mutagen, dùng librosa đo thời lượng file uploads\9c8a9546-830b-42ac-853d-f5d103060d92.mp3
+2026-04-15 16:24:58 | INFO     | src.services.song_service | Thời lượng file 'Imagine Dragons - Radioactive.mp3': 261.03s
+2026-04-15 16:24:58 | INFO     | src.services.song_service | Bắt đầu trích xuất features cho song_id=74...
+2026-04-15 16:24:58 | WARNING  | src.services.recommend_service | Bài hát 74 chưa được trích xuất đặc trưng.
+2026-04-15 16:25:11 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất 23-dim features cho '9c8a9546-830b-42ac-853d-f5d103060d92.mp3' trong 12.20s
+2026-04-15 16:25:11 | INFO     | src.audio_processing.feature_extraction | Đã lưu vector đặc trưng của song_id=74 vào cache.
+2026-04-15 16:25:11 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 44 bài hát (n_neighbors=6)
+2026-04-15 16:25:11 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN và Scaler vào 'data/knn_model.pkl'
+2026-04-15 16:25:11 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 44 bài hát.
+2026-04-15 16:25:11 | INFO     | src.recommendation.knn_model | Genre Classifier đã huấn luyện với 44 bài / 5 thể loại
+2026-04-15 16:25:11 | INFO     | src.recommendation.knn_model | Đã lưu Genre Classifier vào 'data/genre_classifier.pkl'
+2026-04-15 16:25:11 | INFO     | src.recommendation.engine | Đã huấn luyện Genre Classifier với 44 bài có nhãn.
+2026-04-15 16:25:11 | INFO     | src.services.song_service | Hoàn tất xử lý AI cho song_id=74.
+2026-04-15 16:25:32 | WARNING  | src.services.song_service | Không tìm thấy mutagen, dùng librosa đo thời lượng file uploads\af360588-3df5-42a2-a88a-7a4950953a95.mp3
+2026-04-15 16:25:32 | INFO     | src.services.song_service | Thời lượng file 'MicroWave   Bao Dem.mp3': 292.21s
+2026-04-15 16:25:32 | INFO     | src.services.song_service | Bắt đầu trích xuất features cho song_id=75...
+2026-04-15 16:25:32 | WARNING  | src.services.recommend_service | Bài hát 75 chưa được trích xuất đặc trưng.
+2026-04-15 16:25:36 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất 23-dim features cho 'af360588-3df5-42a2-a88a-7a4950953a95.mp3' trong 4.00s
+2026-04-15 16:25:36 | INFO     | src.audio_processing.feature_extraction | Đã lưu vector đặc trưng của song_id=75 vào cache.
+2026-04-15 16:25:36 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 45 bài hát (n_neighbors=6)
+2026-04-15 16:25:36 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN và Scaler vào 'data/knn_model.pkl'
+2026-04-15 16:25:36 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 45 bài hát.
+2026-04-15 16:25:36 | INFO     | src.recommendation.knn_model | Genre Classifier đã huấn luyện với 45 bài / 5 thể loại
+2026-04-15 16:25:36 | INFO     | src.recommendation.knn_model | Đã lưu Genre Classifier vào 'data/genre_classifier.pkl'
+2026-04-15 16:25:36 | INFO     | src.recommendation.engine | Đã huấn luyện Genre Classifier với 45 bài có nhãn.
+2026-04-15 16:25:36 | INFO     | src.services.song_service | Hoàn tất xử lý AI cho song_id=75.
+2026-04-15 16:26:51 | WARNING  | src.services.song_service | Không tìm thấy mutagen, dùng librosa đo thời lượng file uploads\c8ca60de-ce8f-4f0f-8bda-79fc40c72707.mp3
+2026-04-15 16:26:51 | INFO     | src.services.song_service | Thời lượng file 'Bon Jovi - It's My Life (Official Music Video).mp3': 266.94s
+2026-04-15 16:26:51 | INFO     | src.services.song_service | Bắt đầu trích xuất features cho song_id=76...
+2026-04-15 16:26:51 | WARNING  | src.services.recommend_service | Bài hát 76 chưa được trích xuất đặc trưng.
+2026-04-15 16:26:55 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất 23-dim features cho 'c8ca60de-ce8f-4f0f-8bda-79fc40c72707.mp3' trong 3.84s
+2026-04-15 16:26:55 | INFO     | src.audio_processing.feature_extraction | Đã lưu vector đặc trưng của song_id=76 vào cache.
+2026-04-15 16:26:55 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 46 bài hát (n_neighbors=6)
+2026-04-15 16:26:55 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN và Scaler vào 'data/knn_model.pkl'
+2026-04-15 16:26:55 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 46 bài hát.
+2026-04-15 16:26:55 | INFO     | src.recommendation.knn_model | Genre Classifier đã huấn luyện với 46 bài / 5 thể loại
+2026-04-15 16:26:55 | INFO     | src.recommendation.knn_model | Đã lưu Genre Classifier vào 'data/genre_classifier.pkl'
+2026-04-15 16:26:55 | INFO     | src.recommendation.engine | Đã huấn luyện Genre Classifier với 46 bài có nhãn.
+2026-04-15 16:26:55 | INFO     | src.services.song_service | Hoàn tất xử lý AI cho song_id=76.
+2026-04-15 16:27:01 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (46 bài hát)
+2026-04-15 16:27:01 | INFO     | src.recommendation.engine | get_similar_songs: target=9 top_k=5 results=[75, 7, 10, 6, 76]
+2026-04-15 16:30:26 | WARNING  | src.services.song_service | Không tìm thấy mutagen, dùng librosa đo thời lượng file uploads\18de466c-1580-4e60-b318-de6ba6eb8987.mp3
+2026-04-15 16:30:26 | INFO     | src.services.song_service | Thời lượng file 'Ngọt - Em dạo này (Official Music Video).mp3': 252.8s
+2026-04-15 16:30:26 | INFO     | src.services.song_service | Bắt đầu trích xuất features cho song_id=77...
+2026-04-15 16:30:26 | WARNING  | src.services.recommend_service | Bài hát 77 chưa được trích xuất đặc trưng.
+2026-04-15 16:30:29 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất 23-dim features cho '18de466c-1580-4e60-b318-de6ba6eb8987.mp3' trong 3.32s
+2026-04-15 16:30:29 | INFO     | src.audio_processing.feature_extraction | Đã lưu vector đặc trưng của song_id=77 vào cache.
+2026-04-15 16:30:29 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 47 bài hát (n_neighbors=6)
+2026-04-15 16:30:29 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN và Scaler vào 'data/knn_model.pkl'
+2026-04-15 16:30:29 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 47 bài hát.
+2026-04-15 16:30:29 | INFO     | src.recommendation.knn_model | Genre Classifier đã huấn luyện với 47 bài / 5 thể loại
+2026-04-15 16:30:29 | INFO     | src.recommendation.knn_model | Đã lưu Genre Classifier vào 'data/genre_classifier.pkl'
+2026-04-15 16:30:29 | INFO     | src.recommendation.engine | Đã huấn luyện Genre Classifier với 47 bài có nhãn.
+2026-04-15 16:30:29 | INFO     | src.services.song_service | Hoàn tất xử lý AI cho song_id=77.
+2026-04-15 16:30:52 | WARNING  | src.services.song_service | Không tìm thấy mutagen, dùng librosa đo thời lượng file uploads\a6db0200-ec7e-47ed-a932-c139f9396245.mp3
+2026-04-15 16:30:52 | INFO     | src.services.song_service | Thời lượng file 'Vùng Ký Ức - Chillies (Official Music Video).mp3': 328.17s
+2026-04-15 16:30:52 | INFO     | src.services.song_service | Bắt đầu trích xuất features cho song_id=78...
+2026-04-15 16:30:52 | WARNING  | src.services.recommend_service | Bài hát 78 chưa được trích xuất đặc trưng.
+2026-04-15 16:30:56 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất 23-dim features cho 'a6db0200-ec7e-47ed-a932-c139f9396245.mp3' trong 4.36s
+2026-04-15 16:30:56 | INFO     | src.audio_processing.feature_extraction | Đã lưu vector đặc trưng của song_id=78 vào cache.
+2026-04-15 16:30:56 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 48 bài hát (n_neighbors=6)
+2026-04-15 16:30:56 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN và Scaler vào 'data/knn_model.pkl'
+2026-04-15 16:30:56 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 48 bài hát.
+2026-04-15 16:30:56 | INFO     | src.recommendation.knn_model | Genre Classifier đã huấn luyện với 48 bài / 5 thể loại
+2026-04-15 16:30:56 | INFO     | src.recommendation.knn_model | Đã lưu Genre Classifier vào 'data/genre_classifier.pkl'
+2026-04-15 16:30:56 | INFO     | src.recommendation.engine | Đã huấn luyện Genre Classifier với 48 bài có nhãn.
+2026-04-15 16:30:56 | INFO     | src.services.song_service | Hoàn tất xử lý AI cho song_id=78.
+2026-04-15 16:31:18 | WARNING  | src.services.song_service | Không tìm thấy mutagen, dùng librosa đo thời lượng file uploads\c482fe61-316c-4122-8fdf-5104e2e1f0ee.mp3
+2026-04-15 16:31:18 | INFO     | src.services.song_service | Thời lượng file 'Thịnh Suy - CHUYỆN RẰNG (Official Music Video).mp3': 276.78s
+2026-04-15 16:31:18 | INFO     | src.services.song_service | Bắt đầu trích xuất features cho song_id=79...
+2026-04-15 16:31:18 | WARNING  | src.services.recommend_service | Bài hát 79 chưa được trích xuất đặc trưng.
+2026-04-15 16:31:21 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất 23-dim features cho 'c482fe61-316c-4122-8fdf-5104e2e1f0ee.mp3' trong 3.77s
+2026-04-15 16:31:21 | INFO     | src.audio_processing.feature_extraction | Đã lưu vector đặc trưng của song_id=79 vào cache.
+2026-04-15 16:31:21 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 49 bài hát (n_neighbors=6)
+2026-04-15 16:31:21 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN và Scaler vào 'data/knn_model.pkl'
+2026-04-15 16:31:21 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 49 bài hát.
+2026-04-15 16:31:21 | INFO     | src.recommendation.knn_model | Genre Classifier đã huấn luyện với 49 bài / 5 thể loại
+2026-04-15 16:31:21 | INFO     | src.recommendation.knn_model | Đã lưu Genre Classifier vào 'data/genre_classifier.pkl'
+2026-04-15 16:31:21 | INFO     | src.recommendation.engine | Đã huấn luyện Genre Classifier với 49 bài có nhãn.
+2026-04-15 16:31:21 | INFO     | src.services.song_service | Hoàn tất xử lý AI cho song_id=79.
+2026-04-15 16:31:49 | WARNING  | src.services.song_service | Không tìm thấy mutagen, dùng librosa đo thời lượng file uploads\4660d5c8-1f3f-4754-8cb8-1bf82356b78a.mp3
+2026-04-15 16:31:49 | INFO     | src.services.song_service | Thời lượng file 'Da LAB - Thanh Xuân (Official Music Video).mp3': 240.73s
+2026-04-15 16:31:49 | INFO     | src.services.song_service | Bắt đầu trích xuất features cho song_id=80...
+2026-04-15 16:31:49 | WARNING  | src.services.recommend_service | Bài hát 80 chưa được trích xuất đặc trưng.
+2026-04-15 16:31:52 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất 23-dim features cho '4660d5c8-1f3f-4754-8cb8-1bf82356b78a.mp3' trong 3.59s
+2026-04-15 16:31:52 | INFO     | src.audio_processing.feature_extraction | Đã lưu vector đặc trưng của song_id=80 vào cache.
+2026-04-15 16:31:52 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 50 bài hát (n_neighbors=6)
+2026-04-15 16:31:52 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN và Scaler vào 'data/knn_model.pkl'
+2026-04-15 16:31:52 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 50 bài hát.
+2026-04-15 16:31:52 | INFO     | src.recommendation.knn_model | Genre Classifier đã huấn luyện với 50 bài / 5 thể loại
+2026-04-15 16:31:52 | INFO     | src.recommendation.knn_model | Đã lưu Genre Classifier vào 'data/genre_classifier.pkl'
+2026-04-15 16:31:52 | INFO     | src.recommendation.engine | Đã huấn luyện Genre Classifier với 50 bài có nhãn.
+2026-04-15 16:31:52 | INFO     | src.services.song_service | Hoàn tất xử lý AI cho song_id=80.
+2026-04-15 16:33:05 | WARNING  | src.services.song_service | Không tìm thấy mutagen, dùng librosa đo thời lượng file uploads\06cba214-ace9-4435-90ce-ea7013514f6b.mp3
+2026-04-15 16:33:05 | INFO     | src.services.song_service | Thời lượng file 'Simple Love - Obito x Seachains x Davis x Lena (Official MV).mp3': 237.63s
+2026-04-15 16:33:05 | INFO     | src.services.song_service | Bắt đầu trích xuất features cho song_id=81...
+2026-04-15 16:33:05 | WARNING  | src.services.recommend_service | Bài hát 81 chưa được trích xuất đặc trưng.
+2026-04-15 16:33:09 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất 23-dim features cho '06cba214-ace9-4435-90ce-ea7013514f6b.mp3' trong 3.43s
+2026-04-15 16:33:09 | INFO     | src.audio_processing.feature_extraction | Đã lưu vector đặc trưng của song_id=81 vào cache.
+2026-04-15 16:33:09 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 51 bài hát (n_neighbors=6)
+2026-04-15 16:33:09 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN và Scaler vào 'data/knn_model.pkl'
+2026-04-15 16:33:09 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 51 bài hát.
+2026-04-15 16:33:09 | INFO     | src.recommendation.knn_model | Genre Classifier đã huấn luyện với 51 bài / 5 thể loại
+2026-04-15 16:33:09 | INFO     | src.recommendation.knn_model | Đã lưu Genre Classifier vào 'data/genre_classifier.pkl'
+2026-04-15 16:33:09 | INFO     | src.recommendation.engine | Đã huấn luyện Genre Classifier với 51 bài có nhãn.
+2026-04-15 16:33:09 | INFO     | src.services.song_service | Hoàn tất xử lý AI cho song_id=81.
+2026-04-15 16:33:35 | WARNING  | src.services.song_service | Không tìm thấy mutagen, dùng librosa đo thời lượng file uploads\bf6610ac-fe3c-4735-8024-2628e2ce68d9.mp3
+2026-04-15 16:33:35 | INFO     | src.services.song_service | Thời lượng file 'Thủ Đô Cypher - Beck'Stage X Biti's Hunter ( RPT Orijinn, LOW G, RZMas, RPT MCK).mp3': 174.47s
+2026-04-15 16:33:35 | INFO     | src.services.song_service | Bắt đầu trích xuất features cho song_id=82...
+2026-04-15 16:33:35 | WARNING  | src.services.recommend_service | Bài hát 82 chưa được trích xuất đặc trưng.
+2026-04-15 16:33:38 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất 23-dim features cho 'bf6610ac-fe3c-4735-8024-2628e2ce68d9.mp3' trong 2.43s
+2026-04-15 16:33:38 | INFO     | src.audio_processing.feature_extraction | Đã lưu vector đặc trưng của song_id=82 vào cache.
+2026-04-15 16:33:38 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 52 bài hát (n_neighbors=6)
+2026-04-15 16:33:38 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN và Scaler vào 'data/knn_model.pkl'
+2026-04-15 16:33:38 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 52 bài hát.
+2026-04-15 16:33:38 | INFO     | src.recommendation.knn_model | Genre Classifier đã huấn luyện với 52 bài / 5 thể loại
+2026-04-15 16:33:38 | INFO     | src.recommendation.knn_model | Đã lưu Genre Classifier vào 'data/genre_classifier.pkl'
+2026-04-15 16:33:38 | INFO     | src.recommendation.engine | Đã huấn luyện Genre Classifier với 52 bài có nhãn.
+2026-04-15 16:33:38 | INFO     | src.services.song_service | Hoàn tất xử lý AI cho song_id=82.
+2026-04-15 16:43:40 | WARNING  | src.services.song_service | Không tìm thấy mutagen, dùng librosa đo thời lượng file uploads\6601ceca-9098-4294-9860-bcbf2745de22.mp3
+2026-04-15 16:43:43 | INFO     | src.services.song_service | Thời lượng file 'Pháo - 2 Phút Hơn (KAIZ Remix).mp3': 183.85s
+2026-04-15 16:43:43 | INFO     | src.services.song_service | Bắt đầu trích xuất features cho song_id=83...
+2026-04-15 16:43:43 | WARNING  | src.services.recommend_service | Bài hát 83 chưa được trích xuất đặc trưng.
+2026-04-15 16:43:52 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất 23-dim features cho '6601ceca-9098-4294-9860-bcbf2745de22.mp3' trong 9.15s
+2026-04-15 16:43:52 | INFO     | src.audio_processing.feature_extraction | Đã lưu vector đặc trưng của song_id=83 vào cache.
+2026-04-15 16:43:52 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 53 bài hát (n_neighbors=6)
+2026-04-15 16:43:52 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN và Scaler vào 'data/knn_model.pkl'
+2026-04-15 16:43:52 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 53 bài hát.
+2026-04-15 16:43:52 | INFO     | src.recommendation.knn_model | Genre Classifier đã huấn luyện với 52 bài / 5 thể loại
+2026-04-15 16:43:52 | INFO     | src.recommendation.knn_model | Đã lưu Genre Classifier vào 'data/genre_classifier.pkl'
+2026-04-15 16:43:52 | INFO     | src.recommendation.engine | Đã huấn luyện Genre Classifier với 52 bài có nhãn.
+2026-04-15 16:43:52 | INFO     | src.recommendation.knn_model | Đã tải Genre Classifier từ 'data/genre_classifier.pkl'
+2026-04-15 16:43:52 | INFO     | src.recommendation.engine | predict_genre: song_id=83 -> 'EDM'
+2026-04-15 16:43:52 | INFO     | src.services.song_service | AI đoán genre song_id=83: 'EDM'
+2026-04-15 16:43:52 | INFO     | src.services.song_service | Hoàn tất xử lý AI cho song_id=83.
+2026-04-15 16:45:16 | INFO     | src.services.song_service | Đã xóa file audio: uploads\6601ceca-9098-4294-9860-bcbf2745de22.mp3
+2026-04-15 16:45:16 | INFO     | src.audio_processing.feature_extraction | Đã xoá vector đặc trưng của song_id=83 khỏi cache.
+2026-04-15 16:45:16 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 52 bài hát (n_neighbors=6)
+2026-04-15 16:45:16 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN và Scaler vào 'data/knn_model.pkl'
+2026-04-15 16:45:16 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 52 bài hát.
+2026-04-15 16:45:16 | INFO     | src.recommendation.knn_model | Genre Classifier đã huấn luyện với 52 bài / 5 thể loại
+2026-04-15 16:45:16 | INFO     | src.recommendation.knn_model | Đã lưu Genre Classifier vào 'data/genre_classifier.pkl'
+2026-04-15 16:45:16 | INFO     | src.recommendation.engine | Đã huấn luyện Genre Classifier với 52 bài có nhãn.
+2026-04-15 16:45:40 | WARNING  | src.services.song_service | Không tìm thấy mutagen, dùng librosa đo thời lượng file uploads\4b806696-9552-43a7-86e3-7d416c9122cd.mp3
+2026-04-15 16:45:40 | INFO     | src.services.song_service | Thời lượng file 'Pháo - 2 Phút Hơn (KAIZ Remix).mp3': 183.85s
+2026-04-15 16:45:40 | INFO     | src.services.song_service | Bắt đầu trích xuất features cho song_id=83...
+2026-04-15 16:45:40 | WARNING  | src.services.recommend_service | Bài hát 83 chưa được trích xuất đặc trưng.
+2026-04-15 16:45:43 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất 23-dim features cho '4b806696-9552-43a7-86e3-7d416c9122cd.mp3' trong 2.59s
+2026-04-15 16:45:43 | INFO     | src.audio_processing.feature_extraction | Đã lưu vector đặc trưng của song_id=83 vào cache.
+2026-04-15 16:45:43 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 53 bài hát (n_neighbors=6)
+2026-04-15 16:45:43 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN và Scaler vào 'data/knn_model.pkl'
+2026-04-15 16:45:43 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 53 bài hát.
+2026-04-15 16:45:43 | INFO     | src.recommendation.knn_model | Genre Classifier đã huấn luyện với 52 bài / 5 thể loại
+2026-04-15 16:45:43 | INFO     | src.recommendation.knn_model | Đã lưu Genre Classifier vào 'data/genre_classifier.pkl'
+2026-04-15 16:45:43 | INFO     | src.recommendation.engine | Đã huấn luyện Genre Classifier với 52 bài có nhãn.
+2026-04-15 16:45:43 | INFO     | src.recommendation.knn_model | Đã tải Genre Classifier từ 'data/genre_classifier.pkl'
+2026-04-15 16:45:43 | INFO     | src.recommendation.engine | predict_genre: song_id=83 -> 'EDM'
+2026-04-15 16:45:43 | INFO     | src.services.song_service | AI đoán genre song_id=83: 'EDM'
+2026-04-15 16:45:43 | INFO     | src.services.song_service | Hoàn tất xử lý AI cho song_id=83.
+2026-04-15 16:48:35 | WARNING  | src.services.song_service | Không tìm thấy mutagen, dùng librosa đo thời lượng file uploads\68402bdd-3858-455a-9125-42a7468f960f.mp3
+2026-04-15 16:48:35 | INFO     | src.services.song_service | Thời lượng file 'MONO - Waiting For You (Album 22 - Track No.10).mp3': 265.21s
+2026-04-15 16:48:35 | INFO     | src.services.song_service | Bắt đầu trích xuất features cho song_id=84...
+2026-04-15 16:48:35 | WARNING  | src.services.recommend_service | Bài hát 84 chưa được trích xuất đặc trưng.
+2026-04-15 16:48:38 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất 23-dim features cho '68402bdd-3858-455a-9125-42a7468f960f.mp3' trong 2.84s
+2026-04-15 16:48:38 | INFO     | src.audio_processing.feature_extraction | Đã lưu vector đặc trưng của song_id=84 vào cache.
+2026-04-15 16:48:38 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 54 bài hát (n_neighbors=6)
+2026-04-15 16:48:38 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN và Scaler vào 'data/knn_model.pkl'
+2026-04-15 16:48:38 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 54 bài hát.
+2026-04-15 16:48:38 | INFO     | src.recommendation.knn_model | Genre Classifier đã huấn luyện với 53 bài / 5 thể loại
+2026-04-15 16:48:38 | INFO     | src.recommendation.knn_model | Đã lưu Genre Classifier vào 'data/genre_classifier.pkl'
+2026-04-15 16:48:38 | INFO     | src.recommendation.engine | Đã huấn luyện Genre Classifier với 53 bài có nhãn.
+2026-04-15 16:48:38 | INFO     | src.recommendation.knn_model | Đã tải Genre Classifier từ 'data/genre_classifier.pkl'
+2026-04-15 16:48:38 | INFO     | src.recommendation.engine | predict_genre: song_id=84 -> 'Rap'
+2026-04-15 16:48:38 | INFO     | src.services.song_service | AI đoán genre song_id=84: 'Rap'
+2026-04-15 16:48:38 | INFO     | src.services.song_service | Hoàn tất xử lý AI cho song_id=84.
+2026-04-15 16:55:31 | WARNING  | src.services.song_service | Không tìm thấy mutagen, dùng librosa đo thời lượng file uploads\1be980ff-15f0-45c6-83ee-093e898bbce0.mp3
+2026-04-15 16:55:31 | INFO     | src.services.song_service | Thời lượng file 'HIEUTHUHAI - Vệ Tinh ft. Hoàng Tôn (prod. by Kewtiie)  OFFICIAL MV.mp3': 240.18s
+2026-04-15 16:55:31 | INFO     | src.services.song_service | Bắt đầu trích xuất features cho song_id=85...
+2026-04-15 16:55:31 | WARNING  | src.services.recommend_service | Bài hát 85 chưa được trích xuất đặc trưng.
+2026-04-15 16:55:34 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất 23-dim features cho '1be980ff-15f0-45c6-83ee-093e898bbce0.mp3' trong 3.00s
+2026-04-15 16:55:34 | INFO     | src.audio_processing.feature_extraction | Đã lưu vector đặc trưng của song_id=85 vào cache.
+2026-04-15 16:55:34 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 55 bài hát (n_neighbors=6)
+2026-04-15 16:55:34 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN và Scaler vào 'data/knn_model.pkl'
+2026-04-15 16:55:34 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 55 bài hát.
+2026-04-15 16:55:34 | INFO     | src.recommendation.knn_model | Genre Classifier đã huấn luyện với 54 bài / 5 thể loại
+2026-04-15 16:55:34 | INFO     | src.recommendation.knn_model | Đã lưu Genre Classifier vào 'data/genre_classifier.pkl'
+2026-04-15 16:55:34 | INFO     | src.recommendation.engine | Đã huấn luyện Genre Classifier với 54 bài có nhãn.
+2026-04-15 16:55:34 | INFO     | src.recommendation.knn_model | Đã tải Genre Classifier từ 'data/genre_classifier.pkl'
+2026-04-15 16:55:34 | INFO     | src.recommendation.engine | predict_genre: song_id=85 -> 'EDM'
+2026-04-15 16:55:34 | INFO     | src.services.song_service | AI đoán genre song_id=85: 'EDM'
+2026-04-15 16:55:34 | INFO     | src.services.song_service | Hoàn tất xử lý AI cho song_id=85.
+2026-04-15 16:56:25 | INFO     | src.services.song_service | Đã xóa file audio: uploads\1be980ff-15f0-45c6-83ee-093e898bbce0.mp3
+2026-04-15 16:56:25 | INFO     | src.audio_processing.feature_extraction | Đã xoá vector đặc trưng của song_id=85 khỏi cache.
+2026-04-15 16:56:25 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 54 bài hát (n_neighbors=6)
+2026-04-15 16:56:25 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN và Scaler vào 'data/knn_model.pkl'
+2026-04-15 16:56:25 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 54 bài hát.
+2026-04-15 16:56:25 | INFO     | src.recommendation.knn_model | Genre Classifier đã huấn luyện với 54 bài / 5 thể loại
+2026-04-15 16:56:25 | INFO     | src.recommendation.knn_model | Đã lưu Genre Classifier vào 'data/genre_classifier.pkl'
+2026-04-15 16:56:25 | INFO     | src.recommendation.engine | Đã huấn luyện Genre Classifier với 54 bài có nhãn.
+2026-04-15 16:56:31 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất 23-dim features cho 'temp_21905608-008c-41ef-be5a-12702879544f.mp3' trong 3.11s
+2026-04-15 16:56:31 | INFO     | src.recommendation.knn_model | Đã tải Genre Classifier từ 'data/genre_classifier.pkl'
+2026-04-15 16:56:31 | INFO     | src.recommendation.engine | predict_genre_with_confidence: -> 'EDM' (40.0%)
+2026-04-15 16:58:14 | WARNING  | src.services.song_service | Không tìm thấy mutagen, dùng librosa đo thời lượng file uploads\796b822a-9877-4602-8dd9-2c36b67f50ae.mp3
+2026-04-15 16:58:14 | INFO     | src.services.song_service | Bắt đầu trích xuất features cho song_id=85...
+2026-04-15 16:58:14 | WARNING  | src.services.recommend_service | Bài hát 85 chưa được trích xuất đặc trưng.
+2026-04-15 16:58:17 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất 23-dim features cho '796b822a-9877-4602-8dd9-2c36b67f50ae.mp3' trong 3.07s
+2026-04-15 16:58:17 | INFO     | src.audio_processing.feature_extraction | Đã lưu vector đặc trưng của song_id=85 vào cache.
+2026-04-15 16:58:17 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 55 bài hát (n_neighbors=6)
+2026-04-15 16:58:17 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN và Scaler vào 'data/knn_model.pkl'
+2026-04-15 16:58:17 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 55 bài hát.
+2026-04-15 16:58:17 | INFO     | src.recommendation.knn_model | Genre Classifier đã huấn luyện với 55 bài / 5 thể loại
+2026-04-15 16:58:17 | INFO     | src.recommendation.knn_model | Đã lưu Genre Classifier vào 'data/genre_classifier.pkl'
+2026-04-15 16:58:17 | INFO     | src.recommendation.engine | Đã huấn luyện Genre Classifier với 55 bài có nhãn.
+2026-04-15 16:58:17 | INFO     | src.services.song_service | Hoàn tất xử lý AI cho song_id=85.
+2026-04-15 17:00:13 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất 23-dim features cho 'temp_9440b388-15f1-422f-b4d3-384f1ab3fec6.mp3' trong 3.61s
+2026-04-15 17:00:13 | INFO     | src.recommendation.knn_model | Đã tải Genre Classifier từ 'data/genre_classifier.pkl'
+2026-04-15 17:00:13 | INFO     | src.recommendation.engine | predict_genre_with_confidence: -> 'Rap' (60.0%)
+2026-04-15 17:00:23 | WARNING  | src.services.song_service | Không tìm thấy mutagen, dùng librosa đo thời lượng file uploads\2213c11e-36e6-4abe-84e5-1d3dad38919f.mp3
+2026-04-15 17:00:23 | INFO     | src.services.song_service | Bắt đầu trích xuất features cho song_id=86...
+2026-04-15 17:00:23 | WARNING  | src.services.recommend_service | Bài hát 86 chưa được trích xuất đặc trưng.
+2026-04-15 17:00:27 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất 23-dim features cho '2213c11e-36e6-4abe-84e5-1d3dad38919f.mp3' trong 3.55s
+2026-04-15 17:00:27 | INFO     | src.audio_processing.feature_extraction | Đã lưu vector đặc trưng của song_id=86 vào cache.
+2026-04-15 17:00:27 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 56 bài hát (n_neighbors=6)
+2026-04-15 17:00:27 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN và Scaler vào 'data/knn_model.pkl'
+2026-04-15 17:00:27 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 56 bài hát.
+2026-04-15 17:00:27 | INFO     | src.recommendation.knn_model | Genre Classifier đã huấn luyện với 56 bài / 5 thể loại
+2026-04-15 17:00:27 | INFO     | src.recommendation.knn_model | Đã lưu Genre Classifier vào 'data/genre_classifier.pkl'
+2026-04-15 17:00:27 | INFO     | src.recommendation.engine | Đã huấn luyện Genre Classifier với 56 bài có nhãn.
+2026-04-15 17:00:27 | INFO     | src.services.song_service | Hoàn tất xử lý AI cho song_id=86.
+2026-04-15 22:12:00 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (56 bài hát)
+2026-04-15 22:12:00 | INFO     | src.recommendation.engine | get_similar_songs: target=9 top_k=5 results=[75, 10, 7, 6, 76]
+2026-04-16 12:16:20 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (56 bài hát)
+2026-04-16 12:16:20 | INFO     | src.recommendation.engine | get_similar_songs: target=1 top_k=5 results=[66, 23, 22, 12, 80]
+2026-04-16 12:20:45 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất 23-dim features cho 'temp_f12cd0cf-23f7-4810-90e8-fdd5c53bf708.mp3' trong 12.72s
+2026-04-16 12:20:45 | INFO     | src.recommendation.knn_model | Đã tải Genre Classifier từ 'data/genre_classifier.pkl'
+2026-04-16 12:20:45 | INFO     | src.recommendation.engine | predict_genre_with_confidence: -> 'Rock' (60.0%)
+2026-04-16 12:21:06 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (56 bài hát)
+2026-04-16 12:21:06 | INFO     | src.recommendation.engine | get_similar_songs: target=2 top_k=5 results=[83, 29, 7, 9, 44]
+2026-04-16 12:22:24 | WARNING  | src.services.song_service | Không tìm thấy mutagen, dùng librosa đo thời lượng file uploads\68a36418-d863-497b-bfbb-fff8c296b8ae.mp3
+2026-04-16 12:22:24 | INFO     | src.services.song_service | Bắt đầu trích xuất features cho song_id=87...
+2026-04-16 12:22:25 | WARNING  | src.services.recommend_service | Bài hát 87 chưa được trích xuất đặc trưng.
+2026-04-16 12:22:28 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất 23-dim features cho '68a36418-d863-497b-bfbb-fff8c296b8ae.mp3' trong 3.20s
+2026-04-16 12:22:28 | INFO     | src.audio_processing.feature_extraction | Đã lưu vector đặc trưng của song_id=87 vào cache.
+2026-04-16 12:22:28 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 57 bài hát (n_neighbors=8)
+2026-04-16 12:22:28 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN và Scaler vào 'data/knn_model.pkl'
+2026-04-16 12:22:28 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 57 bài hát.
+2026-04-16 12:22:28 | INFO     | src.recommendation.knn_model | Genre Classifier đã huấn luyện với 57 bài / 5 thể loại
+2026-04-16 12:22:28 | INFO     | src.recommendation.knn_model | Đã lưu Genre Classifier vào 'data/genre_classifier.pkl'
+2026-04-16 12:22:28 | INFO     | src.recommendation.engine | Đã huấn luyện Genre Classifier với 57 bài có nhãn.
+2026-04-16 12:22:28 | INFO     | src.services.song_service | Hoàn tất xử lý AI cho song_id=87.

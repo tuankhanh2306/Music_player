@@ -610,19 +610,69 @@ function showToast(message) {
     container.appendChild(toast); setTimeout(() => toast.remove(), 3500);
 }
 
-const uploadInput = document.getElementById('upload-input'); const uploadModal = document.getElementById('upload-meta-modal');
-uploadInput.addEventListener('change', (e) => {
+const uploadInput = document.getElementById('upload-input'); 
+const aiModal = document.getElementById('ai-analyze-modal');
+const uploadModal = document.getElementById('upload-meta-modal');
+
+let currentAnalysis = null;
+
+uploadInput.addEventListener('change', async (e) => {
     const file = e.target.files[0]; if (!file) return; tempFile = file;
     document.getElementById('upload-filename').textContent = file.name;
     document.getElementById('meta-title').value = file.name.replace(/\.[^/.]+$/, ""); 
     document.getElementById('meta-artist').value = ""; 
     document.getElementById('meta-genre').value = "";
-    const subEl = document.getElementById('meta-sub-genres');
-    if (subEl) subEl.value = "";
-    uploadModal.classList.add('active'); document.getElementById('meta-title').focus(); uploadInput.value = "";
+    uploadInput.value = "";
+    
+    // Mở popup tiến trình AI
+    aiModal.classList.add('active');
+    document.getElementById('ai-analyze-loading').style.display = 'block';
+    document.getElementById('ai-analyze-result').style.display = 'none';
+
+    // Gọi API phân tích
+    const formData = new FormData();
+    formData.append('file', file);
+    
+    try {
+        const response = await fetch(`${API_URL}/songs/analyze`, { method: 'POST', body: formData });
+        if (!response.ok) throw new Error("Lỗi Analyze");
+        currentAnalysis = await response.json();
+        
+        // Cập nhật UI với kết quả
+        document.getElementById('ai-analyze-loading').style.display = 'none';
+        document.getElementById('ai-predicted-genre').textContent = currentAnalysis.predicted_genre !== 'Unknown' ? currentAnalysis.predicted_genre : 'Không xác định';
+        document.getElementById('ai-confidence').textContent = currentAnalysis.predicted_genre !== 'Unknown' ? `(${currentAnalysis.confidence.toFixed(0)}%)` : '';
+        document.getElementById('ai-analyze-result').style.display = 'block';
+        
+    } catch (err) {
+        // Fallback nếu lỗi trích xuất
+        aiModal.classList.remove('active');
+        uploadModal.classList.add('active');
+        showToast("Lỗi phân tích AI. Vui lòng nhập tay.");
+    }
 });
 
-document.getElementById('btn-cancel-meta').addEventListener('click', () => { uploadModal.classList.remove('active'); tempFile = null; });
+// Nút Đúng rồi (Accept AI)
+document.getElementById('btn-ai-accept').addEventListener('click', () => {
+    aiModal.classList.remove('active');
+    document.getElementById('meta-genre').value = currentAnalysis.predicted_genre !== 'Unknown' ? currentAnalysis.predicted_genre : '';
+    document.getElementById('upload-temp-path').value = currentAnalysis.temp_path;
+    uploadModal.classList.add('active');
+});
+
+// Nút Chỉnh lại (Reject AI)
+document.getElementById('btn-ai-reject').addEventListener('click', () => {
+    aiModal.classList.remove('active');
+    document.getElementById('upload-temp-path').value = currentAnalysis.temp_path;
+    uploadModal.classList.add('active');
+    document.getElementById('meta-genre').focus();
+});
+
+document.getElementById('btn-cancel-meta').addEventListener('click', () => { 
+    uploadModal.classList.remove('active'); 
+    tempFile = null; 
+    currentAnalysis = null;
+});
 
 function renderArtistOptions() {
     const list = document.getElementById('artist-options');
@@ -633,53 +683,40 @@ renderArtistOptions(); // Gọi lúc khởi tạo
 document.getElementById('btn-submit-meta').addEventListener('click', async () => {
     const title = document.getElementById('meta-title').value.trim();
     const artist = document.getElementById('meta-artist').value.trim() || "Unknown";
-    const genre = document.getElementById('meta-genre').value.trim();            // The loai CHINH
-    const subGenres = document.getElementById('meta-sub-genres')?.value.trim(); // Tags phu
-
-    // Xử lý auto-complete Artist
-    let existingArtist = artists.find(a => a.name.toLowerCase() === artist.toLowerCase());
-    if (!existingArtist) {
-        existingArtist = { id: Date.now(), name: artist, img: `https://ui-avatars.com/api/?name=${encodeURIComponent(artist)}&background=random&color=fff&size=300` };
-        artists.unshift(existingArtist);
-        renderArtistOptions();
-        if (typeof renderArtists === 'function') renderArtists();
-    }
-
+    const genre = document.getElementById('meta-genre').value.trim();
+    const tempPath = document.getElementById('upload-temp-path').value;
 
     if (!title) { showToast("Vui lòng nhập tiêu đề bài hát!"); return; }
 
     uploadModal.classList.remove('active');
-    showToast(`Đang tải lên và phân tích AI cho: ${title}...`);
-
-    const formData = new FormData();
-    formData.append('file', tempFile);
-    formData.append('title', title);
-    formData.append('artist', artist);
-    if (genre) formData.append('genre', genre);
-    if (subGenres) formData.append('sub_genres', subGenres);
+    showToast(`Đang lưu thông tin bài hát: ${title}...`);
 
     try {
-        const response = await fetch(`${API_URL}/songs/upload`, {
+        const response = await fetch(`${API_URL}/songs/confirm`, {
             method: 'POST',
-            body: formData
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                title: title,
+                artist: artist,
+                genre: genre,
+                temp_path: tempPath
+            })
         });
 
         if (!response.ok) throw new Error("Upload thất bại");
 
         const result = await response.json();
-        showToast("Tải lên thành công! AI đang phân tích dữ liệu ngầm...");
+        showToast("Tải lên thành công! File đã được lưu.");
         
-        // Refresh danh sách bài hát
         await fetchSongs();
-        
-        // Tự động phát bài hát vừa tải lên
         const newSong = songs.find(s => s.id === result.id);
         if (newSong) loadAndPlaySong(newSong);
         
         tempFile = null;
+        currentAnalysis = null;
     } catch (error) {
         console.error("Lỗi Upload:", error);
-        showToast("Lỗi hệ thống: Không thể tải nhạc lên.");
+        showToast("Lỗi hệ thống khi xác nhận bài hát.");
     }
 });
 

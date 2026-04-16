@@ -5,8 +5,8 @@ from fastapi import UploadFile, BackgroundTasks
 from sqlalchemy.orm import Session
 from src.config import settings
 from src.database import crud
-from src.audio_processing.feature_extraction import extract_mfcc, update_feature_cache, remove_song_from_cache
-from src.recommendation.engine import retrain_model
+from src.audio_processing.feature_extraction import extract_mfcc, update_feature_cache, remove_song_from_cache, FeatureExtractionException
+from src.recommendation.engine import retrain_model, predict_genre_with_confidence
 from src.core.exceptions import InvalidAudioFileException
 
 logger = logging.getLogger(__name__)
@@ -81,6 +81,61 @@ async def process_upload(db: Session, file: UploadFile, title: str, artist: str,
     # 6. Thêm Background Task xử lý AI
     background_tasks.add_task(extract_features_and_retrain, db_song.id, file_path, genre)
 
+    return db_song
+
+async def analyze_song(file: UploadFile) -> dict:
+    """Bước 1: Trích xuất đặc trưng và dự đoán thể loại + Confidence Score (không lưu DB)."""
+    file_ext = os.path.splitext(file.filename)[1].lower()
+    if file_ext not in settings.ALLOWED_AUDIO_EXTENSIONS:
+        raise InvalidAudioFileException(f"Định dạng {file_ext} không hỗ trợ.")
+
+    temp_filename = f"temp_{uuid.uuid4()}{file_ext}"
+    file_path = os.path.join(settings.UPLOAD_DIR, temp_filename)
+    os.makedirs(settings.UPLOAD_DIR, exist_ok=True)
+
+    try:
+        with open(file_path, "wb") as buffer:
+            content = await file.read()
+            buffer.write(content)
+    except Exception as e:
+        logger.error(f"Lỗi khi lưu file temp: {e}")
+        raise InvalidAudioFileException("Không thể lưu file tạm.")
+
+    try:
+        vector = extract_mfcc(file_path)
+        genre, confidence = predict_genre_with_confidence(vector)
+        return {
+            "temp_path": file_path,
+            "predicted_genre": genre or "Unknown",
+            "confidence": confidence
+        }
+    except Exception as e:
+        logger.error("Lỗi khi analyze song: %s", e)
+        return {
+            "temp_path": file_path,
+            "predicted_genre": "Unknown",
+            "confidence": 0.0
+        }
+
+def confirm_upload(db: Session, title: str, artist: str, genre: str, temp_path: str, background_tasks: BackgroundTasks):
+    """Bước 2: Người dùng xác nhận, đổi tên file và lưu vào DB."""
+    if not os.path.exists(temp_path):
+        raise InvalidAudioFileException("File tạm không tồn tại hoặc đã bị xóa.")
+
+    file_ext = os.path.splitext(temp_path)[1].lower()
+    final_filename = f"{uuid.uuid4()}{file_ext}"
+    final_path = os.path.join(settings.UPLOAD_DIR, final_filename)
+    
+    os.rename(temp_path, final_path)
+    
+    duration = _get_audio_duration(final_path)
+    
+    db_song = crud.create_song(
+        db, title=title, artist=artist, filepath=final_path,
+        genre=genre, sub_genres=None, duration=duration
+    )
+    
+    background_tasks.add_task(extract_features_and_retrain, db_song.id, final_path, genre)
     return db_song
 
 from src.database.db import SessionLocal

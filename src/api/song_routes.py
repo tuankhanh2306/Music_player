@@ -7,6 +7,13 @@ from src.database.db import get_db
 from src.schemas.song_schema import SongResponse, SongUpdate
 from src.services import song_service
 from src.core.exceptions import SongNotFoundException
+from pydantic import BaseModel
+
+class ConfirmUploadRequest(BaseModel):
+    title: str
+    artist: str
+    genre: str
+    temp_path: str
 
 router = APIRouter(prefix="/songs", tags=["Songs"])
 
@@ -24,6 +31,27 @@ async def upload_song(
     return await song_service.process_upload(
         db, file, title, artist, background_tasks,
         genre=genre or None, sub_genres=sub_genres or None
+    )
+
+@router.post("/analyze")
+async def analyze_song_route(file: UploadFile = File(...)):
+    """Bước 1: Tải file lên và AI phân tích thể loại."""
+    return await song_service.analyze_song(file)
+
+@router.post("/confirm", response_model=SongResponse)
+def confirm_upload_route(
+    background_tasks: BackgroundTasks,
+    request: ConfirmUploadRequest,
+    db: Session = Depends(get_db)
+):
+    """Bước 2: Xác nhận và lưu kết quả AI."""
+    return song_service.confirm_upload(
+        db=db,
+        title=request.title,
+        artist=request.artist,
+        genre=request.genre,
+        temp_path=request.temp_path,
+        background_tasks=background_tasks
     )
 
 @router.get("/", response_model=List[SongResponse])

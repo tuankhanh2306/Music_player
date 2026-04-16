@@ -1,5 +1,5 @@
 import logging
-from typing import List, Optional
+from typing import List, Optional, Tuple
 
 import numpy as np
 
@@ -78,6 +78,31 @@ def predict_genre(song_id: int) -> Optional[str]:
         logger.error("predict_genre lỗi: %s", e)
         return None
 
+def predict_genre_with_confidence(feature_vector: np.ndarray) -> Tuple[Optional[str], float]:
+    """
+    Dự đoán thể loại bài hát nhận từ vector ngẫu nhiên (chưa lưu DB) kèm theo độ tin cậy (%).
+    Sử dụng predict_proba để tính tỷ lệ bầu chọn Majority Voting.
+    """
+    clf = load_genre_classifier()
+    if clf is None:
+        logger.info("predict_genre: Genre Classifier chưa tồn tại.")
+        return None, 0.0
+
+    vector = feature_vector.reshape(1, -1)
+    try:
+        # Dự đoán nhãn
+        predicted = clf.predict(vector)
+        genre = predicted[0]
+        
+        # Dự đoán xác suất
+        proba = clf.predict_proba(vector)
+        confidence = float(np.max(proba)) * 100
+        
+        logger.info("predict_genre_with_confidence: -> '%s' (%.1f%%)", genre, confidence)
+        return genre, confidence
+    except Exception as e:
+        logger.error("predict_genre_with_confidence lỗi: %s", e)
+        return None, 0.0
 
 def retrain_model() -> None:
     """Huấn luyện lại và lưu cả 2 mô hình: KNN Similarity và Genre Classifier."""
