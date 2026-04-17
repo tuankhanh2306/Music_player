@@ -22,6 +22,9 @@ class SongUpdate(BaseModel):
     genre: Optional[str] = None
     sub_genres: Optional[str] = None
 
+class LyricUpdate(BaseModel):
+    lrc_content: str
+
 class SongResponse(SongBase):
     id: int
     genre: Optional[str] = None
@@ -29,6 +32,7 @@ class SongResponse(SongBase):
     filepath: str
     duration: float
     has_features: bool
+    lrc_content: Optional[str] = None
     created_at: datetime
 
     model_config = ConfigDict(from_attributes=True)

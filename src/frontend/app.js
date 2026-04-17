@@ -444,6 +444,9 @@ function loadAndPlaySong(song, isManual = false) {
 
     updateHighlight(song.id); triggerAIFake(song.id); recordListening(song);
     
+    // Hệ thống Lyrics: Tải lời bài hát khi đổi bài
+    if (window.lyricPlayer) window.lyricPlayer.fetchLyrics(song.id);
+    
     if (seekSlider && seekSlider.value == 0 && audioEl.currentTime == 0) { seekSlider.style.background = '#4d4d4d'; }
 }
 

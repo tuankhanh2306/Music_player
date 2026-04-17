@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 from typing import List
 
 from src.database.db import get_db
-from src.schemas.song_schema import SongResponse, SongUpdate
+from src.schemas.song_schema import SongResponse, SongUpdate, LyricUpdate
 from src.services import song_service
 from src.core.exceptions import SongNotFoundException
 from pydantic import BaseModel
@@ -100,4 +100,37 @@ def stream_song(song_id: int, db: Session = Depends(get_db)):
     
     return FileResponse(song.filepath, media_type="audio/mpeg")
 
-import os # Cần import os cho stream_song
+@router.get("/{song_id}/lyrics")
+def get_song_lyrics(song_id: int, db: Session = Depends(get_db)):
+    """
+    Lấy lời bài hát dạng LRC cho bài hát theo ID.
+    Trả về has_lyrics=False nếu Whisper chưa xử lý xong.
+    """
+    from src.database import crud
+    song = crud.get_song(db, song_id)
+    if not song:
+        raise SongNotFoundException()
+    return {
+        "song_id": song_id,
+        "has_lyrics": bool(song.lrc_content),
+        "lrc_content": song.lrc_content or None
+    }
+
+@router.put("/{song_id}/lyrics")
+def update_song_lyrics(song_id: int, body: LyricUpdate, db: Session = Depends(get_db)):
+    """
+    Cập nhật nội dung LRC cho bài hát.
+    Người dùng chỉnh sửa thủ công từ giao diện và gọi endpoint này để lưu lại.
+    """
+    from src.database import crud
+    song = crud.get_song(db, song_id)
+    if not song:
+        raise SongNotFoundException()
+    updated = crud.update_song_lrc(db, song_id, body.lrc_content)
+    return {
+        "song_id": song_id,
+        "has_lyrics": True,
+        "lrc_content": updated.lrc_content
+    }
+
+import os  # Cần import os cho stream_song

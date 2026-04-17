@@ -141,21 +141,17 @@ def confirm_upload(db: Session, title: str, artist: str, genre: str, temp_path: 
 from src.database.db import SessionLocal
 
 def extract_features_and_retrain(song_id: int, file_path: str, genre: str | None = None):
-    """Nhiệm vụ chạy ngầm: Trích xuất MFCC -> Cập nhật Cache -> Huấn luyện lại mô hình -> Dự đoán genre nếu chưa có."""
+    """Nhiệm vụ chạy ngầm: Trích xuất MFCC → Cập nhật Cache → Huấn luyện lại KNN → Whisper LRC."""
     db = SessionLocal()
     try:
+        # ── Bước 1: MFCC + KNN ──────────────────────────────────────────
         logger.info(f"Bắt đầu trích xuất features cho song_id={song_id}...")
         mfcc_vector = extract_mfcc(file_path)
-        
-        # Cập nhật cache file (.npy)
+
         update_feature_cache(song_id, mfcc_vector)
-        
-        # Cập nhật DB status
         crud.update_song_feature_status(db, song_id, has_features=True)
-        
-        # Retrain mô hình KNN
         retrain_model()
-        
+
         # Nếu người dùng để trống Genre, nhờ AI tự đoán
         if not genre:
             try:
@@ -166,8 +162,24 @@ def extract_features_and_retrain(song_id: int, file_path: str, genre: str | None
                     logger.info(f"AI đoán genre song_id={song_id}: '{predicted}'")
             except Exception as e:
                 logger.warning(f"Không thể dự đoán genre cho song_id={song_id}: {e}")
-        
-        logger.info(f"Hoàn tất xử lý AI cho song_id={song_id}.")
+
+        logger.info(f"Hoàn tất xử lý MFCC/KNN cho song_id={song_id}.")
+
+        # ── Bước 2: Whisper Speech-to-Text → LRC ────────────────────────
+        logger.info(f"Bắt đầu Whisper transcription cho song_id={song_id}...")
+        try:
+            from src.audio_processing.whisper_service import transcribe_to_lrc
+            from src.core.database.crud import update_song_lrc
+            lrc = transcribe_to_lrc(file_path)
+            if lrc:
+                update_song_lrc(db, song_id, lrc)
+                logger.info(f"Đã lưu LRC thành công cho song_id={song_id}.")
+            else:
+                logger.warning(f"Whisper không trả về LRC cho song_id={song_id}. Bỏ qua.")
+        except Exception as e:
+            # Whisper lỗi KHÔNG được làm crash toàn bộ background task
+            logger.error(f"Lỗi Whisper cho song_id={song_id}: {e}", exc_info=False)
+
     except Exception as e:
         logger.error(f"Lỗi xử lý ngầm cho song_id={song_id}: {e}")
     finally:

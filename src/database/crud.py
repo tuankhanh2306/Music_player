@@ -64,6 +64,21 @@ def update_song_metadata(db: Session, song_id: int, title: str | None = None, ar
             raise
     return song
 
+def update_song_lrc(db: Session, song_id: int, lrc_content: str) -> Song | None:
+    """Lưu chuỗi LRC (do Whisper sinh ra) vào database."""
+    song = get_song(db, song_id)
+    if song:
+        try:
+            song.lrc_content = lrc_content
+            db.commit()
+            db.refresh(song)
+            logger.info(f"Đã lưu LRC cho song_id={song_id} ({len(lrc_content)} ký tự)")
+        except SQLAlchemyError as e:
+            db.rollback()
+            logger.error(f"Database error while updating LRC for song {song_id}: {e}")
+            raise
+    return song
+
 def delete_song(db: Session, song_id: int) -> bool:
     song = get_song(db, song_id)
     if song:

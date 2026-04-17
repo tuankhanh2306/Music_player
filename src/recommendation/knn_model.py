@@ -23,7 +23,7 @@ def fit_knn(features_matrix: np.ndarray, song_ids: List[int]) -> Tuple[NearestNe
         # Scale toàn bộ ma trận (vì các feature như Tempo, MFCC, ZCR có thang đo rất khác nhau)
         scaled_features = scaler.fit_transform(features_matrix)
         
-        n_neighbors = min(6, len(song_ids))
+        n_neighbors = min(7, len(song_ids))
         model = NearestNeighbors(n_neighbors=n_neighbors, metric="cosine", algorithm="brute")
         model.fit(scaled_features)
         
@@ -50,7 +50,7 @@ def fit_genre_classifier(
         logger.warning("Genre Classifier bị bỏ qua: cần ít nhất 2 thể loại khác nhau (hiện có %d).", len(set(genre_labels)))
         return None
     try:
-        n_neighbors = min(5, len(song_ids))
+        n_neighbors = min(7, len(song_ids))
         clf = make_pipeline(
             StandardScaler(),
             KNeighborsClassifier(n_neighbors=n_neighbors, metric="cosine", algorithm="brute")

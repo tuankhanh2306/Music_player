@@ -7,7 +7,9 @@
     <title>AI Music Player</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -244,8 +246,8 @@
         </div>
 
         <div class="player-right">
-            <i class="fa-solid fa-microphone-lines control-btn" title="Lời bài hát"
-                onclick="showToast('Tính năng Lời bài hát sẽ sớm ra mắt')"></i>
+            <i class="fa-solid fa-microphone-lines control-btn" title="Lời bài hát" id="btn-toggle-lyrics"
+                onclick="toggleLyricPanel()"></i>
             <i class="fa-solid fa-list control-btn" id="btn-queue" title="Danh sách phát chờ (Queue)"
                 onclick="openQueueModal()"></i>
             <div class="volume-container">
@@ -274,21 +276,26 @@
     <div id="ai-analyze-modal" class="modal">
         <div class="modal-content" style="text-align: center; max-width: 400px;">
             <div id="ai-analyze-loading" style="padding: 24px 0;">
-                <i class="fa-solid fa-wand-magic-sparkles fa-spin text-success" style="font-size: 48px; margin-bottom: 24px;"></i>
+                <i class="fa-solid fa-wand-magic-sparkles fa-spin text-success"
+                    style="font-size: 48px; margin-bottom: 24px;"></i>
                 <h3 style="margin: 0 0 8px 0;">AI đang phân tích sóng âm...</h3>
-                <p style="color: var(--text-subdued); font-size: 14px; margin: 0;">Vui lòng đợi 2-3 giây để nhận diện thể loại nhạc</p>
+                <p style="color: var(--text-subdued); font-size: 14px; margin: 0;">Vui lòng đợi 2-3 giây để nhận diện
+                    thể loại nhạc</p>
             </div>
-            
+
             <div id="ai-analyze-result" style="display: none; padding: 12px 0;">
                 <div style="font-size: 48px; margin-bottom: 16px;">🎧</div>
                 <h3 style="margin: 0 0 16px 0; font-size: 18px; line-height: 1.5;">
                     AI nhận diện đây là nhạc <br>
-                    <span id="ai-predicted-genre" style="color: var(--essential-positive); font-weight: 800; font-size: 28px;">EDM</span> 
+                    <span id="ai-predicted-genre"
+                        style="color: var(--essential-positive); font-weight: 800; font-size: 28px;">EDM</span>
                     <span id="ai-confidence" style="color: var(--text-subdued); font-size: 16px;">(92%)</span>
                 </h3>
-                <p style="color: var(--text-base); font-size: 15px; margin-bottom: 24px;">Bạn có muốn lưu thể loại này không?</p>
+                <p style="color: var(--text-base); font-size: 15px; margin-bottom: 24px;">Bạn có muốn lưu thể loại này
+                    không?</p>
                 <div style="display: flex; gap: 12px; justify-content: center;">
-                    <button id="btn-ai-reject" class="btn-cancel" style="flex: 1; padding: 12px;">Tôi muốn chỉnh lại</button>
+                    <button id="btn-ai-reject" class="btn-cancel" style="flex: 1; padding: 12px;">Tôi muốn chỉnh
+                        lại</button>
                     <button id="btn-ai-accept" class="btn-create" style="flex: 1; padding: 12px;">Đúng rồi</button>
                 </div>
             </div>
@@ -317,7 +324,8 @@
     <div id="add-to-playlist-modal" class="modal">
         <div class="modal-content" style="width: 320px;">
             <h3>Thêm vào Playlist</h3>
-            <ul class="modal-playlist-list" id="modal-playlist-list" style="list-style: none; padding: 0; margin: 16px 0; max-height: 250px; overflow-y: auto;">
+            <ul class="modal-playlist-list" id="modal-playlist-list"
+                style="list-style: none; padding: 0; margin: 16px 0; max-height: 250px; overflow-y: auto;">
             </ul>
             <div class="modal-actions">
                 <button class="btn-cancel" onclick="closeAddToPlaylistModal()">Đóng</button>
@@ -336,13 +344,18 @@
             </div>
             <div style="display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 16px;">
                 <h3 id="detail-title" style="margin: 0; font-size: 22px;">Title</h3>
-                <input type="text" id="edit-detail-title" style="display: none; font-size: 18px; font-weight: bold; width: 80%; text-align: center; padding: 4px; border-radius: 4px; border: 1px solid var(--bg-hover);">
-                <button class="icon-circle" id="btn-toggle-edit-meta" style="background: transparent; flex-shrink: 0; cursor: pointer; color: var(--text-subdued);" title="Chỉnh sửa thông tin bài hát"><i class="fa-solid fa-pen"></i></button>
+                <input type="text" id="edit-detail-title"
+                    style="display: none; font-size: 18px; font-weight: bold; width: 80%; text-align: center; padding: 4px; border-radius: 4px; border: 1px solid var(--bg-hover);">
+                <button class="icon-circle" id="btn-toggle-edit-meta"
+                    style="background: transparent; flex-shrink: 0; cursor: pointer; color: var(--text-subdued);"
+                    title="Chỉnh sửa thông tin bài hát"><i class="fa-solid fa-pen"></i></button>
             </div>
-            
+
             <p id="detail-artist" style="color: var(--text-subdued); margin-bottom: 16px; font-weight: 600;">Artist</p>
-            <input type="text" id="edit-detail-artist" style="display: none; font-size: 14px; margin-bottom: 16px; width: 80%; margin-left: auto; margin-right: auto; text-align: center; padding: 4px; border-radius: 4px; border: 1px solid var(--bg-hover);">
-            <button id="btn-save-song-meta" class="btn-create" style="display: none; width: 100%; margin-bottom: 16px; margin-top: -8px;">Lưu Thay Đổi</button>
+            <input type="text" id="edit-detail-artist"
+                style="display: none; font-size: 14px; margin-bottom: 16px; width: 80%; margin-left: auto; margin-right: auto; text-align: center; padding: 4px; border-radius: 4px; border: 1px solid var(--bg-hover);">
+            <button id="btn-save-song-meta" class="btn-create"
+                style="display: none; width: 100%; margin-bottom: 16px; margin-top: -8px;">Lưu Thay Đổi</button>
 
             <div
                 style="background-color: var(--bg-hover); padding: 12px; border-radius: 8px; text-align: left; margin-bottom: 8px;">
@@ -354,7 +367,9 @@
                     3:45</div>
             </div>
             <div class="modal-actions" style="justify-content: center; gap: 8px;">
-                <button id="btn-create-smart-playlist" class="btn-create" style="background-color: var(--essential-positive); border: none;"><i class="fa-solid fa-wand-magic-sparkles"></i> Tạo AI Radio</button>
+                <button id="btn-create-smart-playlist" class="btn-create"
+                    style="background-color: var(--essential-positive); border: none;"><i
+                        class="fa-solid fa-wand-magic-sparkles"></i> Tạo AI Radio</button>
                 <button class="btn-cancel"
                     onclick="document.getElementById('song-detail-modal').classList.remove('active')">Đóng lại</button>
             </div>
@@ -385,7 +400,44 @@
     <!-- Ẩn thẻ chọn file cho tuỳ chỉnh ảnh -->
     <input type="file" id="custom-image-input" accept="image/*" style="display: none;">
 
+
+    <!-- Modal Chỉnh sửa Lời bài hát (Raw LRC Editor) -->
+    <div id="lyric-edit-modal" class="modal">
+        <div class="modal-content lyric-edit-modal-content">
+            <div class="lyric-edit-header">
+                <div>
+                    <h3 style="margin: 0 0 4px 0;"><i class="fa-solid fa-pen-to-square"
+                            style="color: var(--essential-positive); margin-right: 8px;"></i>Chỉnh sửa Lời bài hát</h3>
+                    <p style="font-size: 13px; color: var(--text-subdued); margin: 0;">Sửa trực tiếp chuỗi LRC.
+                        Timestamp do AI căn — bạn chỉ cần sửa chữ sai.</p>
+                </div>
+                <button class="icon-circle" id="btn-close-lyric-edit" title="Đóng">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <textarea id="lyric-edit-textarea" class="lyric-edit-textarea" spellcheck="false"
+                placeholder="Chưa có nội dung LRC..."></textarea>
+            <div class="lyric-edit-footer" style="display: flex; justify-content: space-between; align-items: center; margin-top: 16px;">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <span id="lyric-edit-lines-count" style="font-size: 12px; color: var(--text-subdued);"></span>
+                    <div style="display: flex; align-items: center; gap: 4px; background: var(--bg-hover); padding: 4px; border-radius: 6px; border: 1px solid var(--divider);">
+                        <button class="icon-circle" id="btn-shift-minus" title="Lùi thời gian toàn bộ -1s" style="width: 28px; height: 28px; font-size: 12px; background: transparent; color: var(--text-base); cursor: pointer; border: none; display: flex; align-items: center; justify-content: center;"><i class="fa-solid fa-minus"></i></button>
+                        <span style="font-size: 11px; font-weight: 600; color: var(--text-subdued); margin: 0 4px;"><i class="fa-regular fa-clock" style="margin-right: 2px;"></i> Dịch nhịp +/- 1s</span>
+                        <button class="icon-circle" id="btn-shift-plus" title="Tiến thời gian toàn bộ +1s" style="width: 28px; height: 28px; font-size: 12px; background: transparent; color: var(--text-base); cursor: pointer; border: none; display: flex; align-items: center; justify-content: center;"><i class="fa-solid fa-plus"></i></button>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 12px;">
+                    <button class="btn-cancel" id="btn-cancel-lyric-edit">Hủy</button>
+                    <button class="btn-create" id="btn-save-lyric-edit">
+                        <i class="fa-solid fa-floppy-disk" style="margin-right: 6px;"></i>Cập nhật
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="app.js"></script>
+    <script src="lyric_player.js"></script>
 </body>
 
 </html>
