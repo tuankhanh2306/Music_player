@@ -169,7 +169,7 @@ def extract_features_and_retrain(song_id: int, file_path: str, genre: str | None
         logger.info(f"Bắt đầu Whisper transcription cho song_id={song_id}...")
         try:
             from src.audio_processing.whisper_service import transcribe_to_lrc
-            from src.core.database.crud import update_song_lrc
+            from src.database.crud import update_song_lrc
             lrc = transcribe_to_lrc(file_path)
             if lrc:
                 update_song_lrc(db, song_id, lrc)

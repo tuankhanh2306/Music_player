@@ -53,7 +53,10 @@ def fit_genre_classifier(
         n_neighbors = min(7, len(song_ids))
         clf = make_pipeline(
             StandardScaler(),
-            KNeighborsClassifier(n_neighbors=n_neighbors, metric="cosine", algorithm="brute")
+            KNeighborsClassifier(n_neighbors=n_neighbors,
+                                 weights="distance",
+                                 metric="cosine",
+                                 algorithm="brute")
         )
         clf.fit(features_matrix, genre_labels)
         logger.info("Genre Classifier đã huấn luyện với %d bài / %d thể loại", 
