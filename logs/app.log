@@ -1263,3 +1263,23 @@
 2026-04-18 13:48:21 | INFO     | src.recommendation.engine | get_similar_songs: target=93 top_k=5 results=[61, 73, 50, 71, 14]
 2026-04-18 13:51:28 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (63 bài hát)
 2026-04-18 13:51:28 | INFO     | src.recommendation.engine | get_similar_songs: target=77 top_k=5 results=[91, 21, 92, 8, 23]
+2026-04-21 21:59:12 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất 23-dim features cho 'temp_c3c37abd-011d-4fa2-81e6-e85559b91190.mp3' trong 17.28s
+2026-04-21 21:59:12 | INFO     | src.recommendation.knn_model | Đã tải Genre Classifier từ 'data/genre_classifier.pkl'
+2026-04-21 21:59:12 | INFO     | src.recommendation.engine | predict_genre_with_confidence: -> 'Rap' (71.4%)
+2026-04-21 22:01:09 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (63 bài hát)
+2026-04-21 22:01:09 | INFO     | src.recommendation.engine | get_similar_songs: target=1 top_k=5 results=[66, 23, 54, 22, 91]
+2026-04-21 22:01:13 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (63 bài hát)
+2026-04-21 22:01:13 | INFO     | src.recommendation.engine | get_similar_songs: target=1 top_k=15 results=[66, 23, 54, 22, 91, 80, 12, 92, 21, 8, 61, 79, 90, 72, 40]
+2026-04-21 22:02:27 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (63 bài hát)
+2026-04-21 22:02:27 | INFO     | src.recommendation.engine | get_similar_songs: target=2 top_k=5 results=[83, 29, 7, 9, 44]
+2026-04-21 22:03:18 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (63 bài hát)
+2026-04-21 22:03:18 | INFO     | src.recommendation.engine | get_similar_songs: target=9 top_k=5 results=[75, 7, 10, 6, 76]
+2026-04-21 22:03:24 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (63 bài hát)
+2026-04-21 22:03:24 | INFO     | src.recommendation.engine | get_similar_songs: target=12 top_k=5 results=[92, 72, 61, 1, 23]
+2026-04-21 22:06:38 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (63 bài hát)
+2026-04-21 22:06:38 | INFO     | src.recommendation.engine | get_similar_songs: target=13 top_k=5 results=[14, 73, 16, 18, 94]
+2026-04-21 22:11:15 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (63 bài hát)
+2026-04-21 22:11:15 | INFO     | src.recommendation.engine | get_similar_songs: target=14 top_k=5 results=[18, 7, 73, 13, 16]
+2026-04-21 22:14:53 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (63 bài hát)
+2026-04-21 22:14:53 | INFO     | src.recommendation.engine | get_similar_songs: target=15 top_k=5 results=[70, 21, 28, 79, 77]
+2026-04-21 22:19:51 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (63 bài hát)
