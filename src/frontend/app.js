@@ -2,17 +2,45 @@
 const API_URL = "http://localhost:8000";
 
 // --- 1. DỮ LIỆU CỐ ĐỊNH (Artists) ---
+const ARTIST_IMAGES_MAP = {
+    "adele": "assets/artists/adele.jpg",
+    "alan walker": "assets/artists/alanwalker.jpg",
+    "avicii": "assets/artists/avicii.jpg",
+    "david guetta": "assets/artists/davidguetta.jpg",
+    "đen vâu": "assets/artists/denvau.jpg",
+    "ed sheeran": "assets/artists/edsheeran.jpg",
+    "hoàng thùy linh": "assets/artists/hoangthuylinh.jpg",
+    "linkin park": "assets/artists/linkinpark.jpg",
+    "maroon 5": "assets/artists/maroon5.jpg",
+    "phương ly": "assets/artists/phuongly.jpg"
+};
+
+function getArtistImage(name) {
+    const lowerName = name.toLowerCase();
+    if (ARTIST_IMAGES_MAP[lowerName]) return ARTIST_IMAGES_MAP[lowerName];
+    return `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=random&color=fff&size=300`;
+}
+
+function generateStableId(name) {
+    let hash = 0;
+    for (let i = 0; i < name.length; i++) {
+        hash = ((hash << 5) - hash) + name.charCodeAt(i);
+        hash |= 0;
+    }
+    return Math.abs(hash);
+}
+
 let artists = [
-    { id: 301, name: "Sơn Tùng M-TP", img: "https://ui-avatars.com/api/?name=Son+Tung+M+TP&background=db2777&color=fff&size=300" },
-    { id: 302, name: "Soobin Hoàng Sơn", img: "https://ui-avatars.com/api/?name=Soobin+Hoang+Son&background=2563eb&color=fff&size=300" },
-    { id: 303, name: "Vũ.", img: "https://ui-avatars.com/api/?name=Vu&background=059669&color=fff&size=300" },
-    { id: 304, name: "tlinh", img: "https://ui-avatars.com/api/?name=tlinh&background=c026d3&color=fff&size=300" },
-    { id: 305, name: "Binz", img: "https://ui-avatars.com/api/?name=Binz&background=dc2626&color=fff&size=300" },
-    { id: 306, name: "Đen Vâu", img: "https://ui-avatars.com/api/?name=Den+Vau&background=4b5563&color=fff&size=300" },
-    { id: 307, name: "Hoàng Thùy Linh", img: "https://ui-avatars.com/api/?name=Hoang+Thuy+Linh&background=ea580c&color=fff&size=300" },
-    { id: 308, name: "Phương Ly", img: "https://ui-avatars.com/api/?name=Phuong+Ly&background=ec4899&color=fff&size=300" },
-    { id: 309, name: "MCK", img: "https://ui-avatars.com/api/?name=MCK&background=000000&color=fff&size=300" },
-    { id: 310, name: "Wxrdie", img: "https://ui-avatars.com/api/?name=Wxrdie&background=7c3aed&color=fff&size=300" }
+    { id: 301, name: "Sơn Tùng M-TP", img: getArtistImage("Sơn Tùng M-TP") },
+    { id: 302, name: "Soobin Hoàng Sơn", img: getArtistImage("Soobin Hoàng Sơn") },
+    { id: 303, name: "Vũ.", img: getArtistImage("Vũ.") },
+    { id: 304, name: "tlinh", img: getArtistImage("tlinh") },
+    { id: 305, name: "Binz", img: getArtistImage("Binz") },
+    { id: 306, name: "Đen Vâu", img: getArtistImage("Đen Vâu") },
+    { id: 307, name: "Hoàng Thùy Linh", img: getArtistImage("Hoàng Thùy Linh") },
+    { id: 308, name: "Phương Ly", img: getArtistImage("Phương Ly") },
+    { id: 309, name: "MCK", img: getArtistImage("MCK") },
+    { id: 310, name: "Wxrdie", img: getArtistImage("Wxrdie") }
 ];
 
 // --- 2. QUẢN LÝ DỮ LIỆU BÀI HÁT (API) ---
@@ -29,9 +57,9 @@ async function fetchSongs() {
             let existingArtist = artists.find(a => a.name.toLowerCase() === s.artist.toLowerCase());
             if (!existingArtist) {
                 existingArtist = { 
-                    id: Date.now() + Math.floor(Math.random() * 1000), 
+                    id: generateStableId(s.artist), 
                     name: s.artist, 
-                    img: `https://ui-avatars.com/api/?name=${encodeURIComponent(s.artist)}&background=random&color=fff&size=300` 
+                    img: getArtistImage(s.artist) 
                 };
                 artists.push(existingArtist);
             }
@@ -51,6 +79,7 @@ async function fetchSongs() {
         });
         
         songs = [...mappedServerSongs];
+        applyCustomImages();
         renderSongs();
         renderHabitAndTrendingSongs();
         if (typeof renderArtistOptions === 'function') renderArtistOptions();

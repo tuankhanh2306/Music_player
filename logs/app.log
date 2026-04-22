@@ -1308,3 +1308,491 @@
 2026-04-21 23:06:38 | INFO     | src.recommendation.engine | get_similar_songs: target=32 top_k=5 results=[79, 70, 40, 42, 71]
 2026-04-21 23:10:40 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (63 bài hát)
 2026-04-21 23:10:40 | INFO     | src.recommendation.engine | get_similar_songs: target=38 top_k=5 results=[67, 3, 8, 77, 10]
+2026-04-22 22:33:04 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất 23-dim features cho 'temp_09207d50-1b07-4a6f-a151-383cff87d472.mp3' trong 18.00s
+2026-04-22 22:33:04 | INFO     | src.recommendation.knn_model | Đã tải Genre Classifier từ 'data/genre_classifier.pkl'
+2026-04-22 22:33:04 | INFO     | src.recommendation.engine | predict_genre_with_confidence: -> 'Indie' (57.1%)
+2026-04-22 22:33:42 | WARNING  | src.services.song_service | Không tìm thấy mutagen, dùng librosa đo thời lượng file uploads\25ed4a28-efde-4d88-99ed-210d94092b22.mp3
+2026-04-22 22:33:42 | INFO     | src.services.song_service | Bắt đầu trích xuất features cho song_id=95...
+2026-04-22 22:33:42 | WARNING  | src.services.recommend_service | Bài hát 95 chưa được trích xuất đặc trưng.
+2026-04-22 22:33:45 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất 23-dim features cho '25ed4a28-efde-4d88-99ed-210d94092b22.mp3' trong 3.13s
+2026-04-22 22:33:45 | INFO     | src.audio_processing.feature_extraction | Đã lưu vector đặc trưng của song_id=95 vào cache.
+2026-04-22 22:33:46 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 64 bài hát (n_neighbors=7)
+2026-04-22 22:33:46 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN và Scaler vào 'data/knn_model.pkl'
+2026-04-22 22:33:46 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 64 bài hát.
+2026-04-22 22:33:46 | INFO     | src.recommendation.knn_model | Genre Classifier đã huấn luyện với 64 bài / 5 thể loại
+2026-04-22 22:33:46 | INFO     | src.recommendation.knn_model | Đã lưu Genre Classifier vào 'data/genre_classifier.pkl'
+2026-04-22 22:33:46 | INFO     | src.recommendation.engine | Đã huấn luyện Genre Classifier với 64 bài có nhãn.
+2026-04-22 22:33:46 | INFO     | src.services.song_service | Hoàn tất xử lý MFCC/KNN cho song_id=95.
+2026-04-22 22:33:46 | INFO     | src.services.song_service | Bắt đầu Whisper transcription cho song_id=95...
+2026-04-22 22:33:52 | INFO     | src.audio_processing.whisper_service | Đang tải Whisper model 'base'... (chỉ lần đầu)
+2026-04-22 22:33:54 | INFO     | src.audio_processing.whisper_service | Whisper model đã sẵn sàng.
+2026-04-22 22:33:54 | INFO     | src.audio_processing.whisper_service | Bắt đầu Whisper transcription: 25ed4a28-efde-4d88-99ed-210d94092b22.mp3
+2026-04-22 22:34:23 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất 23-dim features cho 'temp_a77d4801-06ec-44eb-bbcd-c23354342b9b.mp3' trong 3.22s
+2026-04-22 22:34:23 | INFO     | src.recommendation.knn_model | Đã tải Genre Classifier từ 'data/genre_classifier.pkl'
+2026-04-22 22:34:23 | INFO     | src.recommendation.engine | predict_genre_with_confidence: -> 'Rap' (42.1%)
+2026-04-22 22:34:38 | WARNING  | src.services.song_service | Không tìm thấy mutagen, dùng librosa đo thời lượng file uploads\6f72747d-d087-469c-b089-5d2e2a13da9b.mp3
+2026-04-22 22:34:38 | INFO     | src.services.song_service | Bắt đầu trích xuất features cho song_id=96...
+2026-04-22 22:34:38 | WARNING  | src.services.recommend_service | Bài hát 96 chưa được trích xuất đặc trưng.
+2026-04-22 22:34:41 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất 23-dim features cho '6f72747d-d087-469c-b089-5d2e2a13da9b.mp3' trong 3.53s
+2026-04-22 22:34:41 | INFO     | src.audio_processing.feature_extraction | Đã lưu vector đặc trưng của song_id=96 vào cache.
+2026-04-22 22:34:41 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 65 bài hát (n_neighbors=7)
+2026-04-22 22:34:41 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN và Scaler vào 'data/knn_model.pkl'
+2026-04-22 22:34:41 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 65 bài hát.
+2026-04-22 22:34:41 | INFO     | src.recommendation.knn_model | Genre Classifier đã huấn luyện với 65 bài / 5 thể loại
+2026-04-22 22:34:41 | INFO     | src.recommendation.knn_model | Đã lưu Genre Classifier vào 'data/genre_classifier.pkl'
+2026-04-22 22:34:41 | INFO     | src.recommendation.engine | Đã huấn luyện Genre Classifier với 65 bài có nhãn.
+2026-04-22 22:34:41 | INFO     | src.services.song_service | Hoàn tất xử lý MFCC/KNN cho song_id=96.
+2026-04-22 22:34:41 | INFO     | src.services.song_service | Bắt đầu Whisper transcription cho song_id=96...
+2026-04-22 22:34:41 | INFO     | src.audio_processing.whisper_service | Bắt đầu Whisper transcription: 6f72747d-d087-469c-b089-5d2e2a13da9b.mp3
+2026-04-22 22:34:44 | ERROR    | src.audio_processing.whisper_service | Lỗi Whisper transcription cho 'uploads\6f72747d-d087-469c-b089-5d2e2a13da9b.mp3': cannot reshape tensor of 0 elements into shape [1, 0, 8, -1] because the unspecified dimension size -1 can be any value and is ambiguous
+Traceback (most recent call last):
+  File "E:\Music-player\src\audio_processing\whisper_service.py", line 82, in transcribe_to_lrc
+    result = model.transcribe(
+             ^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python311\Lib\site-packages\whisper\transcribe.py", line 295, in transcribe
+    result: DecodingResult = decode_with_fallback(mel_segment)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python311\Lib\site-packages\whisper\transcribe.py", line 201, in decode_with_fallback
+    decode_result = model.decode(segment, options)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\utils\_contextlib.py", line 120, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python311\Lib\site-packages\whisper\decoding.py", line 824, in decode
+    result = DecodingTask(model, options).run(mel)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\utils\_contextlib.py", line 120, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python311\Lib\site-packages\whisper\decoding.py", line 737, in run
+    tokens, sum_logprobs, no_speech_probs = self._main_loop(audio_features, tokens)
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python311\Lib\site-packages\whisper\decoding.py", line 687, in _main_loop
+    logits = self.inference.logits(tokens, audio_features)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python311\Lib\site-packages\whisper\decoding.py", line 163, in logits
+    return self.model.decoder(tokens, audio_features, kv_cache=self.kv_cache)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\nn\modules\module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\nn\modules\module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python311\Lib\site-packages\whisper\model.py", line 242, in forward
+    x = block(x, xa, mask=self.mask, kv_cache=kv_cache)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\nn\modules\module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\nn\modules\module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python311\Lib\site-packages\whisper\model.py", line 167, in forward
+    x = x + self.attn(self.attn_ln(x), mask=mask, kv_cache=kv_cache)[0]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\nn\modules\module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\nn\modules\module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python311\Lib\site-packages\whisper\model.py", line 111, in forward
+    wv, qk = self.qkv_attention(q, k, v, mask)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python311\Lib\site-packages\whisper\model.py", line 119, in qkv_attention
+    q = q.view(*q.shape[:2], self.n_head, -1).permute(0, 2, 1, 3)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: cannot reshape tensor of 0 elements into shape [1, 0, 8, -1] because the unspecified dimension size -1 can be any value and is ambiguous
+2026-04-22 22:34:44 | WARNING  | src.services.song_service | Whisper không trả về LRC cho song_id=96. Bỏ qua.
+2026-04-22 22:34:46 | ERROR    | src.audio_processing.whisper_service | Lỗi Whisper transcription cho 'uploads\25ed4a28-efde-4d88-99ed-210d94092b22.mp3': cannot reshape tensor of 0 elements into shape [1, 0, 8, -1] because the unspecified dimension size -1 can be any value and is ambiguous
+Traceback (most recent call last):
+  File "E:\Music-player\src\audio_processing\whisper_service.py", line 82, in transcribe_to_lrc
+    result = model.transcribe(
+             ^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python311\Lib\site-packages\whisper\transcribe.py", line 295, in transcribe
+    result: DecodingResult = decode_with_fallback(mel_segment)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python311\Lib\site-packages\whisper\transcribe.py", line 201, in decode_with_fallback
+    decode_result = model.decode(segment, options)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\utils\_contextlib.py", line 120, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python311\Lib\site-packages\whisper\decoding.py", line 824, in decode
+    result = DecodingTask(model, options).run(mel)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\utils\_contextlib.py", line 120, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python311\Lib\site-packages\whisper\decoding.py", line 737, in run
+    tokens, sum_logprobs, no_speech_probs = self._main_loop(audio_features, tokens)
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python311\Lib\site-packages\whisper\decoding.py", line 687, in _main_loop
+    logits = self.inference.logits(tokens, audio_features)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python311\Lib\site-packages\whisper\decoding.py", line 163, in logits
+    return self.model.decoder(tokens, audio_features, kv_cache=self.kv_cache)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\nn\modules\module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\nn\modules\module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python311\Lib\site-packages\whisper\model.py", line 242, in forward
+    x = block(x, xa, mask=self.mask, kv_cache=kv_cache)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\nn\modules\module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\nn\modules\module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python311\Lib\site-packages\whisper\model.py", line 167, in forward
+    x = x + self.attn(self.attn_ln(x), mask=mask, kv_cache=kv_cache)[0]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\nn\modules\module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\nn\modules\module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python311\Lib\site-packages\whisper\model.py", line 111, in forward
+    wv, qk = self.qkv_attention(q, k, v, mask)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python311\Lib\site-packages\whisper\model.py", line 119, in qkv_attention
+    q = q.view(*q.shape[:2], self.n_head, -1).permute(0, 2, 1, 3)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: cannot reshape tensor of 0 elements into shape [1, 0, 8, -1] because the unspecified dimension size -1 can be any value and is ambiguous
+2026-04-22 22:34:46 | WARNING  | src.services.song_service | Whisper không trả về LRC cho song_id=95. Bỏ qua.
+2026-04-22 22:35:05 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất 23-dim features cho 'temp_e31d8235-bb04-43ec-8422-1c2c7b0aa92a.mp3' trong 2.53s
+2026-04-22 22:35:05 | INFO     | src.recommendation.knn_model | Đã tải Genre Classifier từ 'data/genre_classifier.pkl'
+2026-04-22 22:35:05 | INFO     | src.recommendation.engine | predict_genre_with_confidence: -> 'Rap' (100.0%)
+2026-04-22 22:35:18 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất 23-dim features cho 'temp_8889bed4-ccad-450d-afa6-c9908b3202e9.mp3' trong 1.58s
+2026-04-22 22:35:18 | INFO     | src.recommendation.knn_model | Đã tải Genre Classifier từ 'data/genre_classifier.pkl'
+2026-04-22 22:35:18 | INFO     | src.recommendation.engine | predict_genre_with_confidence: -> 'EDM' (49.2%)
+2026-04-22 22:35:49 | WARNING  | src.services.song_service | Không tìm thấy mutagen, dùng librosa đo thời lượng file uploads\cd61a8e1-accc-43b4-9767-b0785e847146.mp3
+2026-04-22 22:35:49 | INFO     | src.services.song_service | Bắt đầu trích xuất features cho song_id=97...
+2026-04-22 22:35:49 | WARNING  | src.services.recommend_service | Bài hát 97 chưa được trích xuất đặc trưng.
+2026-04-22 22:35:50 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất 23-dim features cho 'cd61a8e1-accc-43b4-9767-b0785e847146.mp3' trong 1.50s
+2026-04-22 22:35:50 | INFO     | src.audio_processing.feature_extraction | Đã lưu vector đặc trưng của song_id=97 vào cache.
+2026-04-22 22:35:50 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 66 bài hát (n_neighbors=7)
+2026-04-22 22:35:50 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN và Scaler vào 'data/knn_model.pkl'
+2026-04-22 22:35:50 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 66 bài hát.
+2026-04-22 22:35:50 | INFO     | src.recommendation.knn_model | Genre Classifier đã huấn luyện với 66 bài / 5 thể loại
+2026-04-22 22:35:50 | INFO     | src.recommendation.knn_model | Đã lưu Genre Classifier vào 'data/genre_classifier.pkl'
+2026-04-22 22:35:50 | INFO     | src.recommendation.engine | Đã huấn luyện Genre Classifier với 66 bài có nhãn.
+2026-04-22 22:35:50 | INFO     | src.services.song_service | Hoàn tất xử lý MFCC/KNN cho song_id=97.
+2026-04-22 22:35:50 | INFO     | src.services.song_service | Bắt đầu Whisper transcription cho song_id=97...
+2026-04-22 22:35:50 | INFO     | src.audio_processing.whisper_service | Bắt đầu Whisper transcription: cd61a8e1-accc-43b4-9767-b0785e847146.mp3
+2026-04-22 22:36:37 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất 23-dim features cho 'temp_ee0bff8c-5ba2-4a2d-87ed-e9c47338c072.mp3' trong 3.62s
+2026-04-22 22:36:37 | INFO     | src.recommendation.knn_model | Đã tải Genre Classifier từ 'data/genre_classifier.pkl'
+2026-04-22 22:36:37 | INFO     | src.recommendation.engine | predict_genre_with_confidence: -> 'Rap' (41.1%)
+2026-04-22 22:36:51 | WARNING  | src.services.song_service | Không tìm thấy mutagen, dùng librosa đo thời lượng file uploads\45facfc8-3da4-4369-a704-08bcbe2418ec.mp3
+2026-04-22 22:36:51 | INFO     | src.services.song_service | Bắt đầu trích xuất features cho song_id=98...
+2026-04-22 22:36:51 | WARNING  | src.services.recommend_service | Bài hát 98 chưa được trích xuất đặc trưng.
+2026-04-22 22:36:55 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất 23-dim features cho '45facfc8-3da4-4369-a704-08bcbe2418ec.mp3' trong 3.42s
+2026-04-22 22:36:55 | INFO     | src.audio_processing.feature_extraction | Đã lưu vector đặc trưng của song_id=98 vào cache.
+2026-04-22 22:36:55 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 67 bài hát (n_neighbors=7)
+2026-04-22 22:36:55 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN và Scaler vào 'data/knn_model.pkl'
+2026-04-22 22:36:55 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 67 bài hát.
+2026-04-22 22:36:55 | INFO     | src.recommendation.knn_model | Genre Classifier đã huấn luyện với 67 bài / 5 thể loại
+2026-04-22 22:36:55 | INFO     | src.recommendation.knn_model | Đã lưu Genre Classifier vào 'data/genre_classifier.pkl'
+2026-04-22 22:36:55 | INFO     | src.recommendation.engine | Đã huấn luyện Genre Classifier với 67 bài có nhãn.
+2026-04-22 22:36:55 | INFO     | src.services.song_service | Hoàn tất xử lý MFCC/KNN cho song_id=98.
+2026-04-22 22:36:55 | INFO     | src.services.song_service | Bắt đầu Whisper transcription cho song_id=98...
+2026-04-22 22:36:55 | INFO     | src.audio_processing.whisper_service | Bắt đầu Whisper transcription: 45facfc8-3da4-4369-a704-08bcbe2418ec.mp3
+2026-04-22 22:37:01 | INFO     | src.audio_processing.whisper_service | Hoàn tất transcription: 2 dòng lời, ngôn ngữ phát hiện: zh
+2026-04-22 22:37:01 | INFO     | src.database.crud | Đã lưu LRC cho song_id=97 (45 ký tự)
+2026-04-22 22:37:01 | INFO     | src.services.song_service | Đã lưu LRC thành công cho song_id=97.
+2026-04-22 22:37:20 | INFO     | src.audio_processing.whisper_service | Hoàn tất transcription: 35 dòng lời, ngôn ngữ phát hiện: vi
+2026-04-22 22:37:20 | INFO     | src.database.crud | Đã lưu LRC cho song_id=98 (1219 ký tự)
+2026-04-22 22:37:20 | INFO     | src.services.song_service | Đã lưu LRC thành công cho song_id=98.
+2026-04-22 22:39:56 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất 23-dim features cho 'temp_82955e74-661f-48c0-82c7-ff3f7b6bd67e.mp3' trong 3.80s
+2026-04-22 22:39:56 | INFO     | src.recommendation.knn_model | Đã tải Genre Classifier từ 'data/genre_classifier.pkl'
+2026-04-22 22:39:56 | INFO     | src.recommendation.engine | predict_genre_with_confidence: -> 'EDM' (45.4%)
+2026-04-22 22:49:44 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (67 bài hát)
+2026-04-22 22:49:44 | INFO     | src.recommendation.engine | get_similar_songs: target=97 top_k=5 results=[2, 29, 83, 7, 44]
+2026-04-22 23:02:11 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (67 bài hát)
+2026-04-22 23:02:11 | INFO     | src.recommendation.engine | get_similar_songs: target=98 top_k=5 results=[42, 64, 22, 19, 70]
+2026-04-22 23:02:20 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (67 bài hát)
+2026-04-22 23:02:20 | INFO     | src.recommendation.engine | get_similar_songs: target=97 top_k=5 results=[2, 29, 83, 7, 44]
+2026-04-22 23:02:25 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (67 bài hát)
+2026-04-22 23:02:25 | INFO     | src.recommendation.engine | get_similar_songs: target=96 top_k=5 results=[94, 16, 13, 87, 74]
+2026-04-22 23:03:31 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (67 bài hát)
+2026-04-22 23:03:31 | INFO     | src.recommendation.engine | get_similar_songs: target=16 top_k=5 results=[96, 14, 73, 13, 97]
+2026-04-22 23:11:03 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất 23-dim features cho 'temp_aa2c1a7e-8e31-477a-af91-a8f41df963a1.mp3' trong 3.35s
+2026-04-22 23:11:03 | INFO     | src.recommendation.knn_model | Đã tải Genre Classifier từ 'data/genre_classifier.pkl'
+2026-04-22 23:11:03 | INFO     | src.recommendation.engine | predict_genre_with_confidence: -> 'Rock' (77.1%)
+2026-04-22 23:11:13 | WARNING  | src.services.song_service | Không tìm thấy mutagen, dùng librosa đo thời lượng file uploads\6e4de970-4dbc-4c03-9c57-3f137ab2f928.mp3
+2026-04-22 23:11:13 | INFO     | src.services.song_service | Bắt đầu trích xuất features cho song_id=99...
+2026-04-22 23:11:13 | WARNING  | src.services.recommend_service | Bài hát 99 chưa được trích xuất đặc trưng.
+2026-04-22 23:11:16 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất 23-dim features cho '6e4de970-4dbc-4c03-9c57-3f137ab2f928.mp3' trong 3.17s
+2026-04-22 23:11:16 | INFO     | src.audio_processing.feature_extraction | Đã lưu vector đặc trưng của song_id=99 vào cache.
+2026-04-22 23:11:17 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 68 bài hát (n_neighbors=7)
+2026-04-22 23:11:17 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN và Scaler vào 'data/knn_model.pkl'
+2026-04-22 23:11:17 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 68 bài hát.
+2026-04-22 23:11:17 | INFO     | src.recommendation.knn_model | Genre Classifier đã huấn luyện với 68 bài / 5 thể loại
+2026-04-22 23:11:17 | INFO     | src.recommendation.knn_model | Đã lưu Genre Classifier vào 'data/genre_classifier.pkl'
+2026-04-22 23:11:17 | INFO     | src.recommendation.engine | Đã huấn luyện Genre Classifier với 68 bài có nhãn.
+2026-04-22 23:11:17 | INFO     | src.services.song_service | Hoàn tất xử lý MFCC/KNN cho song_id=99.
+2026-04-22 23:11:17 | INFO     | src.services.song_service | Bắt đầu Whisper transcription cho song_id=99...
+2026-04-22 23:11:17 | INFO     | src.audio_processing.whisper_service | Bắt đầu Whisper transcription: 6e4de970-4dbc-4c03-9c57-3f137ab2f928.mp3
+2026-04-22 23:12:09 | INFO     | src.audio_processing.whisper_service | Hoàn tất transcription: 38 dòng lời, ngôn ngữ phát hiện: vi
+2026-04-22 23:12:09 | INFO     | src.database.crud | Đã lưu LRC cho song_id=99 (1308 ký tự)
+2026-04-22 23:12:09 | INFO     | src.services.song_service | Đã lưu LRC thành công cho song_id=99.
+2026-04-22 23:12:36 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất 23-dim features cho 'temp_9f0ba8f9-71e3-43e3-a5b0-0d2550af4bba.mp3' trong 3.92s
+2026-04-22 23:12:36 | INFO     | src.recommendation.knn_model | Đã tải Genre Classifier từ 'data/genre_classifier.pkl'
+2026-04-22 23:12:36 | INFO     | src.recommendation.engine | predict_genre_with_confidence: -> 'Rock' (70.2%)
+2026-04-22 23:14:20 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất 23-dim features cho 'temp_b227ae46-78cc-4188-acd4-2e67bb7bb0b5.mp3' trong 3.41s
+2026-04-22 23:14:20 | INFO     | src.recommendation.knn_model | Đã tải Genre Classifier từ 'data/genre_classifier.pkl'
+2026-04-22 23:14:20 | INFO     | src.recommendation.engine | predict_genre_with_confidence: -> 'EDM' (46.9%)
+2026-04-22 23:14:34 | WARNING  | src.services.song_service | Không tìm thấy mutagen, dùng librosa đo thời lượng file uploads\e2a039c7-4f0d-4ce4-901c-7d13ab164450.mp3
+2026-04-22 23:14:34 | INFO     | src.services.song_service | Bắt đầu trích xuất features cho song_id=100...
+2026-04-22 23:14:34 | WARNING  | src.services.recommend_service | Bài hát 100 chưa được trích xuất đặc trưng.
+2026-04-22 23:14:38 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất 23-dim features cho 'e2a039c7-4f0d-4ce4-901c-7d13ab164450.mp3' trong 3.42s
+2026-04-22 23:14:38 | INFO     | src.audio_processing.feature_extraction | Đã lưu vector đặc trưng của song_id=100 vào cache.
+2026-04-22 23:14:38 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 69 bài hát (n_neighbors=7)
+2026-04-22 23:14:38 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN và Scaler vào 'data/knn_model.pkl'
+2026-04-22 23:14:38 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 69 bài hát.
+2026-04-22 23:14:38 | INFO     | src.recommendation.knn_model | Genre Classifier đã huấn luyện với 69 bài / 5 thể loại
+2026-04-22 23:14:38 | INFO     | src.recommendation.knn_model | Đã lưu Genre Classifier vào 'data/genre_classifier.pkl'
+2026-04-22 23:14:38 | INFO     | src.recommendation.engine | Đã huấn luyện Genre Classifier với 69 bài có nhãn.
+2026-04-22 23:14:38 | INFO     | src.services.song_service | Hoàn tất xử lý MFCC/KNN cho song_id=100.
+2026-04-22 23:14:38 | INFO     | src.services.song_service | Bắt đầu Whisper transcription cho song_id=100...
+2026-04-22 23:14:38 | INFO     | src.audio_processing.whisper_service | Bắt đầu Whisper transcription: e2a039c7-4f0d-4ce4-901c-7d13ab164450.mp3
+2026-04-22 23:15:01 | INFO     | src.audio_processing.whisper_service | Hoàn tất transcription: 6 dòng lời, ngôn ngữ phát hiện: ko
+2026-04-22 23:15:01 | INFO     | src.database.crud | Đã lưu LRC cho song_id=100 (101 ký tự)
+2026-04-22 23:15:01 | INFO     | src.services.song_service | Đã lưu LRC thành công cho song_id=100.
+2026-04-22 23:15:40 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất 23-dim features cho 'temp_68cddf19-b2b7-4ddf-ba5e-ca208e246e1a.mp3' trong 2.64s
+2026-04-22 23:15:40 | INFO     | src.recommendation.knn_model | Đã tải Genre Classifier từ 'data/genre_classifier.pkl'
+2026-04-22 23:15:40 | INFO     | src.recommendation.engine | predict_genre_with_confidence: -> 'Pop' (62.8%)
+2026-04-22 23:16:16 | WARNING  | src.services.song_service | Không tìm thấy mutagen, dùng librosa đo thời lượng file uploads\2343ca47-f9dc-47a4-b3d9-e8d1af88d221.mp3
+2026-04-22 23:16:17 | INFO     | src.services.song_service | Bắt đầu trích xuất features cho song_id=101...
+2026-04-22 23:16:17 | WARNING  | src.services.recommend_service | Bài hát 101 chưa được trích xuất đặc trưng.
+2026-04-22 23:16:19 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất 23-dim features cho '2343ca47-f9dc-47a4-b3d9-e8d1af88d221.mp3' trong 2.68s
+2026-04-22 23:16:19 | INFO     | src.audio_processing.feature_extraction | Đã lưu vector đặc trưng của song_id=101 vào cache.
+2026-04-22 23:16:19 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 70 bài hát (n_neighbors=7)
+2026-04-22 23:16:19 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN và Scaler vào 'data/knn_model.pkl'
+2026-04-22 23:16:19 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 70 bài hát.
+2026-04-22 23:16:19 | INFO     | src.recommendation.knn_model | Genre Classifier đã huấn luyện với 70 bài / 5 thể loại
+2026-04-22 23:16:19 | INFO     | src.recommendation.knn_model | Đã lưu Genre Classifier vào 'data/genre_classifier.pkl'
+2026-04-22 23:16:19 | INFO     | src.recommendation.engine | Đã huấn luyện Genre Classifier với 70 bài có nhãn.
+2026-04-22 23:16:19 | INFO     | src.services.song_service | Hoàn tất xử lý MFCC/KNN cho song_id=101.
+2026-04-22 23:16:19 | INFO     | src.services.song_service | Bắt đầu Whisper transcription cho song_id=101...
+2026-04-22 23:16:19 | INFO     | src.audio_processing.whisper_service | Bắt đầu Whisper transcription: 2343ca47-f9dc-47a4-b3d9-e8d1af88d221.mp3
+2026-04-22 23:17:12 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất 23-dim features cho 'temp_d7d74f99-3ee8-4164-b218-18338fe1da45.mp3' trong 4.44s
+2026-04-22 23:17:12 | INFO     | src.recommendation.knn_model | Đã tải Genre Classifier từ 'data/genre_classifier.pkl'
+2026-04-22 23:17:12 | INFO     | src.recommendation.engine | predict_genre_with_confidence: -> 'Indie' (56.9%)
+2026-04-22 23:17:56 | INFO     | src.audio_processing.whisper_service | Hoàn tất transcription: 28 dòng lời, ngôn ngữ phát hiện: vi
+2026-04-22 23:17:56 | INFO     | src.database.crud | Đã lưu LRC cho song_id=101 (1155 ký tự)
+2026-04-22 23:17:56 | INFO     | src.services.song_service | Đã lưu LRC thành công cho song_id=101.
+2026-04-22 23:32:58 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (70 bài hát)
+2026-04-22 23:32:58 | INFO     | src.recommendation.engine | get_similar_songs: target=86 top_k=5 results=[100, 95, 67, 19, 84]
+2026-04-22 23:35:43 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (70 bài hát)
+2026-04-22 23:35:43 | INFO     | src.recommendation.engine | get_similar_songs: target=101 top_k=5 results=[40, 71, 93, 41, 4]
+2026-04-22 23:36:01 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (70 bài hát)
+2026-04-22 23:36:01 | INFO     | src.recommendation.engine | get_similar_songs: target=99 top_k=5 results=[75, 9, 76, 6, 74]
+2026-04-22 23:36:03 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (70 bài hát)
+2026-04-22 23:36:03 | INFO     | src.recommendation.engine | get_similar_songs: target=86 top_k=5 results=[100, 95, 67, 19, 84]
+2026-04-22 23:36:04 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (70 bài hát)
+2026-04-22 23:36:04 | INFO     | src.recommendation.engine | get_similar_songs: target=85 top_k=5 results=[41, 20, 4, 100, 3]
+2026-04-22 23:36:48 | INFO     | src.services.song_service | Đã xóa file audio: uploads\796b822a-9877-4602-8dd9-2c36b67f50ae.mp3
+2026-04-22 23:36:48 | INFO     | src.audio_processing.feature_extraction | Đã xoá vector đặc trưng của song_id=85 khỏi cache.
+2026-04-22 23:36:48 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 69 bài hát (n_neighbors=7)
+2026-04-22 23:36:48 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN và Scaler vào 'data/knn_model.pkl'
+2026-04-22 23:36:48 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 69 bài hát.
+2026-04-22 23:36:48 | INFO     | src.recommendation.knn_model | Genre Classifier đã huấn luyện với 69 bài / 5 thể loại
+2026-04-22 23:36:48 | INFO     | src.recommendation.knn_model | Đã lưu Genre Classifier vào 'data/genre_classifier.pkl'
+2026-04-22 23:36:48 | INFO     | src.recommendation.engine | Đã huấn luyện Genre Classifier với 69 bài có nhãn.
+2026-04-22 23:36:52 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (69 bài hát)
+2026-04-22 23:36:52 | INFO     | src.recommendation.engine | get_similar_songs: target=96 top_k=5 results=[94, 16, 13, 87, 74]
+2026-04-22 23:37:38 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất 23-dim features cho 'temp_d8d47d3f-071c-401a-af56-01fe4790c008.mp3' trong 3.24s
+2026-04-22 23:37:38 | INFO     | src.recommendation.knn_model | Đã tải Genre Classifier từ 'data/genre_classifier.pkl'
+2026-04-22 23:37:38 | INFO     | src.recommendation.engine | predict_genre_with_confidence: -> 'EDM' (47.9%)
+2026-04-22 23:37:54 | WARNING  | src.services.song_service | Không tìm thấy mutagen, dùng librosa đo thời lượng file uploads\00fe3adb-5f80-44c6-80bb-936edf3fcb5b.mp3
+2026-04-22 23:37:54 | INFO     | src.services.song_service | Bắt đầu trích xuất features cho song_id=102...
+2026-04-22 23:37:54 | WARNING  | src.services.recommend_service | Bài hát 102 chưa được trích xuất đặc trưng.
+2026-04-22 23:37:57 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất 23-dim features cho '00fe3adb-5f80-44c6-80bb-936edf3fcb5b.mp3' trong 2.92s
+2026-04-22 23:37:57 | INFO     | src.audio_processing.feature_extraction | Đã lưu vector đặc trưng của song_id=102 vào cache.
+2026-04-22 23:37:57 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 70 bài hát (n_neighbors=7)
+2026-04-22 23:37:57 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN và Scaler vào 'data/knn_model.pkl'
+2026-04-22 23:37:57 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 70 bài hát.
+2026-04-22 23:37:57 | INFO     | src.recommendation.knn_model | Genre Classifier đã huấn luyện với 70 bài / 5 thể loại
+2026-04-22 23:37:57 | INFO     | src.recommendation.knn_model | Đã lưu Genre Classifier vào 'data/genre_classifier.pkl'
+2026-04-22 23:37:57 | INFO     | src.recommendation.engine | Đã huấn luyện Genre Classifier với 70 bài có nhãn.
+2026-04-22 23:37:57 | INFO     | src.services.song_service | Hoàn tất xử lý MFCC/KNN cho song_id=102.
+2026-04-22 23:37:57 | INFO     | src.services.song_service | Bắt đầu Whisper transcription cho song_id=102...
+2026-04-22 23:37:57 | INFO     | src.audio_processing.whisper_service | Bắt đầu Whisper transcription: 00fe3adb-5f80-44c6-80bb-936edf3fcb5b.mp3
+2026-04-22 23:38:32 | INFO     | src.recommendation.knn_model | Đã tải mô hình KNN từ 'data/knn_model.pkl' (70 bài hát)
+2026-04-22 23:38:32 | INFO     | src.recommendation.engine | get_similar_songs: target=97 top_k=5 results=[2, 29, 83, 7, 9]
+2026-04-22 23:38:41 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất 23-dim features cho 'temp_c5e36f85-4407-4ff8-96f6-1b65f954e377.mp3' trong 3.85s
+2026-04-22 23:38:41 | INFO     | src.recommendation.knn_model | Đã tải Genre Classifier từ 'data/genre_classifier.pkl'
+2026-04-22 23:38:41 | INFO     | src.recommendation.engine | predict_genre_with_confidence: -> 'EDM' (51.6%)
+2026-04-22 23:38:54 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất 23-dim features cho 'temp_d79c0c4c-9e1b-4ce7-af8c-6383595b800d.mp3' trong 3.21s
+2026-04-22 23:38:54 | INFO     | src.recommendation.knn_model | Đã tải Genre Classifier từ 'data/genre_classifier.pkl'
+2026-04-22 23:38:54 | INFO     | src.recommendation.engine | predict_genre_with_confidence: -> 'Rap' (57.1%)
+2026-04-22 23:39:49 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất 23-dim features cho 'temp_81bdb969-8c4f-4c68-9345-7822a0cd1009.mp3' trong 5.56s
+2026-04-22 23:39:49 | INFO     | src.recommendation.knn_model | Đã tải Genre Classifier từ 'data/genre_classifier.pkl'
+2026-04-22 23:39:49 | INFO     | src.recommendation.engine | predict_genre_with_confidence: -> 'Pop' (57.7%)
+2026-04-22 23:40:56 | INFO     | src.audio_processing.whisper_service | Hoàn tất transcription: 73 dòng lời, ngôn ngữ phát hiện: en
+2026-04-22 23:40:56 | INFO     | src.database.crud | Đã lưu LRC cho song_id=102 (2372 ký tự)
+2026-04-22 23:40:56 | INFO     | src.services.song_service | Đã lưu LRC thành công cho song_id=102.
+2026-04-22 23:41:08 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất 23-dim features cho 'temp_acfa41b5-0720-428c-adeb-2876cec4e162.mp3' trong 3.05s
+2026-04-22 23:41:08 | INFO     | src.recommendation.knn_model | Đã tải Genre Classifier từ 'data/genre_classifier.pkl'
+2026-04-22 23:41:08 | INFO     | src.recommendation.engine | predict_genre_with_confidence: -> 'Rap' (77.8%)
+2026-04-22 23:41:29 | WARNING  | src.services.song_service | Không tìm thấy mutagen, dùng librosa đo thời lượng file uploads\572837b4-9930-4a24-8aa9-1a6b72eafaba.mp3
+2026-04-22 23:41:29 | INFO     | src.services.song_service | Bắt đầu trích xuất features cho song_id=103...
+2026-04-22 23:41:29 | WARNING  | src.services.recommend_service | Bài hát 103 chưa được trích xuất đặc trưng.
+2026-04-22 23:41:33 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất 23-dim features cho '572837b4-9930-4a24-8aa9-1a6b72eafaba.mp3' trong 3.25s
+2026-04-22 23:41:33 | INFO     | src.audio_processing.feature_extraction | Đã lưu vector đặc trưng của song_id=103 vào cache.
+2026-04-22 23:41:33 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 71 bài hát (n_neighbors=7)
+2026-04-22 23:41:33 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN và Scaler vào 'data/knn_model.pkl'
+2026-04-22 23:41:33 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 71 bài hát.
+2026-04-22 23:41:33 | INFO     | src.recommendation.knn_model | Genre Classifier đã huấn luyện với 71 bài / 5 thể loại
+2026-04-22 23:41:33 | INFO     | src.recommendation.knn_model | Đã lưu Genre Classifier vào 'data/genre_classifier.pkl'
+2026-04-22 23:41:33 | INFO     | src.recommendation.engine | Đã huấn luyện Genre Classifier với 71 bài có nhãn.
+2026-04-22 23:41:33 | INFO     | src.services.song_service | Hoàn tất xử lý MFCC/KNN cho song_id=103.
+2026-04-22 23:41:33 | INFO     | src.services.song_service | Bắt đầu Whisper transcription cho song_id=103...
+2026-04-22 23:41:33 | INFO     | src.audio_processing.whisper_service | Bắt đầu Whisper transcription: 572837b4-9930-4a24-8aa9-1a6b72eafaba.mp3
+2026-04-22 23:43:34 | INFO     | src.audio_processing.whisper_service | Hoàn tất transcription: 68 dòng lời, ngôn ngữ phát hiện: vi
+2026-04-22 23:43:34 | INFO     | src.database.crud | Đã lưu LRC cho song_id=103 (3119 ký tự)
+2026-04-22 23:43:34 | INFO     | src.services.song_service | Đã lưu LRC thành công cho song_id=103.
+2026-04-22 23:43:41 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất 23-dim features cho 'temp_a49538ce-ddbb-4694-9de8-c305f5728798.mp3' trong 3.19s
+2026-04-22 23:43:41 | INFO     | src.recommendation.knn_model | Đã tải Genre Classifier từ 'data/genre_classifier.pkl'
+2026-04-22 23:43:41 | INFO     | src.recommendation.engine | predict_genre_with_confidence: -> 'Indie' (74.3%)
+2026-04-22 23:43:51 | WARNING  | src.services.song_service | Không tìm thấy mutagen, dùng librosa đo thời lượng file uploads\d8ea356b-cbdf-49df-af16-e272726f845c.mp3
+2026-04-22 23:43:51 | INFO     | src.services.song_service | Bắt đầu trích xuất features cho song_id=104...
+2026-04-22 23:43:52 | WARNING  | src.services.recommend_service | Bài hát 104 chưa được trích xuất đặc trưng.
+2026-04-22 23:43:55 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất 23-dim features cho 'd8ea356b-cbdf-49df-af16-e272726f845c.mp3' trong 3.12s
+2026-04-22 23:43:55 | INFO     | src.audio_processing.feature_extraction | Đã lưu vector đặc trưng của song_id=104 vào cache.
+2026-04-22 23:43:55 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 72 bài hát (n_neighbors=7)
+2026-04-22 23:43:55 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN và Scaler vào 'data/knn_model.pkl'
+2026-04-22 23:43:55 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 72 bài hát.
+2026-04-22 23:43:55 | INFO     | src.recommendation.knn_model | Genre Classifier đã huấn luyện với 72 bài / 5 thể loại
+2026-04-22 23:43:55 | INFO     | src.recommendation.knn_model | Đã lưu Genre Classifier vào 'data/genre_classifier.pkl'
+2026-04-22 23:43:55 | INFO     | src.recommendation.engine | Đã huấn luyện Genre Classifier với 72 bài có nhãn.
+2026-04-22 23:43:55 | INFO     | src.services.song_service | Hoàn tất xử lý MFCC/KNN cho song_id=104.
+2026-04-22 23:43:55 | INFO     | src.services.song_service | Bắt đầu Whisper transcription cho song_id=104...
+2026-04-22 23:43:55 | INFO     | src.audio_processing.whisper_service | Bắt đầu Whisper transcription: d8ea356b-cbdf-49df-af16-e272726f845c.mp3
+2026-04-22 23:44:55 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất 23-dim features cho 'temp_3702548d-74ee-47b2-98fd-735dd6145aed.mp3' trong 4.79s
+2026-04-22 23:44:55 | INFO     | src.recommendation.knn_model | Đã tải Genre Classifier từ 'data/genre_classifier.pkl'
+2026-04-22 23:44:55 | INFO     | src.recommendation.engine | predict_genre_with_confidence: -> 'Pop' (43.7%)
+2026-04-22 23:45:41 | INFO     | src.audio_processing.whisper_service | Hoàn tất transcription: 53 dòng lời, ngôn ngữ phát hiện: vi
+2026-04-22 23:45:41 | INFO     | src.database.crud | Đã lưu LRC cho song_id=104 (3248 ký tự)
+2026-04-22 23:45:41 | INFO     | src.services.song_service | Đã lưu LRC thành công cho song_id=104.
+2026-04-22 23:45:55 | WARNING  | src.services.song_service | Không tìm thấy mutagen, dùng librosa đo thời lượng file uploads\1e58e58f-fe36-4bac-b8b6-0fbb4b8ec827.mp3
+2026-04-22 23:45:55 | INFO     | src.services.song_service | Bắt đầu trích xuất features cho song_id=105...
+2026-04-22 23:45:55 | WARNING  | src.services.recommend_service | Bài hát 105 chưa được trích xuất đặc trưng.
+2026-04-22 23:45:59 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất 23-dim features cho '1e58e58f-fe36-4bac-b8b6-0fbb4b8ec827.mp3' trong 3.40s
+2026-04-22 23:45:59 | INFO     | src.audio_processing.feature_extraction | Đã lưu vector đặc trưng của song_id=105 vào cache.
+2026-04-22 23:45:59 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 73 bài hát (n_neighbors=7)
+2026-04-22 23:45:59 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN và Scaler vào 'data/knn_model.pkl'
+2026-04-22 23:45:59 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 73 bài hát.
+2026-04-22 23:45:59 | INFO     | src.recommendation.knn_model | Genre Classifier đã huấn luyện với 73 bài / 5 thể loại
+2026-04-22 23:45:59 | INFO     | src.recommendation.knn_model | Đã lưu Genre Classifier vào 'data/genre_classifier.pkl'
+2026-04-22 23:45:59 | INFO     | src.recommendation.engine | Đã huấn luyện Genre Classifier với 73 bài có nhãn.
+2026-04-22 23:45:59 | INFO     | src.services.song_service | Hoàn tất xử lý MFCC/KNN cho song_id=105.
+2026-04-22 23:45:59 | INFO     | src.services.song_service | Bắt đầu Whisper transcription cho song_id=105...
+2026-04-22 23:45:59 | INFO     | src.audio_processing.whisper_service | Bắt đầu Whisper transcription: 1e58e58f-fe36-4bac-b8b6-0fbb4b8ec827.mp3
+2026-04-22 23:47:55 | INFO     | src.audio_processing.whisper_service | Hoàn tất transcription: 59 dòng lời, ngôn ngữ phát hiện: vi
+2026-04-22 23:47:55 | INFO     | src.database.crud | Đã lưu LRC cho song_id=105 (2778 ký tự)
+2026-04-22 23:47:55 | INFO     | src.services.song_service | Đã lưu LRC thành công cho song_id=105.
+2026-04-22 23:48:02 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất 23-dim features cho 'temp_d128ac5c-9d99-4708-b4e0-4114d171c5a0.mp3' trong 2.90s
+2026-04-22 23:48:02 | INFO     | src.recommendation.knn_model | Đã tải Genre Classifier từ 'data/genre_classifier.pkl'
+2026-04-22 23:48:02 | INFO     | src.recommendation.engine | predict_genre_with_confidence: -> 'EDM' (45.7%)
+2026-04-22 23:48:39 | WARNING  | src.services.song_service | Không tìm thấy mutagen, dùng librosa đo thời lượng file uploads\6a6b9072-de70-4f72-a417-43e67ebb2162.mp3
+2026-04-22 23:48:39 | INFO     | src.services.song_service | Bắt đầu trích xuất features cho song_id=106...
+2026-04-22 23:48:39 | WARNING  | src.services.recommend_service | Bài hát 106 chưa được trích xuất đặc trưng.
+2026-04-22 23:48:42 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất 23-dim features cho '6a6b9072-de70-4f72-a417-43e67ebb2162.mp3' trong 2.75s
+2026-04-22 23:48:42 | INFO     | src.audio_processing.feature_extraction | Đã lưu vector đặc trưng của song_id=106 vào cache.
+2026-04-22 23:48:42 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 74 bài hát (n_neighbors=7)
+2026-04-22 23:48:42 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN và Scaler vào 'data/knn_model.pkl'
+2026-04-22 23:48:42 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 74 bài hát.
+2026-04-22 23:48:42 | INFO     | src.recommendation.knn_model | Genre Classifier đã huấn luyện với 74 bài / 5 thể loại
+2026-04-22 23:48:42 | INFO     | src.recommendation.knn_model | Đã lưu Genre Classifier vào 'data/genre_classifier.pkl'
+2026-04-22 23:48:42 | INFO     | src.recommendation.engine | Đã huấn luyện Genre Classifier với 74 bài có nhãn.
+2026-04-22 23:48:42 | INFO     | src.services.song_service | Hoàn tất xử lý MFCC/KNN cho song_id=106.
+2026-04-22 23:48:42 | INFO     | src.services.song_service | Bắt đầu Whisper transcription cho song_id=106...
+2026-04-22 23:48:42 | INFO     | src.audio_processing.whisper_service | Bắt đầu Whisper transcription: 6a6b9072-de70-4f72-a417-43e67ebb2162.mp3
+2026-04-22 23:48:57 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất 23-dim features cho 'temp_b4ecd59a-449f-4bb6-89a1-5d7cc3f254db.mp3' trong 6.12s
+2026-04-22 23:48:57 | INFO     | src.recommendation.knn_model | Đã tải Genre Classifier từ 'data/genre_classifier.pkl'
+2026-04-22 23:48:57 | INFO     | src.recommendation.engine | predict_genre_with_confidence: -> 'EDM' (61.6%)
+2026-04-22 23:49:08 | WARNING  | src.services.song_service | Không tìm thấy mutagen, dùng librosa đo thời lượng file uploads\62ee92a7-4fdf-46d2-91f8-1c084630a00e.mp3
+2026-04-22 23:49:08 | INFO     | src.services.song_service | Bắt đầu trích xuất features cho song_id=107...
+2026-04-22 23:49:08 | WARNING  | src.services.recommend_service | Bài hát 107 chưa được trích xuất đặc trưng.
+2026-04-22 23:49:14 | INFO     | src.audio_processing.feature_extraction | Đã trích xuất 23-dim features cho '62ee92a7-4fdf-46d2-91f8-1c084630a00e.mp3' trong 5.96s
+2026-04-22 23:49:14 | INFO     | src.audio_processing.feature_extraction | Đã lưu vector đặc trưng của song_id=107 vào cache.
+2026-04-22 23:49:14 | INFO     | src.recommendation.knn_model | KNN đã được huấn luyện với 75 bài hát (n_neighbors=7)
+2026-04-22 23:49:14 | INFO     | src.recommendation.knn_model | Đã lưu mô hình KNN và Scaler vào 'data/knn_model.pkl'
+2026-04-22 23:49:14 | INFO     | src.recommendation.engine | Đã huấn luyện lại mô hình KNN với 75 bài hát.
+2026-04-22 23:49:14 | INFO     | src.recommendation.knn_model | Genre Classifier đã huấn luyện với 75 bài / 5 thể loại
+2026-04-22 23:49:14 | INFO     | src.recommendation.knn_model | Đã lưu Genre Classifier vào 'data/genre_classifier.pkl'
+2026-04-22 23:49:14 | INFO     | src.recommendation.engine | Đã huấn luyện Genre Classifier với 75 bài có nhãn.
+2026-04-22 23:49:14 | INFO     | src.services.song_service | Hoàn tất xử lý MFCC/KNN cho song_id=107.
+2026-04-22 23:49:14 | INFO     | src.services.song_service | Bắt đầu Whisper transcription cho song_id=107...
+2026-04-22 23:49:14 | INFO     | src.audio_processing.whisper_service | Bắt đầu Whisper transcription: 62ee92a7-4fdf-46d2-91f8-1c084630a00e.mp3
+2026-04-22 23:49:16 | ERROR    | src.audio_processing.whisper_service | Lỗi Whisper transcription cho 'uploads\62ee92a7-4fdf-46d2-91f8-1c084630a00e.mp3': cannot reshape tensor of 0 elements into shape [1, 0, 8, -1] because the unspecified dimension size -1 can be any value and is ambiguous
+Traceback (most recent call last):
+  File "E:\Music-player\src\audio_processing\whisper_service.py", line 82, in transcribe_to_lrc
+    result = model.transcribe(
+             ^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python311\Lib\site-packages\whisper\transcribe.py", line 295, in transcribe
+    result: DecodingResult = decode_with_fallback(mel_segment)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python311\Lib\site-packages\whisper\transcribe.py", line 201, in decode_with_fallback
+    decode_result = model.decode(segment, options)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\utils\_contextlib.py", line 120, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python311\Lib\site-packages\whisper\decoding.py", line 824, in decode
+    result = DecodingTask(model, options).run(mel)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\utils\_contextlib.py", line 120, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python311\Lib\site-packages\whisper\decoding.py", line 737, in run
+    tokens, sum_logprobs, no_speech_probs = self._main_loop(audio_features, tokens)
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python311\Lib\site-packages\whisper\decoding.py", line 687, in _main_loop
+    logits = self.inference.logits(tokens, audio_features)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python311\Lib\site-packages\whisper\decoding.py", line 163, in logits
+    return self.model.decoder(tokens, audio_features, kv_cache=self.kv_cache)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\nn\modules\module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\nn\modules\module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python311\Lib\site-packages\whisper\model.py", line 242, in forward
+    x = block(x, xa, mask=self.mask, kv_cache=kv_cache)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\nn\modules\module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\nn\modules\module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python311\Lib\site-packages\whisper\model.py", line 167, in forward
+    x = x + self.attn(self.attn_ln(x), mask=mask, kv_cache=kv_cache)[0]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\nn\modules\module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\nn\modules\module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python311\Lib\site-packages\whisper\model.py", line 111, in forward
+    wv, qk = self.qkv_attention(q, k, v, mask)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\AppData\Local\Programs\Python\Python311\Lib\site-packages\whisper\model.py", line 119, in qkv_attention
+    q = q.view(*q.shape[:2], self.n_head, -1).permute(0, 2, 1, 3)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: cannot reshape tensor of 0 elements into shape [1, 0, 8, -1] because the unspecified dimension size -1 can be any value and is ambiguous
+2026-04-22 23:49:16 | WARNING  | src.services.song_service | Whisper không trả về LRC cho song_id=107. Bỏ qua.
+2026-04-22 23:49:54 | INFO     | src.audio_processing.whisper_service | Hoàn tất transcription: 69 dòng lời, ngôn ngữ phát hiện: en
+2026-04-22 23:49:54 | INFO     | src.database.crud | Đã lưu LRC cho song_id=106 (2593 ký tự)

@@ -90,14 +90,15 @@ def predict_genre_with_confidence(feature_vector: np.ndarray) -> Tuple[Optional[
 
     vector = feature_vector.reshape(1, -1)
     try:
-        # Dự đoán nhãn
+        # Dòng quan trọng nhất: KNN thực hiện so sánh vector của bài hát này
+        # với tất cả các bài hát đã biết trong DB để đưa ra nhãn thể loại.
         predicted = clf.predict(vector)
         genre = predicted[0]
         
-        # Dự đoán xác suất
+        # Tính toán độ tin cậy dựa trên sự đồng thuận của các "láng giềng"
         proba = clf.predict_proba(vector)
         confidence = float(np.max(proba)) * 100
-        
+        # Tính toán độ tin cậy dựa trên sự đồng thuận của các "láng giềng"
         logger.info("predict_genre_with_confidence: -> '%s' (%.1f%%)", genre, confidence)
         return genre, confidence
     except Exception as e:
